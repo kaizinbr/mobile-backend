@@ -42,9 +42,8 @@ export default function Login() {
 			<button
 				className="bg-white text-black"
 				onClick={async () => {
-					const { error } = await authClient.signUp.email({
+					const { error } = await authClient.signIn.email({
 						email,
-						name,
 						password,
 					});
 				}}

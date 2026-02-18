@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import { customAlphabet } from "nanoid";
 import axios from "axios";
 import { cookies } from 'next/headers'
+import { prisma } from "@/lib/prisma";
 
 const getAccessToken = async () => {
     const authorization = Buffer.from(
@@ -30,18 +30,19 @@ const getAccessToken = async () => {
 };
 
 
-export async function POST(req: Request) {
-    const reqBody = await req.json();
-    const query = reqBody?.q ?? "";
-    const type = reqBody?.type ?? "artist";
+export async function GET(req: Request) {
+    const queryParams = new URL(req.url).searchParams;
+    const query = queryParams.get("q") || "";
+    const type = queryParams.get("type") || "album";
     console.log(query, type);
+
 
     const cookieStore = await cookies();
     const hasCookie = cookieStore.has('spotify_token');
-    let token = hasCookie ? cookieStore.get('spotify_token')!.value : await getAccessToken();
+    const token = hasCookie ? cookieStore.get('spotify_token')!.value : await getAccessToken();
 
     const response = await axios.get(
-        `https://api.spotify.com/v1/search?q=${query}&type=album&limit=20`,
+        `https://api.spotify.com/v1/search?q=${query}&type=album%2Ctrack%2Cartist&limit=20`,
         {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -49,5 +50,17 @@ export async function POST(req: Request) {
         }
     );
 
-    return NextResponse.json(response.data);
+    const usersResponse = await prisma.profile.findMany({
+        where: {
+            OR: [
+                { name: { contains: query, mode: "insensitive" } },
+                { lowername: { contains: query.toLowerCase(), mode: "insensitive" } },
+            ],
+        },
+    });
+
+    return NextResponse.json({
+        ...response.data,
+        users: usersResponse,
+    });
 }

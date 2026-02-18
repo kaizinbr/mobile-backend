@@ -2,29 +2,42 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 
-export async function GET(
-    request: Request,
-    { params }: { params: Promise<{ username: string }> }
-) {
-    const { username } = await params;
-
+export async function GET(request: Request) {
     try {
-        const profile = await prisma.profile.findFirst({
-            where: { lowername: username.toLowerCase() },
+        const { searchParams } = new URL(request.url);
+        const page = searchParams.get("p");
+        const pageNumber = page ? parseInt(page, 10) : 1;
+        const pageSize = 5;
+        const skip = (pageNumber - 1) * pageSize;
+
+        const reviews = await prisma.rating.findMany({
+            where: {
+                published: true,
+            },
+            include: {
+                Profile: true,
+            },
+            orderBy: {
+                created_at: "desc",
+            },
+            skip,
+            take: pageSize,
         });
 
-        if (!profile) {
-            return NextResponse.json(
-                { error: "Profile not found" },
-                { status: 404 }
-            );
-        }
+        const totalReviews = await prisma.rating.count({
+            where: {
+                published: true,
+            },
+        });
 
-        return NextResponse.json({ profile }, { status: 200 });
+        return NextResponse.json(
+            { reviews, totalReviews, page: pageNumber, next: pageNumber * pageSize < totalReviews ? pageNumber + 1 : null },
+            { status: 200 }
+        );
     } catch (err) {
         console.error("fetch error", err);
         return NextResponse.json(
-            { error: "Failed to fetch profile" },
+            { error: "Failed to fetch reviews" },
             { status: 500 }
         );
     }
