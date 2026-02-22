@@ -59,7 +59,23 @@ export async function GET(req: Request) {
         },
     });
 
+    const reviewsResponse = await prisma.rating.findMany({
+        where: {
+            OR: [
+                { review: { contains: query, mode: "insensitive" } },
+                { Profile: { is: { name: { contains: query, mode: "insensitive" }, lowername: { contains: query.toLowerCase(), mode: "insensitive" } } } },
+            
+            
+            ]
+
+        },
+        include: {
+            Profile: true,
+        },
+    });
+
     return NextResponse.json({
+        reviews: reviewsResponse,
         ...response.data,
         users: usersResponse,
     });

@@ -32,6 +32,8 @@ export async function GET(
             );
         }
 
+        console.log("profile fetched", profile);
+
         return NextResponse.json(profile, { status: 200 });
     } catch (err) {
         console.error("fetch error", err);

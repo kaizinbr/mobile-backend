@@ -31,12 +31,12 @@ export async function GET(
             );
         }
 
-        const markdown = tiptapJsonToMarkdown(review.content);
-        // console.log("markdown generated", markdown);
+        // const markdown = tiptapJsonToMarkdown(review.content);
+        console.log("shorten", shorten);
         const html = tiptapJsonToHTML(review.content);
 
         return NextResponse.json(
-            { jsonContent: review.content, markdown, html },
+            { jsonContent: review.content, html },
             { status: 200 },
         );
     } catch (err) {
@@ -47,61 +47,3 @@ export async function GET(
         );
     }
 }
-
-// export async function POST(request: Request) {
-//     try {
-//         const { shorten, content, title, tags, raw, published, color, image } =
-//             await request.json();
-
-//         const session = await auth();
-
-//         if (!session?.user?.id) {
-//             return NextResponse.json(
-//                 { error: "Parece que não está autenticado" },
-//                 { status: 401 }
-//             );
-//         }
-
-//         const post = await prisma.post.upsert({
-//             where: { shorten },
-//             update: {
-//                 content,
-//                 title,
-//                 tags: {
-//                     connectOrCreate: tags.map((name: string) => ({
-//                         where: { name },
-//                         create: { name },
-//                     })),
-//                 },
-//                 raw,
-//                 published,
-//                 color,
-//                 image,
-//             },
-//             create: {
-//                 shorten,
-//                 content,
-//                 title,
-//                 tags: {
-//                     connectOrCreate: tags.map((name: string) => ({
-//                         where: { name },
-//                         create: { name },
-//                     })),
-//                 },
-//                 raw,
-//                 published,
-//                 color,
-//                 image,
-//                 authorId: session.user.id,
-//             },
-//         });
-
-//         console.log("post created");
-
-//         return NextResponse.json({ post }, { status: 201 });
-//     } catch (err) {
-//         console.error("upload error", err);
-
-//         return NextResponse.json({ error: "Upload failed" }, { status: 500 });
-//     }
-// }
