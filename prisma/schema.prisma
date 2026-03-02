@@ -83,6 +83,7 @@ model Rating {
     total        Decimal        @default(0) @db.Decimal
     shorten      String?        @unique(map: "ratings_shorten_key")
     content      Json           @default("{\"type\": \"doc\", \"content\": [{\"type\": \"paragraph\", \"content\": [{\"text\": \"\", \"type\": \"text\"}]}]}")
+    html         String?        @db.Text
     published    Boolean        @default(false)
     created_at   DateTime       @default(dbgenerated("(now() AT TIME ZONE 'utc'::text)")) @db.Timestamptz(6)
     updated_at   DateTime       @default(dbgenerated("(now() AT TIME ZONE 'utc'::text)")) @db.Timestamptz(6)

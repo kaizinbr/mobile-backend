@@ -1,82 +1,164 @@
-import { NextResponse, NextRequest } from "next/server";
+// import { NextResponse, NextRequest } from "next/server";
+// import { prisma } from "@/lib/prisma";
+// import { cookies } from "next/headers";
+// import bcrypt from "bcryptjs";
+// import { Resend } from "resend";
+// const resend = new Resend(process.env.AUTH_RESEND_KEY);
+// import { ChangeEmail } from "@/components/mail/email-template";
+
+
+// import { auth } from "@/auth";
+
+// export async function POST(request: NextRequest) {
+//     const { otp, email } = await request.json();
+//     const session = await auth();
+
+//     try {
+//         if (!email) {
+//             return NextResponse.json(
+//                 { error: "Email is required" },
+//                 { status: 400 },
+//             );
+//         }
+
+//         if (!otp) {
+//             return NextResponse.json(
+//                 { error: "OTP is required" },
+//                 { status: 400 },
+//             );
+//         }
+
+//         if (!session?.user) {
+//             return NextResponse.json(
+//                 { error: "Unauthorized" },
+//                 { status: 401 },
+//             );
+//         }
+
+//         const existingToken = await prisma.tokenOTP.findUnique({
+//             where: { identifier: email },
+//         });
+
+//         if (!existingToken || existingToken.token !== otp) {
+//             return NextResponse.json(
+//                 { error: "O código OTP é inválido" },
+//                 { status: 400 },
+//             );
+//         }
+
+//         if (existingToken.expires < new Date()) {
+//             return NextResponse.json(
+//                 { error: "O código OTP expirou" },
+//                 { status: 400 },
+//             );
+//         }
+
+//         if (otp === existingToken.token) {
+//             // Atualizar o e-mail do usuário
+//             await prisma.user.update({
+//                 where: { id: session.user.id },
+//                 data: { email: email, emailVerified: new Date() },
+//             });
+
+//             // Deletar o token OTP após o uso
+//             await prisma.tokenOTP.deleteMany({
+//                 where: { identifier: email },
+//             });
+
+//             return NextResponse.json(
+//                 { message: "Email verificado e atualizado com sucesso" },
+//                 { status: 200 },
+//             );
+//         }
+
+
+//     } catch (err) {
+//         console.error("fetch error", err);
+//         return NextResponse.json(
+//             { error: "Falha ao atualizar o e-mail" },
+//             { status: 500 },
+//         );
+//     }
+// }
+import { NextResponse } from "next/server";
+import axios from "axios";
+import { cookies } from 'next/headers'
 import { prisma } from "@/lib/prisma";
-import { cookies } from "next/headers";
-import bcrypt from "bcryptjs";
-import { Resend } from "resend";
-const resend = new Resend(process.env.AUTH_RESEND_KEY);
-import { ChangeEmail } from "@/components/mail/email-template";
 
+const getAccessToken = async () => {
+    const authorization = Buffer.from(
+        `${process.env.SPOTIFY_CLIENT_ID ?? ""}:${
+            process.env.SPOTIFY_CLIENT_SECRET ?? ""
+        }`
+    ).toString("base64");
+    const data = new URLSearchParams();
+    data.append("grant_type", "client_credentials");
 
-import { auth } from "@/auth";
-
-export async function POST(request: NextRequest) {
-    const { otp, email } = await request.json();
-    const session = await auth();
-
-    try {
-        if (!email) {
-            return NextResponse.json(
-                { error: "Email is required" },
-                { status: 400 },
-            );
+    const response = await axios.post(
+        "https://accounts.spotify.com/api/token",
+        data,
+        {
+            headers: {
+                Authorization: `Basic ${authorization}`,
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
         }
+    );
+    // console.log(response.data);
 
-        if (!otp) {
-            return NextResponse.json(
-                { error: "OTP is required" },
-                { status: 400 },
-            );
+    (await cookies()).set('spotify_token', response.data.access_token, { path: '/', maxAge: 3600, sameSite: 'lax'})
+
+    return response.data.access_token;
+};
+
+
+export async function GET(req: Request) {
+    const queryParams = new URL(req.url).searchParams;
+    const query = queryParams.get("q") || "";
+    const type = queryParams.get("type") || "album";
+    console.log(query, type);
+
+
+    const cookieStore = await cookies();
+    const hasCookie = cookieStore.has('spotify_token');
+    const token = hasCookie ? cookieStore.get('spotify_token')!.value : await getAccessToken();
+
+    const response = await axios.get(
+        `https://api.spotify.com/v1/search?q=${query}&type=album%2Ctrack%2Cartist&limit=20`,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
         }
+    );
 
-        if (!session?.user) {
-            return NextResponse.json(
-                { error: "Unauthorized" },
-                { status: 401 },
-            );
-        }
+    const usersResponse = await prisma.profile.findMany({
+        where: {
+            OR: [
+                { name: { contains: query, mode: "insensitive" } },
+                { lowername: { contains: query.toLowerCase(), mode: "insensitive" } },
+            ],
+        },
+    });
 
-        const existingToken = await prisma.tokenOTP.findUnique({
-            where: { identifier: email },
-        });
+    const reviewsResponse = await prisma.rating.findMany({
+        where: {
+            OR: [
+                { review: { contains: query, mode: "insensitive" } },
+                { Profile: { is: { name: { contains: query, mode: "insensitive" }, lowername: { contains: query.toLowerCase(), mode: "insensitive" } } } },
+            
+            
+            ]
 
-        if (!existingToken || existingToken.token !== otp) {
-            return NextResponse.json(
-                { error: "O código OTP é inválido" },
-                { status: 400 },
-            );
-        }
+        },
+        include: {
+            Profile: true,
+        },
+    });
 
-        if (existingToken.expires < new Date()) {
-            return NextResponse.json(
-                { error: "O código OTP expirou" },
-                { status: 400 },
-            );
-        }
-
-        if (otp === existingToken.token) {
-            // Atualizar o e-mail do usuário
-            await prisma.user.update({
-                where: { id: session.user.id },
-                data: { email: email, emailVerified: new Date() },
-            });
-
-            // Deletar o token OTP após o uso
-            await prisma.tokenOTP.deleteMany({
-                where: { identifier: email },
-            });
-
-            return NextResponse.json(
-                { message: "Email verificado e atualizado com sucesso" },
-                { status: 200 },
-            );
-        }
-
-
-    } catch (err) {
-        console.error("fetch error", err);
-        return NextResponse.json(
-            { error: "Falha ao atualizar o e-mail" },
-            { status: 500 },
-        );
-    }
+    return NextResponse.json({
+        reviews: reviewsResponse,
+        ...response.data,
+        users: usersResponse,
+    });
 }

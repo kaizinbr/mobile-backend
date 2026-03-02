@@ -39,6 +39,7 @@ export type RatingMinAggregateOutputType = {
   review: string | null
   total: runtime.Decimal | null
   shorten: string | null
+  html: string | null
   published: boolean | null
   created_at: Date | null
   updated_at: Date | null
@@ -51,6 +52,7 @@ export type RatingMaxAggregateOutputType = {
   review: string | null
   total: runtime.Decimal | null
   shorten: string | null
+  html: string | null
   published: boolean | null
   created_at: Date | null
   updated_at: Date | null
@@ -65,6 +67,7 @@ export type RatingCountAggregateOutputType = {
   total: number
   shorten: number
   content: number
+  html: number
   published: number
   created_at: number
   updated_at: number
@@ -87,6 +90,7 @@ export type RatingMinAggregateInputType = {
   review?: true
   total?: true
   shorten?: true
+  html?: true
   published?: true
   created_at?: true
   updated_at?: true
@@ -99,6 +103,7 @@ export type RatingMaxAggregateInputType = {
   review?: true
   total?: true
   shorten?: true
+  html?: true
   published?: true
   created_at?: true
   updated_at?: true
@@ -113,6 +118,7 @@ export type RatingCountAggregateInputType = {
   total?: true
   shorten?: true
   content?: true
+  html?: true
   published?: true
   created_at?: true
   updated_at?: true
@@ -214,6 +220,7 @@ export type RatingGroupByOutputType = {
   total: runtime.Decimal
   shorten: string | null
   content: runtime.JsonValue
+  html: string | null
   published: boolean
   created_at: Date
   updated_at: Date
@@ -251,6 +258,7 @@ export type RatingWhereInput = {
   total?: Prisma.DecimalFilter<"Rating"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: Prisma.StringNullableFilter<"Rating"> | string | null
   content?: Prisma.JsonFilter<"Rating">
+  html?: Prisma.StringNullableFilter<"Rating"> | string | null
   published?: Prisma.BoolFilter<"Rating"> | boolean
   created_at?: Prisma.DateTimeFilter<"Rating"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"Rating"> | Date | string
@@ -268,6 +276,7 @@ export type RatingOrderByWithRelationInput = {
   total?: Prisma.SortOrder
   shorten?: Prisma.SortOrderInput | Prisma.SortOrder
   content?: Prisma.SortOrder
+  html?: Prisma.SortOrderInput | Prisma.SortOrder
   published?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
@@ -288,6 +297,7 @@ export type RatingWhereUniqueInput = Prisma.AtLeast<{
   review?: Prisma.StringNullableFilter<"Rating"> | string | null
   total?: Prisma.DecimalFilter<"Rating"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   content?: Prisma.JsonFilter<"Rating">
+  html?: Prisma.StringNullableFilter<"Rating"> | string | null
   published?: Prisma.BoolFilter<"Rating"> | boolean
   created_at?: Prisma.DateTimeFilter<"Rating"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"Rating"> | Date | string
@@ -305,6 +315,7 @@ export type RatingOrderByWithAggregationInput = {
   total?: Prisma.SortOrder
   shorten?: Prisma.SortOrderInput | Prisma.SortOrder
   content?: Prisma.SortOrder
+  html?: Prisma.SortOrderInput | Prisma.SortOrder
   published?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
@@ -327,6 +338,7 @@ export type RatingScalarWhereWithAggregatesInput = {
   total?: Prisma.DecimalWithAggregatesFilter<"Rating"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: Prisma.StringNullableWithAggregatesFilter<"Rating"> | string | null
   content?: Prisma.JsonWithAggregatesFilter<"Rating">
+  html?: Prisma.StringNullableWithAggregatesFilter<"Rating"> | string | null
   published?: Prisma.BoolWithAggregatesFilter<"Rating"> | boolean
   created_at?: Prisma.DateTimeWithAggregatesFilter<"Rating"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"Rating"> | Date | string
@@ -341,6 +353,7 @@ export type RatingCreateInput = {
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  html?: string | null
   published?: boolean
   created_at?: Date | string
   updated_at?: Date | string
@@ -357,6 +370,7 @@ export type RatingUncheckedCreateInput = {
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  html?: string | null
   published?: boolean
   created_at?: Date | string
   updated_at?: Date | string
@@ -373,6 +387,7 @@ export type RatingUpdateInput = {
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -389,6 +404,7 @@ export type RatingUncheckedUpdateInput = {
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -405,6 +421,7 @@ export type RatingCreateManyInput = {
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  html?: string | null
   published?: boolean
   created_at?: Date | string
   updated_at?: Date | string
@@ -419,6 +436,7 @@ export type RatingUpdateManyMutationInput = {
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -432,6 +450,7 @@ export type RatingUncheckedUpdateManyInput = {
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -461,6 +480,7 @@ export type RatingCountOrderByAggregateInput = {
   total?: Prisma.SortOrder
   shorten?: Prisma.SortOrder
   content?: Prisma.SortOrder
+  html?: Prisma.SortOrder
   published?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
@@ -477,6 +497,7 @@ export type RatingMaxOrderByAggregateInput = {
   review?: Prisma.SortOrder
   total?: Prisma.SortOrder
   shorten?: Prisma.SortOrder
+  html?: Prisma.SortOrder
   published?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
@@ -489,6 +510,7 @@ export type RatingMinOrderByAggregateInput = {
   review?: Prisma.SortOrder
   total?: Prisma.SortOrder
   shorten?: Prisma.SortOrder
+  html?: Prisma.SortOrder
   published?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
@@ -589,6 +611,7 @@ export type RatingCreateWithoutLikeInput = {
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  html?: string | null
   published?: boolean
   created_at?: Date | string
   updated_at?: Date | string
@@ -604,6 +627,7 @@ export type RatingUncheckedCreateWithoutLikeInput = {
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  html?: string | null
   published?: boolean
   created_at?: Date | string
   updated_at?: Date | string
@@ -635,6 +659,7 @@ export type RatingUpdateWithoutLikeInput = {
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -650,6 +675,7 @@ export type RatingUncheckedUpdateWithoutLikeInput = {
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -665,6 +691,7 @@ export type RatingCreateWithoutNotificationInput = {
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  html?: string | null
   published?: boolean
   created_at?: Date | string
   updated_at?: Date | string
@@ -680,6 +707,7 @@ export type RatingUncheckedCreateWithoutNotificationInput = {
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  html?: string | null
   published?: boolean
   created_at?: Date | string
   updated_at?: Date | string
@@ -711,6 +739,7 @@ export type RatingUpdateWithoutNotificationInput = {
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -726,6 +755,7 @@ export type RatingUncheckedUpdateWithoutNotificationInput = {
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -741,6 +771,7 @@ export type RatingCreateWithoutProfileInput = {
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  html?: string | null
   published?: boolean
   created_at?: Date | string
   updated_at?: Date | string
@@ -756,6 +787,7 @@ export type RatingUncheckedCreateWithoutProfileInput = {
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  html?: string | null
   published?: boolean
   created_at?: Date | string
   updated_at?: Date | string
@@ -800,6 +832,7 @@ export type RatingScalarWhereInput = {
   total?: Prisma.DecimalFilter<"Rating"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: Prisma.StringNullableFilter<"Rating"> | string | null
   content?: Prisma.JsonFilter<"Rating">
+  html?: Prisma.StringNullableFilter<"Rating"> | string | null
   published?: Prisma.BoolFilter<"Rating"> | boolean
   created_at?: Prisma.DateTimeFilter<"Rating"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"Rating"> | Date | string
@@ -814,6 +847,7 @@ export type RatingCreateManyProfileInput = {
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  html?: string | null
   published?: boolean
   created_at?: Date | string
   updated_at?: Date | string
@@ -827,6 +861,7 @@ export type RatingUpdateWithoutProfileInput = {
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -842,6 +877,7 @@ export type RatingUncheckedUpdateWithoutProfileInput = {
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -857,6 +893,7 @@ export type RatingUncheckedUpdateManyWithoutProfileInput = {
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -910,6 +947,7 @@ export type RatingSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   total?: boolean
   shorten?: boolean
   content?: boolean
+  html?: boolean
   published?: boolean
   created_at?: boolean
   updated_at?: boolean
@@ -928,6 +966,7 @@ export type RatingSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   total?: boolean
   shorten?: boolean
   content?: boolean
+  html?: boolean
   published?: boolean
   created_at?: boolean
   updated_at?: boolean
@@ -943,6 +982,7 @@ export type RatingSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   total?: boolean
   shorten?: boolean
   content?: boolean
+  html?: boolean
   published?: boolean
   created_at?: boolean
   updated_at?: boolean
@@ -958,6 +998,7 @@ export type RatingSelectScalar = {
   total?: boolean
   shorten?: boolean
   content?: boolean
+  html?: boolean
   published?: boolean
   created_at?: boolean
   updated_at?: boolean
@@ -965,7 +1006,7 @@ export type RatingSelectScalar = {
   user_id?: boolean
 }
 
-export type RatingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ratings" | "review" | "total" | "shorten" | "content" | "published" | "created_at" | "updated_at" | "album_id" | "user_id", ExtArgs["result"]["rating"]>
+export type RatingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ratings" | "review" | "total" | "shorten" | "content" | "html" | "published" | "created_at" | "updated_at" | "album_id" | "user_id", ExtArgs["result"]["rating"]>
 export type RatingInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   Like?: boolean | Prisma.Rating$LikeArgs<ExtArgs>
   Notification?: boolean | Prisma.Rating$NotificationArgs<ExtArgs>
@@ -993,6 +1034,7 @@ export type $RatingPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     total: runtime.Decimal
     shorten: string | null
     content: runtime.JsonValue
+    html: string | null
     published: boolean
     created_at: Date
     updated_at: Date
@@ -1430,6 +1472,7 @@ export interface RatingFieldRefs {
   readonly total: Prisma.FieldRef<"Rating", 'Decimal'>
   readonly shorten: Prisma.FieldRef<"Rating", 'String'>
   readonly content: Prisma.FieldRef<"Rating", 'Json'>
+  readonly html: Prisma.FieldRef<"Rating", 'String'>
   readonly published: Prisma.FieldRef<"Rating", 'Boolean'>
   readonly created_at: Prisma.FieldRef<"Rating", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"Rating", 'DateTime'>

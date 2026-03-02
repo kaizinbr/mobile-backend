@@ -159,6 +159,7 @@ export const RatingScalarFieldEnum = {
   total: 'total',
   shorten: 'shorten',
   content: 'content',
+  html: 'html',
   published: 'published',
   created_at: 'created_at',
   updated_at: 'updated_at',
