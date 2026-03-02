@@ -28,6 +28,7 @@ export const auth = betterAuth({
     trustedOrigins: [
         // "*",
         "myapp://",
+        "firstapp://",
         // Development mode - Expo's exp:// scheme with local IP ranges
         ...(process.env.NODE_ENV === "development"
             ? [
