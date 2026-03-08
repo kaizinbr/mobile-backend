@@ -1,9 +1,13 @@
 import { betterAuth } from "better-auth";
 import { expo } from "@better-auth/expo";
 import { prismaAdapter } from "better-auth/adapters/prisma";
-// If your Prisma file is located elsewhere, you can change the path
+import { oneTimeTokenClient } from "better-auth/client/plugins";
+import { emailOTP } from "better-auth/plugins";
+import { Resend } from "resend";
 import { prisma } from "@/lib/prisma";
 import { nextCookies } from "better-auth/next-js";
+
+const resend = new Resend(process.env.AUTH_RESEND_KEY);
 
 // const prisma = new prisma();
 export const auth = betterAuth({
@@ -12,6 +16,12 @@ export const auth = betterAuth({
     }),
     emailAndPassword: {
         enabled: true,
+    },
+    oneTimeToken: {
+        enabled: true,
+        tokenLength: 6, // default is 32
+        tokenCharset: "numeric", // default is "alphanumeric"
+        tokenExpiration: 10 * 60, // 10 minutes in seconds, default is 15 minutes
     },
     account: {
         modelName: "BA_Account",
@@ -24,7 +34,43 @@ export const auth = betterAuth({
             generateId: "uuid", // or "cuid", "ulid", ...etc
         },
     },
-    plugins: [expo(), nextCookies()],
+    plugins: [
+        expo(),
+        nextCookies(),
+        emailOTP({
+            async sendVerificationOTP({ email, otp, type }) {
+                if (type === "sign-in") {
+                    try {
+                        // 3. Aqui você dispara o e-mail usando o Resend
+                        await resend.emails.send({
+                            from: "Acme <onboarding@kaizin.work>", // Coloque o seu domínio verificado aqui
+                            to: email,
+                            subject:
+                                type === "sign-in"
+                                    ? "Seu código de acesso"
+                                    : "Verifique seu e-mail",
+                            html: `
+                            <h2>Olá!</h2>
+                            <p>Seu código de verificação é: <strong>${otp}</strong></p>
+                            <p>Ele expira em alguns minutos.</p>
+                        `,
+                        });
+                        console.log(`E-mail enviado com sucesso para ${email}`);
+                    } catch (error) {
+                        console.error(
+                            "Erro ao enviar o e-mail pelo Resend:",
+                            error,
+                        );
+                        // Opcional: você pode jogar um erro aqui para o frontend saber que falhou
+                    }
+                } else if (type === "email-verification") {
+                    // Send the OTP for email verification
+                } else {
+                    // Send the OTP for password reset
+                }
+            },
+        }),
+    ],
     trustedOrigins: [
         // "*",
         "myapp://",
@@ -60,6 +106,7 @@ export const auth = betterAuth({
                             lowername: tempUsername.toLowerCase(),
                             name: user.name || user.email || "Usuário",
                             bio: "",
+                            public: false,
                         },
                     });
                 },
