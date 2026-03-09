@@ -1,154 +1,51 @@
-// import { put } from "@vercel/blob";
-// import { NextResponse, NextRequest } from "next/server";
-// import { auth } from "@/auth";
-// import { prisma } from "@/lib/prisma";
+import { put } from "@vercel/blob";
+import { NextResponse, NextRequest } from "next/server";
+import { headers } from "next/headers";
+import { auth } from "@/auth"; // Ajuste o caminho se necessário
+import { prisma } from "@/lib/prisma"; // Ajuste o caminho se necessário
 
-// export async function PUT(request: NextRequest) {
-//     const { searchParams } = new URL(request.url);
-//     const filename = searchParams.get("filename");
-//     const session = await auth();
+export async function PUT(request: NextRequest) {
+    try {
+        const session = await auth.api.getSession({
+            headers: await headers(),
+        });
 
-//     if (!session?.user) {
-//         return NextResponse.json(
-//             { error: "User is not authenticated" },
-//             { status: 401 }
-//         );
-//     }
-    
-//     if (!filename) {
-//         return NextResponse.json(
-//             { error: "Filename is required" },
-//             { status: 400 }
-//         );
-//     }
-
-//     if (!request.body) {
-//         return NextResponse.json(
-//             { error: "File body is required" },
-//             { status: 400 }
-//         );
-//     }
-
-//     const name = 
-//     `${filename}-${Date.now()}`
-
-//     const blob = await put(`avatar/${session.user.id}_${Date.now()}.webp`, request.body, {
-//         access: "public",
-//     });
-
-//     await prisma.profile.update({
-//         where: { id: session.user.id },
-//         data: { avatarUrl: blob.url },
-//     });
-
-//     return NextResponse.json(blob);
-// }
-
-// // import { put } from "@vercel/blob";
-// // import { NextResponse } from "next/server";
-
-// // export async function POST(request: Request): Promise<NextResponse> {
-// //     const { searchParams } = new URL(request.url);
-// //     const filename = searchParams.get("filename");
-
-// //     // ⚠️ The below code is for App Router Route Handlers only
-// //     const blob = await put(filename, request.body, {
-// //         access: "public",
-// //     });
-
-// //     // Here's the code for Pages API Routes:
-// //     // const blob = await put(filename, request, {
-// //     //   access: 'public',
-// //     // });
-
-// //     return NextResponse.json(blob);
-// // }
-
-// // // The next lines are required for Pages API Routes only
-// // // export const config = {
-// // //   api: {
-// // //     bodyParser: false,
-// // //   },
-// // // };
-import { NextResponse } from "next/server";
-import axios from "axios";
-import { cookies } from 'next/headers'
-import { prisma } from "@/lib/prisma";
-
-const getAccessToken = async () => {
-    const authorization = Buffer.from(
-        `${process.env.SPOTIFY_CLIENT_ID ?? ""}:${
-            process.env.SPOTIFY_CLIENT_SECRET ?? ""
-        }`
-    ).toString("base64");
-    const data = new URLSearchParams();
-    data.append("grant_type", "client_credentials");
-
-    const response = await axios.post(
-        "https://accounts.spotify.com/api/token",
-        data,
-        {
-            headers: {
-                Authorization: `Basic ${authorization}`,
-                "Content-Type": "application/x-www-form-urlencoded",
-            },
+        if (!session?.user) {
+            return NextResponse.json(
+                { error: "Parece que não está autenticado" },
+                { status: 401 },
+            );
         }
-    );
-    // console.log(response.data);
 
-    (await cookies()).set('spotify_token', response.data.access_token, { path: '/', maxAge: 3600, sameSite: 'lax'})
+        const formData = await request.formData();
+        const file = formData.get("file") as File; 
 
-    return response.data.access_token;
-};
-
-
-export async function GET(req: Request) {
-    const queryParams = new URL(req.url).searchParams;
-    const query = queryParams.get("q") || "";
-    const type = queryParams.get("type") || "album";
-    console.log(query, type);
-
-
-    const cookieStore = await cookies();
-    const hasCookie = cookieStore.has('spotify_token');
-    const token = hasCookie ? cookieStore.get('spotify_token')!.value : await getAccessToken();
-
-    const response = await axios.get(
-        `https://api.spotify.com/v1/search?q=${query}&type=album%2Ctrack%2Cartist&limit=20`,
-        {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
+        if (!file) {
+            return NextResponse.json(
+                { error: "Nenhum arquivo encontrado no formulário" },
+                { status: 400 },
+            );
         }
-    );
 
-    const usersResponse = await prisma.profile.findMany({
-        where: {
-            OR: [
-                { name: { contains: query, mode: "insensitive" } },
-                { lowername: { contains: query.toLowerCase(), mode: "insensitive" } },
-            ],
-        },
-    });
+        const fileExtension = file.name.split(".").pop() || "jpeg";
 
-    const reviewsResponse = await prisma.rating.findMany({
-        where: {
-            OR: [
-                { review: { contains: query, mode: "insensitive" } },
-                { Profile: { is: { name: { contains: query, mode: "insensitive" }, lowername: { contains: query.toLowerCase(), mode: "insensitive" } } } },
-            
-            
-            ]
+        const finalFileName = `usuarios/${session.user.id}/avatar_${Date.now()}.${fileExtension}`;
 
-        },
-        include: {
-            Profile: true,
-        },
-    });
+        const blob = await put(finalFileName, file, {
+            access: "public",
+        });
 
-    return NextResponse.json({
-        reviews: reviewsResponse,
-        ...response.data,
-        users: usersResponse,
-    });
+        await prisma.profile.update({
+            where: { id: session.user.id },
+            data: { avatar_url: blob.url },
+        });
+
+        return NextResponse.json(blob);
+    } catch (error) {
+        console.error("Erro no upload:", error);
+        return NextResponse.json(
+            { error: "Falha interna no servidor" },
+            { status: 500 },
+        );
+    }
 }

@@ -3,20 +3,15 @@ import { prisma } from "@/lib/prisma";
 import { headers } from "next/headers";
 import { auth } from "@/auth";
 
-
-export async function GET(
-    request: Request,
-) {
-
-    
+export async function GET(request: Request) {
     const session = await auth.api.getSession({
-        headers: await headers()
-    })
+        headers: await headers(),
+    });
 
     if (!session?.user?.id) {
         return NextResponse.json(
             { error: "Parece que não está autenticado" },
-            { status: 401 }
+            { status: 401 },
         );
     }
 
@@ -28,7 +23,7 @@ export async function GET(
         if (!profile) {
             return NextResponse.json(
                 { error: "Profile not found" },
-                { status: 404 }
+                { status: 404 },
             );
         }
 
@@ -39,26 +34,40 @@ export async function GET(
         console.error("fetch error", err);
         return NextResponse.json(
             { error: "Failed to fetch profile" },
-            { status: 500 }
+            { status: 500 },
         );
     }
 }
 
-export async function POST(
-    request: NextRequest,
-) {
-
-    const { username, lowername, site, name, bio, pronouns } = await request.json();
-    const session = await auth.api.getSession({
-        headers: await headers()
-    }) 
-    
+export async function PUT(request: NextRequest) {
+    const { username, lowername, site, name, bio, pronouns, avatar } =
+        await request.json();
+    console.log("update request", {
+        username,
+        lowername,
+        site,
+        name,
+        bio,
+        pronouns,
+        avatar,
+    });
 
     try {
+        const session = await auth.api.getSession({
+            headers: await headers(),
+        });
+
+        if (!session?.user) {
+            return NextResponse.json(
+                { error: "Parece que não está autenticado" },
+                { status: 401 },
+            );
+        }
+
         if (!username) {
             return NextResponse.json(
                 { error: "Username is required" },
-                { status: 400 }
+                { status: 400 },
             );
         }
 
@@ -67,24 +76,24 @@ export async function POST(
             data: {
                 username: username,
                 lowername: username.toLowerCase(),
-                site: site || null, 
-                // avatarUrl: avatar_url || null,
+                site: site || null,
+                avatar_url: avatar || null,
                 name: name || null,
                 bio: bio || null,
                 pronouns: pronouns || null,
+                public: true,
             },
         });
 
-
         return NextResponse.json(
             { message: "Profile updated successfully" },
-            { status: 200 }
+            { status: 200 },
         );
     } catch (err) {
         console.error("fetch error", err);
         return NextResponse.json(
             { error: "Failed to fetch profile" },
-            { status: 500 }
+            { status: 500 },
         );
     }
 }
