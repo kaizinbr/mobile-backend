@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import fetchMultipleAlbuns from "@/lib/fetchMultipleAlbuns";
 
 
 export async function GET(request: Request) {
@@ -7,7 +9,7 @@ export async function GET(request: Request) {
         const { searchParams } = new URL(request.url);
         const page = searchParams.get("p");
         const pageNumber = page ? parseInt(page, 10) : 1;
-        const pageSize = 5;
+        const pageSize = 20;
         const skip = (pageNumber - 1) * pageSize;
 
         const reviews = await prisma.rating.findMany({
@@ -30,8 +32,23 @@ export async function GET(request: Request) {
             },
         });
 
+        const reviewsAlbunsIDs = reviews.map((review) => review.album_id);
+        const albunsData = await fetchMultipleAlbuns(reviewsAlbunsIDs.join(","));
+        
+        const albunsMap: Record<string, any> = {};
+        if (!("error" in albunsData)) {
+            albunsData.albums.forEach((album: any) => {
+                albunsMap[album.id] = album;
+            });
+        }
+
+        const reviewsWithAlbumData = reviews.map((review) => ({
+            ...review,
+            album: albunsMap[review.album_id!] || null,
+        }));
+
         return NextResponse.json(
-            { reviews, totalReviews, page: pageNumber, next: pageNumber * pageSize < totalReviews ? pageNumber + 1 : null },
+            { reviews: reviewsWithAlbumData, totalReviews, page: pageNumber, next: pageNumber * pageSize < totalReviews ? pageNumber + 1 : null },
             { status: 200 }
         );
     } catch (err) {
