@@ -97,13 +97,13 @@ export async function GET(
             return NextResponse.json({
                 reviewed: true,
                 rating: reviewed,
-                albumData: response.data,
+                album: response.data,
             });
         } else {
             return NextResponse.json({
                 reviewed: false,
                 rating: null,
-                albumData: response.data,
+                album: response.data,
             });
         }
     } catch (error) {
