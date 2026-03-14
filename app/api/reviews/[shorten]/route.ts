@@ -1,7 +1,7 @@
 import { NextResponse, NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { headers } from "next/headers"
-
+import fetchAlbum from "@/lib/fetchAlbum";
 import { auth } from "@/auth"
 
 export async function GET(
@@ -35,7 +35,19 @@ export async function GET(
                 { status: 404 }
             );
         }
-        return NextResponse.json(reviews, { status: 200 });
+
+
+        const albumData = await fetchAlbum(reviews[0].album_id!);
+
+        const reviewWithAlbumData = reviews.map((review) => ({
+            ...review,
+            album: albumData,
+        }));
+
+
+
+
+        return NextResponse.json(reviewWithAlbumData, { status: 200 });
     } catch (err) {
         console.error("fetch error", err);
         return NextResponse.json(
