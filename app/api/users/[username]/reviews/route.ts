@@ -13,7 +13,7 @@ export async function GET(
         const { searchParams } = new URL(request.url);
         const page = searchParams.get("p");
         const pageNumber = page ? parseInt(page, 10) : 1;
-        const pageSize = 5;
+        const pageSize = 20;
         const skip = (pageNumber - 1) * pageSize;
 
         const reviews = await prisma.rating.findMany({
