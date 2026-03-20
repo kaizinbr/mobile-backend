@@ -1,85 +1,46 @@
 import { NextResponse, NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { headers } from "next/headers";
-import { generateJSON } from '@tiptap/html';
-import StarterKit from '@tiptap/starter-kit';
+import { generateJSON } from "@tiptap/html";
+import StarterKit from "@tiptap/starter-kit";
 import { auth } from "@/auth";
 import getShorten from "@/lib/getShorten";
 
-// export async function GET(
-//     request: NextRequest,
-//     {
-//         params,
-//     }: {
-//         params: Promise<{ id: string }>;
-//     }
-// ) {
-//     const { id } = await params;
-//     const session = await auth.api.getSession({
-//         headers: await headers()
-//     })
-//     console.log("checking ratings for user:", id);
-    
-//     try {
-//         if (!id) {
-//             return NextResponse.json(
-//                 { error: "id is required" },
-//                 { status: 400 }
-//             );
-//         }
+import { marked } from "marked";
 
-//         const rating = await prisma.rating.findFirst({
-//             where: { album_id: id },
-//         });
+// Dentro do POST, substitui a lógica de content e rawText
 
-//         if (!rating) {
-//             return NextResponse.json(
-//                 { message: "Avaliação não existe", avaliou: false },
-//                 { status: 200 }
-//             );
-//         }
+// O resto do código continua igual
 
-//         if (rating.user_id !== session?.user?.id) {
-//             return NextResponse.json(
-//                 { error: "Unauthorized to delete this rating" },
-//                 { status: 403 }
-//             );
-//         }
-
-//         return NextResponse.json(rating, { status: 200 });
-//     } catch (err) {
-//         console.error("delete error", err);
-//         return NextResponse.json(
-//             { error: "Failed to delete rating" },
-//             { status: 500 }
-//         );
-//     }
-// }
-
-export async function POST(
-    request: NextRequest,
-) {
-    const { albumId, ratings, review, html, total, published } =
+export async function POST(request: NextRequest) {
+    const { albumId, ratings, review, markdown, total, published } =
         await request.json();
 
-    console.log("received data:", { albumId, ratings, review, html, total, published });
+    console.log("received data:", {
+        albumId,
+        ratings,
+        review,
+        markdown,
+        total,
+        published,
+    });
 
     const session = await auth.api.getSession({
-        headers: await headers()
-    })
+        headers: await headers(),
+    });
 
     try {
         if (!albumId) {
             return NextResponse.json(
                 { error: "albumId is required", saved: false },
-                { status: 400 }
+                { status: 400 },
             );
         }
 
         if (!session?.user?.id) {
             return NextResponse.json(
                 { error: "Unauthorized", saved: false },
-                { status: 401 }
+                { status: 401 },
             );
         }
 
@@ -88,17 +49,15 @@ export async function POST(
         });
 
         if (existsingRating) {
-
-            const content = generateJSON(html, [StarterKit]);
-            const rawText = html.replace(/<[^>]+>/g, '');
-            // console.log("Updating existing rating with data:", { ratings, review, html, content, total, published });
+            const html = await marked(markdown); // Markdown → HTML
+            const content = generateJSON(html, [StarterKit]); // HTML → JSON Tiptap
+            const rawText = markdown.replace(/[#*_~`>]/g, "").trim(); // remove sintaxe markdown
 
             const updatedRating = await prisma.rating.update({
                 where: { id: existsingRating.id },
                 data: {
                     ratings,
-                    review:  rawText,
-                    html,
+                    review: markdown,
                     content,
                     total,
                     published,
@@ -110,36 +69,40 @@ export async function POST(
                     saved: true,
                     data: updatedRating,
                 },
-                { status: 200 }
+                { status: 200 },
             );
         } else {
             const shorten = getShorten();
-            const content = generateJSON(html, [StarterKit]);
-            const rawText = html.replace(/<[^>]+>/g, '');
-            
+            const html = await marked(markdown); // Markdown → HTML
+            const content = generateJSON(html, [StarterKit]); // HTML → JSON Tiptap
+            const rawText = markdown.replace(/[#*_~`>]/g, "").trim(); // remove sintaxe markdown
+
             const newRating = await prisma.rating.create({
                 data: {
                     user_id: session?.user?.id || "",
                     album_id: albumId,
                     shorten,
                     ratings,
-                    review: rawText,
+                    review: markdown,
                     html,
                     content,
                     published,
                 },
             });
-            return NextResponse.json({
+            return NextResponse.json(
+                {
                     message: "Salvo com sucesso",
                     saved: true,
                     data: newRating,
-                }, { status: 201 });
+                },
+                { status: 201 },
+            );
         }
     } catch (err) {
         console.error("fetch error", err);
         return NextResponse.json(
             { error: "Failed to fetch profile", saved: false },
-            { status: 500 }
+            { status: 500 },
         );
     }
 }
