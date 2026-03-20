@@ -1,12 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import fetchMultipleAlbuns from "@/lib/fetchMultipleAlbuns";
 
 export async function GET(
     request: Request,
     { params }: { params: Promise<{ username: string }> },
 ) {
     const { username } = await params;
-    
+
     try {
         const { searchParams } = new URL(request.url);
         const page = searchParams.get("p");
@@ -39,10 +41,27 @@ export async function GET(
                 },
             },
         });
+        const reviewsAlbunsIDs = reviews.map((review) => review.album_id);
+        const albunsData = await fetchMultipleAlbuns(
+            reviewsAlbunsIDs.join(","),
+        );
+
+        const albunsMap: Record<string, any> = {};
+        if (!("error" in albunsData)) {
+            albunsData.albums.forEach((album: any) => {
+                albunsMap[album.id] = album;
+            });
+        }
+
+        const reviewsWithAlbumData = reviews.map((review) => ({
+            ...review,
+            album: albunsMap[review.album_id!] || null,
+        }));
 
         return NextResponse.json(
             {
-                reviews,
+                reviews: reviewsWithAlbumData,
+                albunsData,
                 totalReviews,
                 page: pageNumber,
                 next:
