@@ -87,6 +87,7 @@ export async function POST(request: NextRequest) {
                     html,
                     content,
                     published,
+                    total,
                 },
             });
             return NextResponse.json(
