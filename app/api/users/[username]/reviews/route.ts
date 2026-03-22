@@ -41,6 +41,16 @@ export async function GET(
                 },
             },
         });
+
+        if (reviews.length === 0) {
+            return NextResponse.json(
+                { reviews: [], totalReviews: 0, page: pageNumber, next: null },
+                { status: 200 },
+            );
+        }
+
+
+
         const reviewsAlbunsIDs = reviews.map((review) => review.album_id);
         const albunsData = await fetchMultipleAlbuns(
             reviewsAlbunsIDs.join(","),
