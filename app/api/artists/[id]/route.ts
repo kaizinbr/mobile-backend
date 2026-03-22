@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import axios from "axios";
 import { cookies } from "next/headers";
 
+import { getArtistExtra } from "@/app/api/artists/[id]/infos/route";
+
 const getAccessToken = async () => {
     const authorization = Buffer.from(
         `${process.env.SPOTIFY_CLIENT_ID ?? ""}:${
@@ -67,7 +69,9 @@ export async function GET(
 
         }
 
-        return NextResponse.json(response.data);
+            const infos = await getArtistExtra({ name: response.data.name, id: response.data.id });
+
+        return NextResponse.json({ ...response.data, ...infos });
     } catch (error) {
         console.error("Erro ao buscar álbum do Spotify:", error);
         return NextResponse.json(
