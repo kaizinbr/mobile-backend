@@ -57,6 +57,12 @@ export async function getMusicBrainzArtist(name: string) {
 export async function getWikipediaSummary(name: string) {
     const response = await fetch(
         `https://pt.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(name)}`,
+        {
+            headers: {
+                "User-Agent": "seuapp/1.0 (seuemail@email.com)",
+                "Accept": "application/json",
+            },
+        }
     );
     if (!response.ok) return null;
     const data = await response.json();
