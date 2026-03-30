@@ -46,7 +46,7 @@ export async function GET(
 
     const cookieStore = await cookies();
     const hasCookie = cookieStore.has("spotify_token");
-    let token = hasCookie
+    const token = hasCookie
         ? cookieStore.get("spotify_token")!.value
         : await getAccessToken();
 
