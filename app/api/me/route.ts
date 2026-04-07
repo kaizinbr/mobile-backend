@@ -40,7 +40,7 @@ export async function GET(request: Request) {
 }
 
 export async function PUT(request: NextRequest) {
-    const { username, lowername, site, name, bio, pronouns, avatar } =
+    const { username, lowername, site, name, bio, pronouns, avatar, albuns, artists } =
         await request.json();
     console.log("update request", {
         username,
@@ -50,6 +50,8 @@ export async function PUT(request: NextRequest) {
         bio,
         pronouns,
         avatar,
+        albuns,
+        artists,
     });
 
     try {
@@ -82,6 +84,8 @@ export async function PUT(request: NextRequest) {
                 bio: bio || null,
                 pronouns: pronouns || null,
                 public: true,
+                albuns: albuns || [],
+                artists: artists || [],
             },
         });
 
