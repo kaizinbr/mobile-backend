@@ -6,22 +6,22 @@ export async function GET(
     {
         params,
     }: {
-        params: Promise<{ shorten: string }>;
+        params: Promise<{ id: string }>;
     }
 ) {
-    const { shorten } = await params;
-    console.log("Fetching ratings for user:", shorten);
+    const { id } = await params;
+    console.log("Fetching ratings for user:", id);
 
     try {
-        if (!shorten) {
+        if (!id) {
             return NextResponse.json(
-                { error: "shorten is required" },
+                { error: "id is required" },
                 { status: 400 }
             );
         }
 
         const ratingsWithLikes = await prisma.rating.findFirst({
-            where: { shorten: shorten, published: true },
+            where: { id: id, published: true },
             include: { Like: true },
         });
 

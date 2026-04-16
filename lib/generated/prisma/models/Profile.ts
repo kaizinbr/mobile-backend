@@ -72,6 +72,7 @@ export type ProfileCountAggregateOutputType = {
   avatar_url: number
   albuns: number
   artists: number
+  lyrics: number
   location: number
   _all: number
 }
@@ -125,6 +126,7 @@ export type ProfileCountAggregateInputType = {
   avatar_url?: true
   albuns?: true
   artists?: true
+  lyrics?: true
   location?: true
   _all?: true
 }
@@ -217,6 +219,7 @@ export type ProfileGroupByOutputType = {
   avatar_url: string | null
   albuns: runtime.JsonValue
   artists: runtime.JsonValue
+  lyrics: runtime.JsonValue
   location: string | null
   _count: ProfileCountAggregateOutputType | null
   _min: ProfileMinAggregateOutputType | null
@@ -257,6 +260,7 @@ export type ProfileWhereInput = {
   avatar_url?: Prisma.StringNullableFilter<"Profile"> | string | null
   albuns?: Prisma.JsonFilter<"Profile">
   artists?: Prisma.JsonFilter<"Profile">
+  lyrics?: Prisma.JsonFilter<"Profile">
   location?: Prisma.StringNullableFilter<"Profile"> | string | null
   Follow_Follow_followed_idToProfile?: Prisma.FollowListRelationFilter
   Follow_Follow_follower_idToProfile?: Prisma.FollowListRelationFilter
@@ -283,6 +287,7 @@ export type ProfileOrderByWithRelationInput = {
   avatar_url?: Prisma.SortOrderInput | Prisma.SortOrder
   albuns?: Prisma.SortOrder
   artists?: Prisma.SortOrder
+  lyrics?: Prisma.SortOrder
   location?: Prisma.SortOrderInput | Prisma.SortOrder
   Follow_Follow_followed_idToProfile?: Prisma.FollowOrderByRelationAggregateInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowOrderByRelationAggregateInput
@@ -312,6 +317,7 @@ export type ProfileWhereUniqueInput = Prisma.AtLeast<{
   avatar_url?: Prisma.StringNullableFilter<"Profile"> | string | null
   albuns?: Prisma.JsonFilter<"Profile">
   artists?: Prisma.JsonFilter<"Profile">
+  lyrics?: Prisma.JsonFilter<"Profile">
   location?: Prisma.StringNullableFilter<"Profile"> | string | null
   Follow_Follow_followed_idToProfile?: Prisma.FollowListRelationFilter
   Follow_Follow_follower_idToProfile?: Prisma.FollowListRelationFilter
@@ -338,6 +344,7 @@ export type ProfileOrderByWithAggregationInput = {
   avatar_url?: Prisma.SortOrderInput | Prisma.SortOrder
   albuns?: Prisma.SortOrder
   artists?: Prisma.SortOrder
+  lyrics?: Prisma.SortOrder
   location?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ProfileCountOrderByAggregateInput
   _max?: Prisma.ProfileMaxOrderByAggregateInput
@@ -363,6 +370,7 @@ export type ProfileScalarWhereWithAggregatesInput = {
   avatar_url?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
   albuns?: Prisma.JsonWithAggregatesFilter<"Profile">
   artists?: Prisma.JsonWithAggregatesFilter<"Profile">
+  lyrics?: Prisma.JsonWithAggregatesFilter<"Profile">
   location?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
 }
 
@@ -381,6 +389,7 @@ export type ProfileCreateInput = {
   avatar_url?: string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
   Follow_Follow_followed_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
@@ -407,6 +416,7 @@ export type ProfileUncheckedCreateInput = {
   avatar_url?: string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
   Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
@@ -431,6 +441,7 @@ export type ProfileUpdateInput = {
   avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Follow_Follow_followed_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
@@ -457,6 +468,7 @@ export type ProfileUncheckedUpdateInput = {
   avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
@@ -482,6 +494,7 @@ export type ProfileCreateManyInput = {
   avatar_url?: string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
 }
 
@@ -500,6 +513,7 @@ export type ProfileUpdateManyMutationInput = {
   avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -519,6 +533,7 @@ export type ProfileUncheckedUpdateManyInput = {
   avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -548,6 +563,7 @@ export type ProfileCountOrderByAggregateInput = {
   avatar_url?: Prisma.SortOrder
   albuns?: Prisma.SortOrder
   artists?: Prisma.SortOrder
+  lyrics?: Prisma.SortOrder
   location?: Prisma.SortOrder
 }
 
@@ -726,6 +742,7 @@ export type ProfileCreateWithoutFollow_Follow_followed_idToProfileInput = {
   avatar_url?: string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
   Follow_Follow_follower_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
   Like?: Prisma.LikeCreateNestedManyWithoutProfileInput
@@ -751,6 +768,7 @@ export type ProfileUncheckedCreateWithoutFollow_Follow_followed_idToProfileInput
   avatar_url?: string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
   Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
   Like?: Prisma.LikeUncheckedCreateNestedManyWithoutProfileInput
@@ -779,6 +797,7 @@ export type ProfileCreateWithoutFollow_Follow_follower_idToProfileInput = {
   avatar_url?: string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
   Follow_Follow_followed_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
   Like?: Prisma.LikeCreateNestedManyWithoutProfileInput
@@ -804,6 +823,7 @@ export type ProfileUncheckedCreateWithoutFollow_Follow_follower_idToProfileInput
   avatar_url?: string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
   Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
   Like?: Prisma.LikeUncheckedCreateNestedManyWithoutProfileInput
@@ -843,6 +863,7 @@ export type ProfileUpdateWithoutFollow_Follow_followed_idToProfileInput = {
   avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Follow_Follow_follower_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
   Like?: Prisma.LikeUpdateManyWithoutProfileNestedInput
@@ -868,6 +889,7 @@ export type ProfileUncheckedUpdateWithoutFollow_Follow_followed_idToProfileInput
   avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
   Like?: Prisma.LikeUncheckedUpdateManyWithoutProfileNestedInput
@@ -902,6 +924,7 @@ export type ProfileUpdateWithoutFollow_Follow_follower_idToProfileInput = {
   avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Follow_Follow_followed_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
   Like?: Prisma.LikeUpdateManyWithoutProfileNestedInput
@@ -927,6 +950,7 @@ export type ProfileUncheckedUpdateWithoutFollow_Follow_follower_idToProfileInput
   avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
   Like?: Prisma.LikeUncheckedUpdateManyWithoutProfileNestedInput
@@ -950,6 +974,7 @@ export type ProfileCreateWithoutLikeInput = {
   avatar_url?: string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
   Follow_Follow_followed_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
@@ -975,6 +1000,7 @@ export type ProfileUncheckedCreateWithoutLikeInput = {
   avatar_url?: string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
   Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
@@ -1014,6 +1040,7 @@ export type ProfileUpdateWithoutLikeInput = {
   avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Follow_Follow_followed_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
@@ -1039,6 +1066,7 @@ export type ProfileUncheckedUpdateWithoutLikeInput = {
   avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
@@ -1062,6 +1090,7 @@ export type ProfileCreateWithoutNotification_Notification_sender_idToProfileInpu
   avatar_url?: string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
   Follow_Follow_followed_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
@@ -1087,6 +1116,7 @@ export type ProfileUncheckedCreateWithoutNotification_Notification_sender_idToPr
   avatar_url?: string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
   Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
@@ -1115,6 +1145,7 @@ export type ProfileCreateWithoutNotification_Notification_user_idToProfileInput 
   avatar_url?: string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
   Follow_Follow_followed_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
@@ -1140,6 +1171,7 @@ export type ProfileUncheckedCreateWithoutNotification_Notification_user_idToProf
   avatar_url?: string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
   Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
@@ -1179,6 +1211,7 @@ export type ProfileUpdateWithoutNotification_Notification_sender_idToProfileInpu
   avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Follow_Follow_followed_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
@@ -1204,6 +1237,7 @@ export type ProfileUncheckedUpdateWithoutNotification_Notification_sender_idToPr
   avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
@@ -1238,6 +1272,7 @@ export type ProfileUpdateWithoutNotification_Notification_user_idToProfileInput 
   avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Follow_Follow_followed_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
@@ -1263,6 +1298,7 @@ export type ProfileUncheckedUpdateWithoutNotification_Notification_user_idToProf
   avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
@@ -1286,6 +1322,7 @@ export type ProfileCreateWithoutRatingInput = {
   avatar_url?: string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
   Follow_Follow_followed_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
@@ -1311,6 +1348,7 @@ export type ProfileUncheckedCreateWithoutRatingInput = {
   avatar_url?: string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
   Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
@@ -1350,6 +1388,7 @@ export type ProfileUpdateWithoutRatingInput = {
   avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Follow_Follow_followed_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
@@ -1375,6 +1414,7 @@ export type ProfileUncheckedUpdateWithoutRatingInput = {
   avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
@@ -1398,6 +1438,7 @@ export type ProfileCreateWithoutUserInput = {
   avatar_url?: string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
   Follow_Follow_followed_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
@@ -1422,6 +1463,7 @@ export type ProfileUncheckedCreateWithoutUserInput = {
   avatar_url?: string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
   Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
@@ -1462,6 +1504,7 @@ export type ProfileUpdateWithoutUserInput = {
   avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Follow_Follow_followed_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
@@ -1486,6 +1529,7 @@ export type ProfileUncheckedUpdateWithoutUserInput = {
   avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
@@ -1587,6 +1631,7 @@ export type ProfileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   avatar_url?: boolean
   albuns?: boolean
   artists?: boolean
+  lyrics?: boolean
   location?: boolean
   Follow_Follow_followed_idToProfile?: boolean | Prisma.Profile$Follow_Follow_followed_idToProfileArgs<ExtArgs>
   Follow_Follow_follower_idToProfile?: boolean | Prisma.Profile$Follow_Follow_follower_idToProfileArgs<ExtArgs>
@@ -1614,6 +1659,7 @@ export type ProfileSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   avatar_url?: boolean
   albuns?: boolean
   artists?: boolean
+  lyrics?: boolean
   location?: boolean
   User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["profile"]>
@@ -1634,6 +1680,7 @@ export type ProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   avatar_url?: boolean
   albuns?: boolean
   artists?: boolean
+  lyrics?: boolean
   location?: boolean
   User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["profile"]>
@@ -1654,10 +1701,11 @@ export type ProfileSelectScalar = {
   avatar_url?: boolean
   albuns?: boolean
   artists?: boolean
+  lyrics?: boolean
   location?: boolean
 }
 
-export type ProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "username" | "name" | "lowername" | "bio" | "pronouns" | "site" | "color" | "created_at" | "public" | "favorites" | "verified" | "avatar_url" | "albuns" | "artists" | "location", ExtArgs["result"]["profile"]>
+export type ProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "username" | "name" | "lowername" | "bio" | "pronouns" | "site" | "color" | "created_at" | "public" | "favorites" | "verified" | "avatar_url" | "albuns" | "artists" | "lyrics" | "location", ExtArgs["result"]["profile"]>
 export type ProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   Follow_Follow_followed_idToProfile?: boolean | Prisma.Profile$Follow_Follow_followed_idToProfileArgs<ExtArgs>
   Follow_Follow_follower_idToProfile?: boolean | Prisma.Profile$Follow_Follow_follower_idToProfileArgs<ExtArgs>
@@ -1702,6 +1750,7 @@ export type $ProfilePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     avatar_url: string | null
     albuns: runtime.JsonValue
     artists: runtime.JsonValue
+    lyrics: runtime.JsonValue
     location: string | null
   }, ExtArgs["result"]["profile"]>
   composites: {}
@@ -2148,6 +2197,7 @@ export interface ProfileFieldRefs {
   readonly avatar_url: Prisma.FieldRef<"Profile", 'String'>
   readonly albuns: Prisma.FieldRef<"Profile", 'Json'>
   readonly artists: Prisma.FieldRef<"Profile", 'Json'>
+  readonly lyrics: Prisma.FieldRef<"Profile", 'Json'>
   readonly location: Prisma.FieldRef<"Profile", 'String'>
 }
     

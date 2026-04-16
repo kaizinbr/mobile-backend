@@ -1629,6 +1629,7 @@ export const ProfileScalarFieldEnum = {
   avatar_url: 'avatar_url',
   albuns: 'albuns',
   artists: 'artists',
+  lyrics: 'lyrics',
   location: 'location'
 } as const
 

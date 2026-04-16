@@ -8,13 +8,13 @@ import { tiptapJsonToMarkdown, tiptapJsonToHTML } from "@/lib/tiptapJson";
 
 export async function GET(
     request: Request,
-    { params }: { params: Promise<{ shorten: string }> },
+    { params }: { params: Promise<{ id: string }> },
 ) {
-    const { shorten } = await params;
+    const { id } = await params;
 
     try {
         const review = await prisma.rating.findFirst({
-            where: { shorten: shorten },
+            where: { id: id },
         });
 
         if (!review) {
@@ -32,7 +32,7 @@ export async function GET(
         }
 
         // const markdown = tiptapJsonToMarkdown(review.content);
-        console.log("shorten", shorten);
+        console.log("id", id);
         const html = tiptapJsonToHTML(review.content);
 
         return NextResponse.json(

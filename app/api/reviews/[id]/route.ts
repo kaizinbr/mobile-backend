@@ -9,21 +9,21 @@ export async function GET(
     {
         params,
     }: {
-        params: Promise<{ shorten: string }>;
+        params: Promise<{ id: string }>;
     }
 ) {
-    const { shorten } = await params;
+    const { id } = await params;
 
     try {
-        if (!shorten) {
+        if (!id) {
             return NextResponse.json(
-                { error: "shorten is required" },
+                { error: "id is required" },
                 { status: 400 }
             );
         }
 
         const reviews = await prisma.rating.findMany({
-            where: { shorten: shorten },
+            where: { id: id },
             include: {
                 Profile: true,
             },
@@ -62,10 +62,10 @@ export async function DELETE(
     {
         params,
     }: {
-        params: Promise<{ shorten: string }>;
+        params: Promise<{ id: string }>;
     }
 ) {
-    const { shorten } = await params;
+    const { id } = await params;
     const session = await auth.api.getSession({
         headers: await headers()
     })
@@ -74,17 +74,17 @@ export async function DELETE(
 
 
 
-    console.log("Deleting ratings for user:", shorten);
+    console.log("Deleting ratings for user:", id);
     try {
-        if (!shorten) {
+        if (!id) {
             return NextResponse.json(
-                { error: "shorten is required" },
+                { error: "id is required" },
                 { status: 400 }
             );
         }
 
         const rating = await prisma.rating.findFirst({
-            where: { shorten: shorten },
+            where: { id: id },
         });
         if (!rating) {
             return NextResponse.json(
@@ -103,7 +103,7 @@ export async function DELETE(
 
 
         const deletedRating = await prisma.rating.deleteMany({
-            where: { shorten: shorten },
+            where: { id: id },
         });
 
         return NextResponse.json(deletedRating, { status: 200 });
