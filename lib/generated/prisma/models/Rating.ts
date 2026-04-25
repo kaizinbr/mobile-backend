@@ -39,12 +39,12 @@ export type RatingMinAggregateOutputType = {
   review: string | null
   total: runtime.Decimal | null
   shorten: string | null
-  html: string | null
   published: boolean | null
   created_at: Date | null
   updated_at: Date | null
   album_id: string | null
   user_id: string | null
+  html: string | null
 }
 
 export type RatingMaxAggregateOutputType = {
@@ -52,12 +52,12 @@ export type RatingMaxAggregateOutputType = {
   review: string | null
   total: runtime.Decimal | null
   shorten: string | null
-  html: string | null
   published: boolean | null
   created_at: Date | null
   updated_at: Date | null
   album_id: string | null
   user_id: string | null
+  html: string | null
 }
 
 export type RatingCountAggregateOutputType = {
@@ -67,12 +67,12 @@ export type RatingCountAggregateOutputType = {
   total: number
   shorten: number
   content: number
-  html: number
   published: number
   created_at: number
   updated_at: number
   album_id: number
   user_id: number
+  html: number
   _all: number
 }
 
@@ -90,12 +90,12 @@ export type RatingMinAggregateInputType = {
   review?: true
   total?: true
   shorten?: true
-  html?: true
   published?: true
   created_at?: true
   updated_at?: true
   album_id?: true
   user_id?: true
+  html?: true
 }
 
 export type RatingMaxAggregateInputType = {
@@ -103,12 +103,12 @@ export type RatingMaxAggregateInputType = {
   review?: true
   total?: true
   shorten?: true
-  html?: true
   published?: true
   created_at?: true
   updated_at?: true
   album_id?: true
   user_id?: true
+  html?: true
 }
 
 export type RatingCountAggregateInputType = {
@@ -118,12 +118,12 @@ export type RatingCountAggregateInputType = {
   total?: true
   shorten?: true
   content?: true
-  html?: true
   published?: true
   created_at?: true
   updated_at?: true
   album_id?: true
   user_id?: true
+  html?: true
   _all?: true
 }
 
@@ -220,12 +220,12 @@ export type RatingGroupByOutputType = {
   total: runtime.Decimal
   shorten: string | null
   content: runtime.JsonValue
-  html: string | null
   published: boolean
   created_at: Date
   updated_at: Date
   album_id: string | null
   user_id: string | null
+  html: string | null
   _count: RatingCountAggregateOutputType | null
   _avg: RatingAvgAggregateOutputType | null
   _sum: RatingSumAggregateOutputType | null
@@ -258,12 +258,12 @@ export type RatingWhereInput = {
   total?: Prisma.DecimalFilter<"Rating"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: Prisma.StringNullableFilter<"Rating"> | string | null
   content?: Prisma.JsonFilter<"Rating">
-  html?: Prisma.StringNullableFilter<"Rating"> | string | null
   published?: Prisma.BoolFilter<"Rating"> | boolean
   created_at?: Prisma.DateTimeFilter<"Rating"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"Rating"> | Date | string
   album_id?: Prisma.StringNullableFilter<"Rating"> | string | null
   user_id?: Prisma.UuidNullableFilter<"Rating"> | string | null
+  html?: Prisma.StringNullableFilter<"Rating"> | string | null
   Like?: Prisma.LikeListRelationFilter
   Notification?: Prisma.NotificationListRelationFilter
   Profile?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
@@ -276,12 +276,12 @@ export type RatingOrderByWithRelationInput = {
   total?: Prisma.SortOrder
   shorten?: Prisma.SortOrderInput | Prisma.SortOrder
   content?: Prisma.SortOrder
-  html?: Prisma.SortOrderInput | Prisma.SortOrder
   published?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   album_id?: Prisma.SortOrderInput | Prisma.SortOrder
   user_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  html?: Prisma.SortOrderInput | Prisma.SortOrder
   Like?: Prisma.LikeOrderByRelationAggregateInput
   Notification?: Prisma.NotificationOrderByRelationAggregateInput
   Profile?: Prisma.ProfileOrderByWithRelationInput
@@ -297,12 +297,12 @@ export type RatingWhereUniqueInput = Prisma.AtLeast<{
   review?: Prisma.StringNullableFilter<"Rating"> | string | null
   total?: Prisma.DecimalFilter<"Rating"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   content?: Prisma.JsonFilter<"Rating">
-  html?: Prisma.StringNullableFilter<"Rating"> | string | null
   published?: Prisma.BoolFilter<"Rating"> | boolean
   created_at?: Prisma.DateTimeFilter<"Rating"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"Rating"> | Date | string
   album_id?: Prisma.StringNullableFilter<"Rating"> | string | null
   user_id?: Prisma.UuidNullableFilter<"Rating"> | string | null
+  html?: Prisma.StringNullableFilter<"Rating"> | string | null
   Like?: Prisma.LikeListRelationFilter
   Notification?: Prisma.NotificationListRelationFilter
   Profile?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
@@ -315,12 +315,12 @@ export type RatingOrderByWithAggregationInput = {
   total?: Prisma.SortOrder
   shorten?: Prisma.SortOrderInput | Prisma.SortOrder
   content?: Prisma.SortOrder
-  html?: Prisma.SortOrderInput | Prisma.SortOrder
   published?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   album_id?: Prisma.SortOrderInput | Prisma.SortOrder
   user_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  html?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.RatingCountOrderByAggregateInput
   _avg?: Prisma.RatingAvgOrderByAggregateInput
   _max?: Prisma.RatingMaxOrderByAggregateInput
@@ -338,12 +338,12 @@ export type RatingScalarWhereWithAggregatesInput = {
   total?: Prisma.DecimalWithAggregatesFilter<"Rating"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: Prisma.StringNullableWithAggregatesFilter<"Rating"> | string | null
   content?: Prisma.JsonWithAggregatesFilter<"Rating">
-  html?: Prisma.StringNullableWithAggregatesFilter<"Rating"> | string | null
   published?: Prisma.BoolWithAggregatesFilter<"Rating"> | boolean
   created_at?: Prisma.DateTimeWithAggregatesFilter<"Rating"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"Rating"> | Date | string
   album_id?: Prisma.StringNullableWithAggregatesFilter<"Rating"> | string | null
   user_id?: Prisma.UuidNullableWithAggregatesFilter<"Rating"> | string | null
+  html?: Prisma.StringNullableWithAggregatesFilter<"Rating"> | string | null
 }
 
 export type RatingCreateInput = {
@@ -353,11 +353,11 @@ export type RatingCreateInput = {
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  html?: string | null
   published?: boolean
   created_at?: Date | string
   updated_at?: Date | string
   album_id?: string | null
+  html?: string | null
   Like?: Prisma.LikeCreateNestedManyWithoutRatingInput
   Notification?: Prisma.NotificationCreateNestedManyWithoutRatingInput
   Profile?: Prisma.ProfileCreateNestedOneWithoutRatingInput
@@ -370,12 +370,12 @@ export type RatingUncheckedCreateInput = {
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  html?: string | null
   published?: boolean
   created_at?: Date | string
   updated_at?: Date | string
   album_id?: string | null
   user_id?: string | null
+  html?: string | null
   Like?: Prisma.LikeUncheckedCreateNestedManyWithoutRatingInput
   Notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutRatingInput
 }
@@ -387,11 +387,11 @@ export type RatingUpdateInput = {
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Like?: Prisma.LikeUpdateManyWithoutRatingNestedInput
   Notification?: Prisma.NotificationUpdateManyWithoutRatingNestedInput
   Profile?: Prisma.ProfileUpdateOneWithoutRatingNestedInput
@@ -404,12 +404,12 @@ export type RatingUncheckedUpdateInput = {
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Like?: Prisma.LikeUncheckedUpdateManyWithoutRatingNestedInput
   Notification?: Prisma.NotificationUncheckedUpdateManyWithoutRatingNestedInput
 }
@@ -421,12 +421,12 @@ export type RatingCreateManyInput = {
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  html?: string | null
   published?: boolean
   created_at?: Date | string
   updated_at?: Date | string
   album_id?: string | null
   user_id?: string | null
+  html?: string | null
 }
 
 export type RatingUpdateManyMutationInput = {
@@ -436,11 +436,11 @@ export type RatingUpdateManyMutationInput = {
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type RatingUncheckedUpdateManyInput = {
@@ -450,12 +450,12 @@ export type RatingUncheckedUpdateManyInput = {
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type RatingNullableScalarRelationFilter = {
@@ -480,12 +480,12 @@ export type RatingCountOrderByAggregateInput = {
   total?: Prisma.SortOrder
   shorten?: Prisma.SortOrder
   content?: Prisma.SortOrder
-  html?: Prisma.SortOrder
   published?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   album_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
+  html?: Prisma.SortOrder
 }
 
 export type RatingAvgOrderByAggregateInput = {
@@ -497,12 +497,12 @@ export type RatingMaxOrderByAggregateInput = {
   review?: Prisma.SortOrder
   total?: Prisma.SortOrder
   shorten?: Prisma.SortOrder
-  html?: Prisma.SortOrder
   published?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   album_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
+  html?: Prisma.SortOrder
 }
 
 export type RatingMinOrderByAggregateInput = {
@@ -510,12 +510,12 @@ export type RatingMinOrderByAggregateInput = {
   review?: Prisma.SortOrder
   total?: Prisma.SortOrder
   shorten?: Prisma.SortOrder
-  html?: Prisma.SortOrder
   published?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   album_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
+  html?: Prisma.SortOrder
 }
 
 export type RatingSumOrderByAggregateInput = {
@@ -611,11 +611,11 @@ export type RatingCreateWithoutLikeInput = {
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  html?: string | null
   published?: boolean
   created_at?: Date | string
   updated_at?: Date | string
   album_id?: string | null
+  html?: string | null
   Notification?: Prisma.NotificationCreateNestedManyWithoutRatingInput
   Profile?: Prisma.ProfileCreateNestedOneWithoutRatingInput
 }
@@ -627,12 +627,12 @@ export type RatingUncheckedCreateWithoutLikeInput = {
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  html?: string | null
   published?: boolean
   created_at?: Date | string
   updated_at?: Date | string
   album_id?: string | null
   user_id?: string | null
+  html?: string | null
   Notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutRatingInput
 }
 
@@ -659,11 +659,11 @@ export type RatingUpdateWithoutLikeInput = {
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Notification?: Prisma.NotificationUpdateManyWithoutRatingNestedInput
   Profile?: Prisma.ProfileUpdateOneWithoutRatingNestedInput
 }
@@ -675,12 +675,12 @@ export type RatingUncheckedUpdateWithoutLikeInput = {
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Notification?: Prisma.NotificationUncheckedUpdateManyWithoutRatingNestedInput
 }
 
@@ -691,11 +691,11 @@ export type RatingCreateWithoutNotificationInput = {
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  html?: string | null
   published?: boolean
   created_at?: Date | string
   updated_at?: Date | string
   album_id?: string | null
+  html?: string | null
   Like?: Prisma.LikeCreateNestedManyWithoutRatingInput
   Profile?: Prisma.ProfileCreateNestedOneWithoutRatingInput
 }
@@ -707,12 +707,12 @@ export type RatingUncheckedCreateWithoutNotificationInput = {
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  html?: string | null
   published?: boolean
   created_at?: Date | string
   updated_at?: Date | string
   album_id?: string | null
   user_id?: string | null
+  html?: string | null
   Like?: Prisma.LikeUncheckedCreateNestedManyWithoutRatingInput
 }
 
@@ -739,11 +739,11 @@ export type RatingUpdateWithoutNotificationInput = {
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Like?: Prisma.LikeUpdateManyWithoutRatingNestedInput
   Profile?: Prisma.ProfileUpdateOneWithoutRatingNestedInput
 }
@@ -755,12 +755,12 @@ export type RatingUncheckedUpdateWithoutNotificationInput = {
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Like?: Prisma.LikeUncheckedUpdateManyWithoutRatingNestedInput
 }
 
@@ -771,11 +771,11 @@ export type RatingCreateWithoutProfileInput = {
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  html?: string | null
   published?: boolean
   created_at?: Date | string
   updated_at?: Date | string
   album_id?: string | null
+  html?: string | null
   Like?: Prisma.LikeCreateNestedManyWithoutRatingInput
   Notification?: Prisma.NotificationCreateNestedManyWithoutRatingInput
 }
@@ -787,11 +787,11 @@ export type RatingUncheckedCreateWithoutProfileInput = {
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  html?: string | null
   published?: boolean
   created_at?: Date | string
   updated_at?: Date | string
   album_id?: string | null
+  html?: string | null
   Like?: Prisma.LikeUncheckedCreateNestedManyWithoutRatingInput
   Notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutRatingInput
 }
@@ -832,12 +832,12 @@ export type RatingScalarWhereInput = {
   total?: Prisma.DecimalFilter<"Rating"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: Prisma.StringNullableFilter<"Rating"> | string | null
   content?: Prisma.JsonFilter<"Rating">
-  html?: Prisma.StringNullableFilter<"Rating"> | string | null
   published?: Prisma.BoolFilter<"Rating"> | boolean
   created_at?: Prisma.DateTimeFilter<"Rating"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"Rating"> | Date | string
   album_id?: Prisma.StringNullableFilter<"Rating"> | string | null
   user_id?: Prisma.UuidNullableFilter<"Rating"> | string | null
+  html?: Prisma.StringNullableFilter<"Rating"> | string | null
 }
 
 export type RatingCreateManyProfileInput = {
@@ -847,11 +847,11 @@ export type RatingCreateManyProfileInput = {
   total?: runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  html?: string | null
   published?: boolean
   created_at?: Date | string
   updated_at?: Date | string
   album_id?: string | null
+  html?: string | null
 }
 
 export type RatingUpdateWithoutProfileInput = {
@@ -861,11 +861,11 @@ export type RatingUpdateWithoutProfileInput = {
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Like?: Prisma.LikeUpdateManyWithoutRatingNestedInput
   Notification?: Prisma.NotificationUpdateManyWithoutRatingNestedInput
 }
@@ -877,11 +877,11 @@ export type RatingUncheckedUpdateWithoutProfileInput = {
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Like?: Prisma.LikeUncheckedUpdateManyWithoutRatingNestedInput
   Notification?: Prisma.NotificationUncheckedUpdateManyWithoutRatingNestedInput
 }
@@ -893,11 +893,11 @@ export type RatingUncheckedUpdateManyWithoutProfileInput = {
   total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   shorten?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -947,12 +947,12 @@ export type RatingSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   total?: boolean
   shorten?: boolean
   content?: boolean
-  html?: boolean
   published?: boolean
   created_at?: boolean
   updated_at?: boolean
   album_id?: boolean
   user_id?: boolean
+  html?: boolean
   Like?: boolean | Prisma.Rating$LikeArgs<ExtArgs>
   Notification?: boolean | Prisma.Rating$NotificationArgs<ExtArgs>
   Profile?: boolean | Prisma.Rating$ProfileArgs<ExtArgs>
@@ -966,12 +966,12 @@ export type RatingSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   total?: boolean
   shorten?: boolean
   content?: boolean
-  html?: boolean
   published?: boolean
   created_at?: boolean
   updated_at?: boolean
   album_id?: boolean
   user_id?: boolean
+  html?: boolean
   Profile?: boolean | Prisma.Rating$ProfileArgs<ExtArgs>
 }, ExtArgs["result"]["rating"]>
 
@@ -982,12 +982,12 @@ export type RatingSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   total?: boolean
   shorten?: boolean
   content?: boolean
-  html?: boolean
   published?: boolean
   created_at?: boolean
   updated_at?: boolean
   album_id?: boolean
   user_id?: boolean
+  html?: boolean
   Profile?: boolean | Prisma.Rating$ProfileArgs<ExtArgs>
 }, ExtArgs["result"]["rating"]>
 
@@ -998,15 +998,15 @@ export type RatingSelectScalar = {
   total?: boolean
   shorten?: boolean
   content?: boolean
-  html?: boolean
   published?: boolean
   created_at?: boolean
   updated_at?: boolean
   album_id?: boolean
   user_id?: boolean
+  html?: boolean
 }
 
-export type RatingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ratings" | "review" | "total" | "shorten" | "content" | "html" | "published" | "created_at" | "updated_at" | "album_id" | "user_id", ExtArgs["result"]["rating"]>
+export type RatingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ratings" | "review" | "total" | "shorten" | "content" | "published" | "created_at" | "updated_at" | "album_id" | "user_id" | "html", ExtArgs["result"]["rating"]>
 export type RatingInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   Like?: boolean | Prisma.Rating$LikeArgs<ExtArgs>
   Notification?: boolean | Prisma.Rating$NotificationArgs<ExtArgs>
@@ -1034,12 +1034,12 @@ export type $RatingPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     total: runtime.Decimal
     shorten: string | null
     content: runtime.JsonValue
-    html: string | null
     published: boolean
     created_at: Date
     updated_at: Date
     album_id: string | null
     user_id: string | null
+    html: string | null
   }, ExtArgs["result"]["rating"]>
   composites: {}
 }
@@ -1472,12 +1472,12 @@ export interface RatingFieldRefs {
   readonly total: Prisma.FieldRef<"Rating", 'Decimal'>
   readonly shorten: Prisma.FieldRef<"Rating", 'String'>
   readonly content: Prisma.FieldRef<"Rating", 'Json'>
-  readonly html: Prisma.FieldRef<"Rating", 'String'>
   readonly published: Prisma.FieldRef<"Rating", 'Boolean'>
   readonly created_at: Prisma.FieldRef<"Rating", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"Rating", 'DateTime'>
   readonly album_id: Prisma.FieldRef<"Rating", 'String'>
   readonly user_id: Prisma.FieldRef<"Rating", 'String'>
+  readonly html: Prisma.FieldRef<"Rating", 'String'>
 }
     
 

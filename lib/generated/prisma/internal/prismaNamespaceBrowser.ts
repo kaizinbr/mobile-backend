@@ -65,7 +65,8 @@ export const ModelName = {
   BA_Account: 'BA_Account',
   Session: 'Session',
   User: 'User',
-  Verification: 'Verification'
+  Verification: 'Verification',
+  Wishlist: 'Wishlist'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -146,8 +147,8 @@ export const ProfileScalarFieldEnum = {
   avatar_url: 'avatar_url',
   albuns: 'albuns',
   artists: 'artists',
-  lyrics: 'lyrics',
-  location: 'location'
+  location: 'location',
+  lyrics: 'lyrics'
 } as const
 
 export type ProfileScalarFieldEnum = (typeof ProfileScalarFieldEnum)[keyof typeof ProfileScalarFieldEnum]
@@ -160,12 +161,12 @@ export const RatingScalarFieldEnum = {
   total: 'total',
   shorten: 'shorten',
   content: 'content',
-  html: 'html',
   published: 'published',
   created_at: 'created_at',
   updated_at: 'updated_at',
   album_id: 'album_id',
-  user_id: 'user_id'
+  user_id: 'user_id',
+  html: 'html'
 } as const
 
 export type RatingScalarFieldEnum = (typeof RatingScalarFieldEnum)[keyof typeof RatingScalarFieldEnum]
@@ -235,7 +236,6 @@ export type AccountScalarFieldEnum = (typeof AccountScalarFieldEnum)[keyof typeo
 
 
 export const BA_AccountScalarFieldEnum = {
-  id: 'id',
   userId: 'userId',
   accountId: 'accountId',
   providerId: 'providerId',
@@ -246,7 +246,8 @@ export const BA_AccountScalarFieldEnum = {
   refreshTokenExpiresAt: 'refreshTokenExpiresAt',
   password: 'password',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  id: 'id'
 } as const
 
 export type BA_AccountScalarFieldEnum = (typeof BA_AccountScalarFieldEnum)[keyof typeof BA_AccountScalarFieldEnum]
@@ -273,9 +274,9 @@ export const UserScalarFieldEnum = {
   email_verified_when: 'email_verified_when',
   image: 'image',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
   encrypted_password: 'encrypted_password',
-  emailVerified: 'emailVerified'
+  emailVerified: 'emailVerified',
+  updatedAt: 'updatedAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -291,6 +292,19 @@ export const VerificationScalarFieldEnum = {
 } as const
 
 export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[keyof typeof VerificationScalarFieldEnum]
+
+
+export const WishlistScalarFieldEnum = {
+  id: 'id',
+  profileId: 'profileId',
+  albumId: 'albumId',
+  albumName: 'albumName',
+  artistName: 'artistName',
+  coverUrl: 'coverUrl',
+  addedAt: 'addedAt'
+} as const
+
+export type WishlistScalarFieldEnum = (typeof WishlistScalarFieldEnum)[keyof typeof WishlistScalarFieldEnum]
 
 
 export const SortOrder = {

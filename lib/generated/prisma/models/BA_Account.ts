@@ -25,7 +25,6 @@ export type AggregateBA_Account = {
 }
 
 export type BA_AccountMinAggregateOutputType = {
-  id: string | null
   userId: string | null
   accountId: string | null
   providerId: string | null
@@ -37,10 +36,10 @@ export type BA_AccountMinAggregateOutputType = {
   password: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  id: string | null
 }
 
 export type BA_AccountMaxAggregateOutputType = {
-  id: string | null
   userId: string | null
   accountId: string | null
   providerId: string | null
@@ -52,10 +51,10 @@ export type BA_AccountMaxAggregateOutputType = {
   password: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  id: string | null
 }
 
 export type BA_AccountCountAggregateOutputType = {
-  id: number
   userId: number
   accountId: number
   providerId: number
@@ -67,12 +66,12 @@ export type BA_AccountCountAggregateOutputType = {
   password: number
   createdAt: number
   updatedAt: number
+  id: number
   _all: number
 }
 
 
 export type BA_AccountMinAggregateInputType = {
-  id?: true
   userId?: true
   accountId?: true
   providerId?: true
@@ -84,10 +83,10 @@ export type BA_AccountMinAggregateInputType = {
   password?: true
   createdAt?: true
   updatedAt?: true
+  id?: true
 }
 
 export type BA_AccountMaxAggregateInputType = {
-  id?: true
   userId?: true
   accountId?: true
   providerId?: true
@@ -99,10 +98,10 @@ export type BA_AccountMaxAggregateInputType = {
   password?: true
   createdAt?: true
   updatedAt?: true
+  id?: true
 }
 
 export type BA_AccountCountAggregateInputType = {
-  id?: true
   userId?: true
   accountId?: true
   providerId?: true
@@ -114,6 +113,7 @@ export type BA_AccountCountAggregateInputType = {
   password?: true
   createdAt?: true
   updatedAt?: true
+  id?: true
   _all?: true
 }
 
@@ -190,7 +190,6 @@ export type BA_AccountGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 export type BA_AccountGroupByOutputType = {
-  id: string
   userId: string
   accountId: string
   providerId: string
@@ -202,6 +201,7 @@ export type BA_AccountGroupByOutputType = {
   password: string | null
   createdAt: Date
   updatedAt: Date
+  id: string | null
   _count: BA_AccountCountAggregateOutputType | null
   _min: BA_AccountMinAggregateOutputType | null
   _max: BA_AccountMaxAggregateOutputType | null
@@ -226,7 +226,6 @@ export type BA_AccountWhereInput = {
   AND?: Prisma.BA_AccountWhereInput | Prisma.BA_AccountWhereInput[]
   OR?: Prisma.BA_AccountWhereInput[]
   NOT?: Prisma.BA_AccountWhereInput | Prisma.BA_AccountWhereInput[]
-  id?: Prisma.UuidFilter<"BA_Account"> | string
   userId?: Prisma.UuidFilter<"BA_Account"> | string
   accountId?: Prisma.StringFilter<"BA_Account"> | string
   providerId?: Prisma.StringFilter<"BA_Account"> | string
@@ -238,10 +237,10 @@ export type BA_AccountWhereInput = {
   password?: Prisma.StringNullableFilter<"BA_Account"> | string | null
   createdAt?: Prisma.DateTimeFilter<"BA_Account"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"BA_Account"> | Date | string
+  id?: Prisma.UuidNullableFilter<"BA_Account"> | string | null
 }
 
 export type BA_AccountOrderByWithRelationInput = {
-  id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   accountId?: Prisma.SortOrder
   providerId?: Prisma.SortOrder
@@ -253,16 +252,16 @@ export type BA_AccountOrderByWithRelationInput = {
   password?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  id?: Prisma.SortOrderInput | Prisma.SortOrder
 }
 
 export type BA_AccountWhereUniqueInput = Prisma.AtLeast<{
-  id?: string
-  providerId?: string
+  accountId?: string
   AND?: Prisma.BA_AccountWhereInput | Prisma.BA_AccountWhereInput[]
   OR?: Prisma.BA_AccountWhereInput[]
   NOT?: Prisma.BA_AccountWhereInput | Prisma.BA_AccountWhereInput[]
   userId?: Prisma.UuidFilter<"BA_Account"> | string
-  accountId?: Prisma.StringFilter<"BA_Account"> | string
+  providerId?: Prisma.StringFilter<"BA_Account"> | string
   accessToken?: Prisma.StringNullableFilter<"BA_Account"> | string | null
   refreshToken?: Prisma.StringNullableFilter<"BA_Account"> | string | null
   idToken?: Prisma.StringNullableFilter<"BA_Account"> | string | null
@@ -271,10 +270,10 @@ export type BA_AccountWhereUniqueInput = Prisma.AtLeast<{
   password?: Prisma.StringNullableFilter<"BA_Account"> | string | null
   createdAt?: Prisma.DateTimeFilter<"BA_Account"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"BA_Account"> | Date | string
-}, "id" | "providerId">
+  id?: Prisma.UuidNullableFilter<"BA_Account"> | string | null
+}, "accountId">
 
 export type BA_AccountOrderByWithAggregationInput = {
-  id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   accountId?: Prisma.SortOrder
   providerId?: Prisma.SortOrder
@@ -286,6 +285,7 @@ export type BA_AccountOrderByWithAggregationInput = {
   password?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  id?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.BA_AccountCountOrderByAggregateInput
   _max?: Prisma.BA_AccountMaxOrderByAggregateInput
   _min?: Prisma.BA_AccountMinOrderByAggregateInput
@@ -295,7 +295,6 @@ export type BA_AccountScalarWhereWithAggregatesInput = {
   AND?: Prisma.BA_AccountScalarWhereWithAggregatesInput | Prisma.BA_AccountScalarWhereWithAggregatesInput[]
   OR?: Prisma.BA_AccountScalarWhereWithAggregatesInput[]
   NOT?: Prisma.BA_AccountScalarWhereWithAggregatesInput | Prisma.BA_AccountScalarWhereWithAggregatesInput[]
-  id?: Prisma.UuidWithAggregatesFilter<"BA_Account"> | string
   userId?: Prisma.UuidWithAggregatesFilter<"BA_Account"> | string
   accountId?: Prisma.StringWithAggregatesFilter<"BA_Account"> | string
   providerId?: Prisma.StringWithAggregatesFilter<"BA_Account"> | string
@@ -307,10 +306,10 @@ export type BA_AccountScalarWhereWithAggregatesInput = {
   password?: Prisma.StringNullableWithAggregatesFilter<"BA_Account"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"BA_Account"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"BA_Account"> | Date | string
+  id?: Prisma.UuidNullableWithAggregatesFilter<"BA_Account"> | string | null
 }
 
 export type BA_AccountCreateInput = {
-  id?: string
   userId: string
   accountId: string
   providerId: string
@@ -322,10 +321,10 @@ export type BA_AccountCreateInput = {
   password?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  id?: string | null
 }
 
 export type BA_AccountUncheckedCreateInput = {
-  id?: string
   userId: string
   accountId: string
   providerId: string
@@ -337,10 +336,10 @@ export type BA_AccountUncheckedCreateInput = {
   password?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  id?: string | null
 }
 
 export type BA_AccountUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   accountId?: Prisma.StringFieldUpdateOperationsInput | string
   providerId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -352,10 +351,10 @@ export type BA_AccountUpdateInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type BA_AccountUncheckedUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   accountId?: Prisma.StringFieldUpdateOperationsInput | string
   providerId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -367,10 +366,10 @@ export type BA_AccountUncheckedUpdateInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type BA_AccountCreateManyInput = {
-  id?: string
   userId: string
   accountId: string
   providerId: string
@@ -382,10 +381,10 @@ export type BA_AccountCreateManyInput = {
   password?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  id?: string | null
 }
 
 export type BA_AccountUpdateManyMutationInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   accountId?: Prisma.StringFieldUpdateOperationsInput | string
   providerId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -397,10 +396,10 @@ export type BA_AccountUpdateManyMutationInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type BA_AccountUncheckedUpdateManyInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   accountId?: Prisma.StringFieldUpdateOperationsInput | string
   providerId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -412,10 +411,10 @@ export type BA_AccountUncheckedUpdateManyInput = {
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type BA_AccountCountOrderByAggregateInput = {
-  id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   accountId?: Prisma.SortOrder
   providerId?: Prisma.SortOrder
@@ -427,10 +426,10 @@ export type BA_AccountCountOrderByAggregateInput = {
   password?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  id?: Prisma.SortOrder
 }
 
 export type BA_AccountMaxOrderByAggregateInput = {
-  id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   accountId?: Prisma.SortOrder
   providerId?: Prisma.SortOrder
@@ -442,10 +441,10 @@ export type BA_AccountMaxOrderByAggregateInput = {
   password?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  id?: Prisma.SortOrder
 }
 
 export type BA_AccountMinOrderByAggregateInput = {
-  id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   accountId?: Prisma.SortOrder
   providerId?: Prisma.SortOrder
@@ -457,12 +456,12 @@ export type BA_AccountMinOrderByAggregateInput = {
   password?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  id?: Prisma.SortOrder
 }
 
 
 
 export type BA_AccountSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
   userId?: boolean
   accountId?: boolean
   providerId?: boolean
@@ -474,10 +473,10 @@ export type BA_AccountSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   password?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  id?: boolean
 }, ExtArgs["result"]["bA_Account"]>
 
 export type BA_AccountSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
   userId?: boolean
   accountId?: boolean
   providerId?: boolean
@@ -489,10 +488,10 @@ export type BA_AccountSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   password?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  id?: boolean
 }, ExtArgs["result"]["bA_Account"]>
 
 export type BA_AccountSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
   userId?: boolean
   accountId?: boolean
   providerId?: boolean
@@ -504,10 +503,10 @@ export type BA_AccountSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   password?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  id?: boolean
 }, ExtArgs["result"]["bA_Account"]>
 
 export type BA_AccountSelectScalar = {
-  id?: boolean
   userId?: boolean
   accountId?: boolean
   providerId?: boolean
@@ -519,15 +518,15 @@ export type BA_AccountSelectScalar = {
   password?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  id?: boolean
 }
 
-export type BA_AccountOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "accountId" | "providerId" | "accessToken" | "refreshToken" | "idToken" | "accessTokenExpiresAt" | "refreshTokenExpiresAt" | "password" | "createdAt" | "updatedAt", ExtArgs["result"]["bA_Account"]>
+export type BA_AccountOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"userId" | "accountId" | "providerId" | "accessToken" | "refreshToken" | "idToken" | "accessTokenExpiresAt" | "refreshTokenExpiresAt" | "password" | "createdAt" | "updatedAt" | "id", ExtArgs["result"]["bA_Account"]>
 
 export type $BA_AccountPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "BA_Account"
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: string
     userId: string
     accountId: string
     providerId: string
@@ -539,6 +538,7 @@ export type $BA_AccountPayload<ExtArgs extends runtime.Types.Extensions.Internal
     password: string | null
     createdAt: Date
     updatedAt: Date
+    id: string | null
   }, ExtArgs["result"]["bA_Account"]>
   composites: {}
 }
@@ -622,8 +622,8 @@ export interface BA_AccountDelegate<ExtArgs extends runtime.Types.Extensions.Int
    * // Get first 10 BA_Accounts
    * const bA_Accounts = await prisma.bA_Account.findMany({ take: 10 })
    * 
-   * // Only select the `id`
-   * const bA_AccountWithIdOnly = await prisma.bA_Account.findMany({ select: { id: true } })
+   * // Only select the `userId`
+   * const bA_AccountWithUserIdOnly = await prisma.bA_Account.findMany({ select: { userId: true } })
    * 
    */
   findMany<T extends BA_AccountFindManyArgs>(args?: Prisma.SelectSubset<T, BA_AccountFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BA_AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -667,9 +667,9 @@ export interface BA_AccountDelegate<ExtArgs extends runtime.Types.Extensions.Int
    *   ]
    * })
    * 
-   * // Create many BA_Accounts and only return the `id`
-   * const bA_AccountWithIdOnly = await prisma.bA_Account.createManyAndReturn({
-   *   select: { id: true },
+   * // Create many BA_Accounts and only return the `userId`
+   * const bA_AccountWithUserIdOnly = await prisma.bA_Account.createManyAndReturn({
+   *   select: { userId: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -758,9 +758,9 @@ export interface BA_AccountDelegate<ExtArgs extends runtime.Types.Extensions.Int
    *   ]
    * })
    * 
-   * // Update zero or more BA_Accounts and only return the `id`
-   * const bA_AccountWithIdOnly = await prisma.bA_Account.updateManyAndReturn({
-   *   select: { id: true },
+   * // Update zero or more BA_Accounts and only return the `userId`
+   * const bA_AccountWithUserIdOnly = await prisma.bA_Account.updateManyAndReturn({
+   *   select: { userId: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -962,7 +962,6 @@ export interface Prisma__BA_AccountClient<T, Null = never, ExtArgs extends runti
  * Fields of the BA_Account model
  */
 export interface BA_AccountFieldRefs {
-  readonly id: Prisma.FieldRef<"BA_Account", 'String'>
   readonly userId: Prisma.FieldRef<"BA_Account", 'String'>
   readonly accountId: Prisma.FieldRef<"BA_Account", 'String'>
   readonly providerId: Prisma.FieldRef<"BA_Account", 'String'>
@@ -974,6 +973,7 @@ export interface BA_AccountFieldRefs {
   readonly password: Prisma.FieldRef<"BA_Account", 'String'>
   readonly createdAt: Prisma.FieldRef<"BA_Account", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"BA_Account", 'DateTime'>
+  readonly id: Prisma.FieldRef<"BA_Account", 'String'>
 }
     
 

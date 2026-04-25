@@ -92,3 +92,8 @@ export type User = Prisma.UserModel
  * 
  */
 export type Verification = Prisma.VerificationModel
+/**
+ * Model Wishlist
+ * 
+ */
+export type Wishlist = Prisma.WishlistModel

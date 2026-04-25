@@ -97,3 +97,52 @@ export async function POST(request: NextRequest) {
         );
     }
 }
+
+
+export async function DELETE(request: NextRequest) {
+    const { id } = await request.json();
+    const session = await auth.api.getSession({
+        headers: await headers(),
+    });
+
+    console.log("delete request", { id });
+
+    try {
+        if (!session?.user) {
+            return NextResponse.json(
+                { error: "User is not authenticated" },
+                { status: 400 },
+            );
+        }
+        const prevArtists = await prisma.profile.findFirst({
+            where: { id: session?.user!.id },
+            select: {
+                artists: true,
+            },
+        });
+
+        const favoritesArray = Array.isArray(prevArtists?.artists)
+            ? prevArtists.artists
+            : [];
+
+        await prisma.profile.update({
+            where: { id: session?.user!.id },
+            data: {
+                artists: favoritesArray.filter(
+                    (artist: any) => artist.id !== id,
+                ),
+            },
+        });
+
+        return NextResponse.json(
+            { message: "Profile updated successfully" },
+            { status: 200 },
+        );
+    } catch (err) {
+        console.error("fetch error", err);
+        return NextResponse.json(
+            { error: "Failed to update profile" },
+            { status: 500 },
+        );
+    }
+}

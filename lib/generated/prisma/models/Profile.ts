@@ -72,8 +72,8 @@ export type ProfileCountAggregateOutputType = {
   avatar_url: number
   albuns: number
   artists: number
-  lyrics: number
   location: number
+  lyrics: number
   _all: number
 }
 
@@ -126,8 +126,8 @@ export type ProfileCountAggregateInputType = {
   avatar_url?: true
   albuns?: true
   artists?: true
-  lyrics?: true
   location?: true
+  lyrics?: true
   _all?: true
 }
 
@@ -216,11 +216,11 @@ export type ProfileGroupByOutputType = {
   public: boolean
   favorites: runtime.JsonValue
   verified: boolean
-  avatar_url: string | null
+  avatar_url: string
   albuns: runtime.JsonValue
   artists: runtime.JsonValue
-  lyrics: runtime.JsonValue
   location: string | null
+  lyrics: runtime.JsonValue | null
   _count: ProfileCountAggregateOutputType | null
   _min: ProfileMinAggregateOutputType | null
   _max: ProfileMaxAggregateOutputType | null
@@ -257,11 +257,11 @@ export type ProfileWhereInput = {
   public?: Prisma.BoolFilter<"Profile"> | boolean
   favorites?: Prisma.JsonFilter<"Profile">
   verified?: Prisma.BoolFilter<"Profile"> | boolean
-  avatar_url?: Prisma.StringNullableFilter<"Profile"> | string | null
+  avatar_url?: Prisma.StringFilter<"Profile"> | string
   albuns?: Prisma.JsonFilter<"Profile">
   artists?: Prisma.JsonFilter<"Profile">
-  lyrics?: Prisma.JsonFilter<"Profile">
   location?: Prisma.StringNullableFilter<"Profile"> | string | null
+  lyrics?: Prisma.JsonNullableFilter<"Profile">
   Follow_Follow_followed_idToProfile?: Prisma.FollowListRelationFilter
   Follow_Follow_follower_idToProfile?: Prisma.FollowListRelationFilter
   Like?: Prisma.LikeListRelationFilter
@@ -269,6 +269,7 @@ export type ProfileWhereInput = {
   Notification_Notification_user_idToProfile?: Prisma.NotificationListRelationFilter
   User?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   Rating?: Prisma.RatingListRelationFilter
+  Wishlist?: Prisma.WishlistListRelationFilter
 }
 
 export type ProfileOrderByWithRelationInput = {
@@ -284,11 +285,11 @@ export type ProfileOrderByWithRelationInput = {
   public?: Prisma.SortOrder
   favorites?: Prisma.SortOrder
   verified?: Prisma.SortOrder
-  avatar_url?: Prisma.SortOrderInput | Prisma.SortOrder
+  avatar_url?: Prisma.SortOrder
   albuns?: Prisma.SortOrder
   artists?: Prisma.SortOrder
-  lyrics?: Prisma.SortOrder
   location?: Prisma.SortOrderInput | Prisma.SortOrder
+  lyrics?: Prisma.SortOrderInput | Prisma.SortOrder
   Follow_Follow_followed_idToProfile?: Prisma.FollowOrderByRelationAggregateInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowOrderByRelationAggregateInput
   Like?: Prisma.LikeOrderByRelationAggregateInput
@@ -296,6 +297,7 @@ export type ProfileOrderByWithRelationInput = {
   Notification_Notification_user_idToProfile?: Prisma.NotificationOrderByRelationAggregateInput
   User?: Prisma.UserOrderByWithRelationInput
   Rating?: Prisma.RatingOrderByRelationAggregateInput
+  Wishlist?: Prisma.WishlistOrderByRelationAggregateInput
 }
 
 export type ProfileWhereUniqueInput = Prisma.AtLeast<{
@@ -314,11 +316,11 @@ export type ProfileWhereUniqueInput = Prisma.AtLeast<{
   public?: Prisma.BoolFilter<"Profile"> | boolean
   favorites?: Prisma.JsonFilter<"Profile">
   verified?: Prisma.BoolFilter<"Profile"> | boolean
-  avatar_url?: Prisma.StringNullableFilter<"Profile"> | string | null
+  avatar_url?: Prisma.StringFilter<"Profile"> | string
   albuns?: Prisma.JsonFilter<"Profile">
   artists?: Prisma.JsonFilter<"Profile">
-  lyrics?: Prisma.JsonFilter<"Profile">
   location?: Prisma.StringNullableFilter<"Profile"> | string | null
+  lyrics?: Prisma.JsonNullableFilter<"Profile">
   Follow_Follow_followed_idToProfile?: Prisma.FollowListRelationFilter
   Follow_Follow_follower_idToProfile?: Prisma.FollowListRelationFilter
   Like?: Prisma.LikeListRelationFilter
@@ -326,6 +328,7 @@ export type ProfileWhereUniqueInput = Prisma.AtLeast<{
   Notification_Notification_user_idToProfile?: Prisma.NotificationListRelationFilter
   User?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   Rating?: Prisma.RatingListRelationFilter
+  Wishlist?: Prisma.WishlistListRelationFilter
 }, "id">
 
 export type ProfileOrderByWithAggregationInput = {
@@ -341,11 +344,11 @@ export type ProfileOrderByWithAggregationInput = {
   public?: Prisma.SortOrder
   favorites?: Prisma.SortOrder
   verified?: Prisma.SortOrder
-  avatar_url?: Prisma.SortOrderInput | Prisma.SortOrder
+  avatar_url?: Prisma.SortOrder
   albuns?: Prisma.SortOrder
   artists?: Prisma.SortOrder
-  lyrics?: Prisma.SortOrder
   location?: Prisma.SortOrderInput | Prisma.SortOrder
+  lyrics?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ProfileCountOrderByAggregateInput
   _max?: Prisma.ProfileMaxOrderByAggregateInput
   _min?: Prisma.ProfileMinOrderByAggregateInput
@@ -367,11 +370,11 @@ export type ProfileScalarWhereWithAggregatesInput = {
   public?: Prisma.BoolWithAggregatesFilter<"Profile"> | boolean
   favorites?: Prisma.JsonWithAggregatesFilter<"Profile">
   verified?: Prisma.BoolWithAggregatesFilter<"Profile"> | boolean
-  avatar_url?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
+  avatar_url?: Prisma.StringWithAggregatesFilter<"Profile"> | string
   albuns?: Prisma.JsonWithAggregatesFilter<"Profile">
   artists?: Prisma.JsonWithAggregatesFilter<"Profile">
-  lyrics?: Prisma.JsonWithAggregatesFilter<"Profile">
   location?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
+  lyrics?: Prisma.JsonNullableWithAggregatesFilter<"Profile">
 }
 
 export type ProfileCreateInput = {
@@ -386,11 +389,11 @@ export type ProfileCreateInput = {
   public?: boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: boolean
-  avatar_url?: string | null
+  avatar_url?: string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_followed_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
   Like?: Prisma.LikeCreateNestedManyWithoutProfileInput
@@ -398,6 +401,7 @@ export type ProfileCreateInput = {
   Notification_Notification_user_idToProfile?: Prisma.NotificationCreateNestedManyWithoutProfile_Notification_user_idToProfileInput
   User?: Prisma.UserCreateNestedOneWithoutProfileInput
   Rating?: Prisma.RatingCreateNestedManyWithoutProfileInput
+  Wishlist?: Prisma.WishlistCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileUncheckedCreateInput = {
@@ -413,17 +417,18 @@ export type ProfileUncheckedCreateInput = {
   public?: boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: boolean
-  avatar_url?: string | null
+  avatar_url?: string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
   Like?: Prisma.LikeUncheckedCreateNestedManyWithoutProfileInput
   Notification_Notification_sender_idToProfile?: Prisma.NotificationUncheckedCreateNestedManyWithoutProfile_Notification_sender_idToProfileInput
   Notification_Notification_user_idToProfile?: Prisma.NotificationUncheckedCreateNestedManyWithoutProfile_Notification_user_idToProfileInput
   Rating?: Prisma.RatingUncheckedCreateNestedManyWithoutProfileInput
+  Wishlist?: Prisma.WishlistUncheckedCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileUpdateInput = {
@@ -438,11 +443,11 @@ export type ProfileUpdateInput = {
   public?: Prisma.BoolFieldUpdateOperationsInput | boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_url?: Prisma.StringFieldUpdateOperationsInput | string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_followed_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
   Like?: Prisma.LikeUpdateManyWithoutProfileNestedInput
@@ -450,6 +455,7 @@ export type ProfileUpdateInput = {
   Notification_Notification_user_idToProfile?: Prisma.NotificationUpdateManyWithoutProfile_Notification_user_idToProfileNestedInput
   User?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
   Rating?: Prisma.RatingUpdateManyWithoutProfileNestedInput
+  Wishlist?: Prisma.WishlistUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileUncheckedUpdateInput = {
@@ -465,17 +471,18 @@ export type ProfileUncheckedUpdateInput = {
   public?: Prisma.BoolFieldUpdateOperationsInput | boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_url?: Prisma.StringFieldUpdateOperationsInput | string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
   Like?: Prisma.LikeUncheckedUpdateManyWithoutProfileNestedInput
   Notification_Notification_sender_idToProfile?: Prisma.NotificationUncheckedUpdateManyWithoutProfile_Notification_sender_idToProfileNestedInput
   Notification_Notification_user_idToProfile?: Prisma.NotificationUncheckedUpdateManyWithoutProfile_Notification_user_idToProfileNestedInput
   Rating?: Prisma.RatingUncheckedUpdateManyWithoutProfileNestedInput
+  Wishlist?: Prisma.WishlistUncheckedUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileCreateManyInput = {
@@ -491,11 +498,11 @@ export type ProfileCreateManyInput = {
   public?: boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: boolean
-  avatar_url?: string | null
+  avatar_url?: string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
 }
 
 export type ProfileUpdateManyMutationInput = {
@@ -510,11 +517,11 @@ export type ProfileUpdateManyMutationInput = {
   public?: Prisma.BoolFieldUpdateOperationsInput | boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_url?: Prisma.StringFieldUpdateOperationsInput | string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
 }
 
 export type ProfileUncheckedUpdateManyInput = {
@@ -530,11 +537,11 @@ export type ProfileUncheckedUpdateManyInput = {
   public?: Prisma.BoolFieldUpdateOperationsInput | boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_url?: Prisma.StringFieldUpdateOperationsInput | string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
 }
 
 export type ProfileScalarRelationFilter = {
@@ -563,8 +570,8 @@ export type ProfileCountOrderByAggregateInput = {
   avatar_url?: Prisma.SortOrder
   albuns?: Prisma.SortOrder
   artists?: Prisma.SortOrder
-  lyrics?: Prisma.SortOrder
   location?: Prisma.SortOrder
+  lyrics?: Prisma.SortOrder
 }
 
 export type ProfileMaxOrderByAggregateInput = {
@@ -727,6 +734,20 @@ export type ProfileUncheckedUpdateOneWithoutUserNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProfileUpdateToOneWithWhereWithoutUserInput, Prisma.ProfileUpdateWithoutUserInput>, Prisma.ProfileUncheckedUpdateWithoutUserInput>
 }
 
+export type ProfileCreateNestedOneWithoutWishlistInput = {
+  create?: Prisma.XOR<Prisma.ProfileCreateWithoutWishlistInput, Prisma.ProfileUncheckedCreateWithoutWishlistInput>
+  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutWishlistInput
+  connect?: Prisma.ProfileWhereUniqueInput
+}
+
+export type ProfileUpdateOneRequiredWithoutWishlistNestedInput = {
+  create?: Prisma.XOR<Prisma.ProfileCreateWithoutWishlistInput, Prisma.ProfileUncheckedCreateWithoutWishlistInput>
+  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutWishlistInput
+  upsert?: Prisma.ProfileUpsertWithoutWishlistInput
+  connect?: Prisma.ProfileWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProfileUpdateToOneWithWhereWithoutWishlistInput, Prisma.ProfileUpdateWithoutWishlistInput>, Prisma.ProfileUncheckedUpdateWithoutWishlistInput>
+}
+
 export type ProfileCreateWithoutFollow_Follow_followed_idToProfileInput = {
   username?: string | null
   name?: string | null
@@ -739,17 +760,18 @@ export type ProfileCreateWithoutFollow_Follow_followed_idToProfileInput = {
   public?: boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: boolean
-  avatar_url?: string | null
+  avatar_url?: string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_follower_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
   Like?: Prisma.LikeCreateNestedManyWithoutProfileInput
   Notification_Notification_sender_idToProfile?: Prisma.NotificationCreateNestedManyWithoutProfile_Notification_sender_idToProfileInput
   Notification_Notification_user_idToProfile?: Prisma.NotificationCreateNestedManyWithoutProfile_Notification_user_idToProfileInput
   User?: Prisma.UserCreateNestedOneWithoutProfileInput
   Rating?: Prisma.RatingCreateNestedManyWithoutProfileInput
+  Wishlist?: Prisma.WishlistCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileUncheckedCreateWithoutFollow_Follow_followed_idToProfileInput = {
@@ -765,16 +787,17 @@ export type ProfileUncheckedCreateWithoutFollow_Follow_followed_idToProfileInput
   public?: boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: boolean
-  avatar_url?: string | null
+  avatar_url?: string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
   Like?: Prisma.LikeUncheckedCreateNestedManyWithoutProfileInput
   Notification_Notification_sender_idToProfile?: Prisma.NotificationUncheckedCreateNestedManyWithoutProfile_Notification_sender_idToProfileInput
   Notification_Notification_user_idToProfile?: Prisma.NotificationUncheckedCreateNestedManyWithoutProfile_Notification_user_idToProfileInput
   Rating?: Prisma.RatingUncheckedCreateNestedManyWithoutProfileInput
+  Wishlist?: Prisma.WishlistUncheckedCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileCreateOrConnectWithoutFollow_Follow_followed_idToProfileInput = {
@@ -794,17 +817,18 @@ export type ProfileCreateWithoutFollow_Follow_follower_idToProfileInput = {
   public?: boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: boolean
-  avatar_url?: string | null
+  avatar_url?: string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_followed_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
   Like?: Prisma.LikeCreateNestedManyWithoutProfileInput
   Notification_Notification_sender_idToProfile?: Prisma.NotificationCreateNestedManyWithoutProfile_Notification_sender_idToProfileInput
   Notification_Notification_user_idToProfile?: Prisma.NotificationCreateNestedManyWithoutProfile_Notification_user_idToProfileInput
   User?: Prisma.UserCreateNestedOneWithoutProfileInput
   Rating?: Prisma.RatingCreateNestedManyWithoutProfileInput
+  Wishlist?: Prisma.WishlistCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileUncheckedCreateWithoutFollow_Follow_follower_idToProfileInput = {
@@ -820,16 +844,17 @@ export type ProfileUncheckedCreateWithoutFollow_Follow_follower_idToProfileInput
   public?: boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: boolean
-  avatar_url?: string | null
+  avatar_url?: string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
   Like?: Prisma.LikeUncheckedCreateNestedManyWithoutProfileInput
   Notification_Notification_sender_idToProfile?: Prisma.NotificationUncheckedCreateNestedManyWithoutProfile_Notification_sender_idToProfileInput
   Notification_Notification_user_idToProfile?: Prisma.NotificationUncheckedCreateNestedManyWithoutProfile_Notification_user_idToProfileInput
   Rating?: Prisma.RatingUncheckedCreateNestedManyWithoutProfileInput
+  Wishlist?: Prisma.WishlistUncheckedCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileCreateOrConnectWithoutFollow_Follow_follower_idToProfileInput = {
@@ -860,17 +885,18 @@ export type ProfileUpdateWithoutFollow_Follow_followed_idToProfileInput = {
   public?: Prisma.BoolFieldUpdateOperationsInput | boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_url?: Prisma.StringFieldUpdateOperationsInput | string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_follower_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
   Like?: Prisma.LikeUpdateManyWithoutProfileNestedInput
   Notification_Notification_sender_idToProfile?: Prisma.NotificationUpdateManyWithoutProfile_Notification_sender_idToProfileNestedInput
   Notification_Notification_user_idToProfile?: Prisma.NotificationUpdateManyWithoutProfile_Notification_user_idToProfileNestedInput
   User?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
   Rating?: Prisma.RatingUpdateManyWithoutProfileNestedInput
+  Wishlist?: Prisma.WishlistUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileUncheckedUpdateWithoutFollow_Follow_followed_idToProfileInput = {
@@ -886,16 +912,17 @@ export type ProfileUncheckedUpdateWithoutFollow_Follow_followed_idToProfileInput
   public?: Prisma.BoolFieldUpdateOperationsInput | boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_url?: Prisma.StringFieldUpdateOperationsInput | string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
   Like?: Prisma.LikeUncheckedUpdateManyWithoutProfileNestedInput
   Notification_Notification_sender_idToProfile?: Prisma.NotificationUncheckedUpdateManyWithoutProfile_Notification_sender_idToProfileNestedInput
   Notification_Notification_user_idToProfile?: Prisma.NotificationUncheckedUpdateManyWithoutProfile_Notification_user_idToProfileNestedInput
   Rating?: Prisma.RatingUncheckedUpdateManyWithoutProfileNestedInput
+  Wishlist?: Prisma.WishlistUncheckedUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileUpsertWithoutFollow_Follow_follower_idToProfileInput = {
@@ -921,17 +948,18 @@ export type ProfileUpdateWithoutFollow_Follow_follower_idToProfileInput = {
   public?: Prisma.BoolFieldUpdateOperationsInput | boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_url?: Prisma.StringFieldUpdateOperationsInput | string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_followed_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
   Like?: Prisma.LikeUpdateManyWithoutProfileNestedInput
   Notification_Notification_sender_idToProfile?: Prisma.NotificationUpdateManyWithoutProfile_Notification_sender_idToProfileNestedInput
   Notification_Notification_user_idToProfile?: Prisma.NotificationUpdateManyWithoutProfile_Notification_user_idToProfileNestedInput
   User?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
   Rating?: Prisma.RatingUpdateManyWithoutProfileNestedInput
+  Wishlist?: Prisma.WishlistUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileUncheckedUpdateWithoutFollow_Follow_follower_idToProfileInput = {
@@ -947,16 +975,17 @@ export type ProfileUncheckedUpdateWithoutFollow_Follow_follower_idToProfileInput
   public?: Prisma.BoolFieldUpdateOperationsInput | boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_url?: Prisma.StringFieldUpdateOperationsInput | string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
   Like?: Prisma.LikeUncheckedUpdateManyWithoutProfileNestedInput
   Notification_Notification_sender_idToProfile?: Prisma.NotificationUncheckedUpdateManyWithoutProfile_Notification_sender_idToProfileNestedInput
   Notification_Notification_user_idToProfile?: Prisma.NotificationUncheckedUpdateManyWithoutProfile_Notification_user_idToProfileNestedInput
   Rating?: Prisma.RatingUncheckedUpdateManyWithoutProfileNestedInput
+  Wishlist?: Prisma.WishlistUncheckedUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileCreateWithoutLikeInput = {
@@ -971,17 +1000,18 @@ export type ProfileCreateWithoutLikeInput = {
   public?: boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: boolean
-  avatar_url?: string | null
+  avatar_url?: string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_followed_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
   Notification_Notification_sender_idToProfile?: Prisma.NotificationCreateNestedManyWithoutProfile_Notification_sender_idToProfileInput
   Notification_Notification_user_idToProfile?: Prisma.NotificationCreateNestedManyWithoutProfile_Notification_user_idToProfileInput
   User?: Prisma.UserCreateNestedOneWithoutProfileInput
   Rating?: Prisma.RatingCreateNestedManyWithoutProfileInput
+  Wishlist?: Prisma.WishlistCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileUncheckedCreateWithoutLikeInput = {
@@ -997,16 +1027,17 @@ export type ProfileUncheckedCreateWithoutLikeInput = {
   public?: boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: boolean
-  avatar_url?: string | null
+  avatar_url?: string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
   Notification_Notification_sender_idToProfile?: Prisma.NotificationUncheckedCreateNestedManyWithoutProfile_Notification_sender_idToProfileInput
   Notification_Notification_user_idToProfile?: Prisma.NotificationUncheckedCreateNestedManyWithoutProfile_Notification_user_idToProfileInput
   Rating?: Prisma.RatingUncheckedCreateNestedManyWithoutProfileInput
+  Wishlist?: Prisma.WishlistUncheckedCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileCreateOrConnectWithoutLikeInput = {
@@ -1037,17 +1068,18 @@ export type ProfileUpdateWithoutLikeInput = {
   public?: Prisma.BoolFieldUpdateOperationsInput | boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_url?: Prisma.StringFieldUpdateOperationsInput | string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_followed_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
   Notification_Notification_sender_idToProfile?: Prisma.NotificationUpdateManyWithoutProfile_Notification_sender_idToProfileNestedInput
   Notification_Notification_user_idToProfile?: Prisma.NotificationUpdateManyWithoutProfile_Notification_user_idToProfileNestedInput
   User?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
   Rating?: Prisma.RatingUpdateManyWithoutProfileNestedInput
+  Wishlist?: Prisma.WishlistUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileUncheckedUpdateWithoutLikeInput = {
@@ -1063,16 +1095,17 @@ export type ProfileUncheckedUpdateWithoutLikeInput = {
   public?: Prisma.BoolFieldUpdateOperationsInput | boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_url?: Prisma.StringFieldUpdateOperationsInput | string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
   Notification_Notification_sender_idToProfile?: Prisma.NotificationUncheckedUpdateManyWithoutProfile_Notification_sender_idToProfileNestedInput
   Notification_Notification_user_idToProfile?: Prisma.NotificationUncheckedUpdateManyWithoutProfile_Notification_user_idToProfileNestedInput
   Rating?: Prisma.RatingUncheckedUpdateManyWithoutProfileNestedInput
+  Wishlist?: Prisma.WishlistUncheckedUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileCreateWithoutNotification_Notification_sender_idToProfileInput = {
@@ -1087,17 +1120,18 @@ export type ProfileCreateWithoutNotification_Notification_sender_idToProfileInpu
   public?: boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: boolean
-  avatar_url?: string | null
+  avatar_url?: string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_followed_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
   Like?: Prisma.LikeCreateNestedManyWithoutProfileInput
   Notification_Notification_user_idToProfile?: Prisma.NotificationCreateNestedManyWithoutProfile_Notification_user_idToProfileInput
   User?: Prisma.UserCreateNestedOneWithoutProfileInput
   Rating?: Prisma.RatingCreateNestedManyWithoutProfileInput
+  Wishlist?: Prisma.WishlistCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileUncheckedCreateWithoutNotification_Notification_sender_idToProfileInput = {
@@ -1113,16 +1147,17 @@ export type ProfileUncheckedCreateWithoutNotification_Notification_sender_idToPr
   public?: boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: boolean
-  avatar_url?: string | null
+  avatar_url?: string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
   Like?: Prisma.LikeUncheckedCreateNestedManyWithoutProfileInput
   Notification_Notification_user_idToProfile?: Prisma.NotificationUncheckedCreateNestedManyWithoutProfile_Notification_user_idToProfileInput
   Rating?: Prisma.RatingUncheckedCreateNestedManyWithoutProfileInput
+  Wishlist?: Prisma.WishlistUncheckedCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileCreateOrConnectWithoutNotification_Notification_sender_idToProfileInput = {
@@ -1142,17 +1177,18 @@ export type ProfileCreateWithoutNotification_Notification_user_idToProfileInput 
   public?: boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: boolean
-  avatar_url?: string | null
+  avatar_url?: string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_followed_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
   Like?: Prisma.LikeCreateNestedManyWithoutProfileInput
   Notification_Notification_sender_idToProfile?: Prisma.NotificationCreateNestedManyWithoutProfile_Notification_sender_idToProfileInput
   User?: Prisma.UserCreateNestedOneWithoutProfileInput
   Rating?: Prisma.RatingCreateNestedManyWithoutProfileInput
+  Wishlist?: Prisma.WishlistCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileUncheckedCreateWithoutNotification_Notification_user_idToProfileInput = {
@@ -1168,16 +1204,17 @@ export type ProfileUncheckedCreateWithoutNotification_Notification_user_idToProf
   public?: boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: boolean
-  avatar_url?: string | null
+  avatar_url?: string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
   Like?: Prisma.LikeUncheckedCreateNestedManyWithoutProfileInput
   Notification_Notification_sender_idToProfile?: Prisma.NotificationUncheckedCreateNestedManyWithoutProfile_Notification_sender_idToProfileInput
   Rating?: Prisma.RatingUncheckedCreateNestedManyWithoutProfileInput
+  Wishlist?: Prisma.WishlistUncheckedCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileCreateOrConnectWithoutNotification_Notification_user_idToProfileInput = {
@@ -1208,17 +1245,18 @@ export type ProfileUpdateWithoutNotification_Notification_sender_idToProfileInpu
   public?: Prisma.BoolFieldUpdateOperationsInput | boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_url?: Prisma.StringFieldUpdateOperationsInput | string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_followed_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
   Like?: Prisma.LikeUpdateManyWithoutProfileNestedInput
   Notification_Notification_user_idToProfile?: Prisma.NotificationUpdateManyWithoutProfile_Notification_user_idToProfileNestedInput
   User?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
   Rating?: Prisma.RatingUpdateManyWithoutProfileNestedInput
+  Wishlist?: Prisma.WishlistUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileUncheckedUpdateWithoutNotification_Notification_sender_idToProfileInput = {
@@ -1234,16 +1272,17 @@ export type ProfileUncheckedUpdateWithoutNotification_Notification_sender_idToPr
   public?: Prisma.BoolFieldUpdateOperationsInput | boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_url?: Prisma.StringFieldUpdateOperationsInput | string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
   Like?: Prisma.LikeUncheckedUpdateManyWithoutProfileNestedInput
   Notification_Notification_user_idToProfile?: Prisma.NotificationUncheckedUpdateManyWithoutProfile_Notification_user_idToProfileNestedInput
   Rating?: Prisma.RatingUncheckedUpdateManyWithoutProfileNestedInput
+  Wishlist?: Prisma.WishlistUncheckedUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileUpsertWithoutNotification_Notification_user_idToProfileInput = {
@@ -1269,17 +1308,18 @@ export type ProfileUpdateWithoutNotification_Notification_user_idToProfileInput 
   public?: Prisma.BoolFieldUpdateOperationsInput | boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_url?: Prisma.StringFieldUpdateOperationsInput | string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_followed_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
   Like?: Prisma.LikeUpdateManyWithoutProfileNestedInput
   Notification_Notification_sender_idToProfile?: Prisma.NotificationUpdateManyWithoutProfile_Notification_sender_idToProfileNestedInput
   User?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
   Rating?: Prisma.RatingUpdateManyWithoutProfileNestedInput
+  Wishlist?: Prisma.WishlistUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileUncheckedUpdateWithoutNotification_Notification_user_idToProfileInput = {
@@ -1295,16 +1335,17 @@ export type ProfileUncheckedUpdateWithoutNotification_Notification_user_idToProf
   public?: Prisma.BoolFieldUpdateOperationsInput | boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_url?: Prisma.StringFieldUpdateOperationsInput | string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
   Like?: Prisma.LikeUncheckedUpdateManyWithoutProfileNestedInput
   Notification_Notification_sender_idToProfile?: Prisma.NotificationUncheckedUpdateManyWithoutProfile_Notification_sender_idToProfileNestedInput
   Rating?: Prisma.RatingUncheckedUpdateManyWithoutProfileNestedInput
+  Wishlist?: Prisma.WishlistUncheckedUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileCreateWithoutRatingInput = {
@@ -1319,17 +1360,18 @@ export type ProfileCreateWithoutRatingInput = {
   public?: boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: boolean
-  avatar_url?: string | null
+  avatar_url?: string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_followed_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
   Like?: Prisma.LikeCreateNestedManyWithoutProfileInput
   Notification_Notification_sender_idToProfile?: Prisma.NotificationCreateNestedManyWithoutProfile_Notification_sender_idToProfileInput
   Notification_Notification_user_idToProfile?: Prisma.NotificationCreateNestedManyWithoutProfile_Notification_user_idToProfileInput
   User?: Prisma.UserCreateNestedOneWithoutProfileInput
+  Wishlist?: Prisma.WishlistCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileUncheckedCreateWithoutRatingInput = {
@@ -1345,16 +1387,17 @@ export type ProfileUncheckedCreateWithoutRatingInput = {
   public?: boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: boolean
-  avatar_url?: string | null
+  avatar_url?: string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
   Like?: Prisma.LikeUncheckedCreateNestedManyWithoutProfileInput
   Notification_Notification_sender_idToProfile?: Prisma.NotificationUncheckedCreateNestedManyWithoutProfile_Notification_sender_idToProfileInput
   Notification_Notification_user_idToProfile?: Prisma.NotificationUncheckedCreateNestedManyWithoutProfile_Notification_user_idToProfileInput
+  Wishlist?: Prisma.WishlistUncheckedCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileCreateOrConnectWithoutRatingInput = {
@@ -1385,17 +1428,18 @@ export type ProfileUpdateWithoutRatingInput = {
   public?: Prisma.BoolFieldUpdateOperationsInput | boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_url?: Prisma.StringFieldUpdateOperationsInput | string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_followed_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
   Like?: Prisma.LikeUpdateManyWithoutProfileNestedInput
   Notification_Notification_sender_idToProfile?: Prisma.NotificationUpdateManyWithoutProfile_Notification_sender_idToProfileNestedInput
   Notification_Notification_user_idToProfile?: Prisma.NotificationUpdateManyWithoutProfile_Notification_user_idToProfileNestedInput
   User?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
+  Wishlist?: Prisma.WishlistUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileUncheckedUpdateWithoutRatingInput = {
@@ -1411,16 +1455,17 @@ export type ProfileUncheckedUpdateWithoutRatingInput = {
   public?: Prisma.BoolFieldUpdateOperationsInput | boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_url?: Prisma.StringFieldUpdateOperationsInput | string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
   Like?: Prisma.LikeUncheckedUpdateManyWithoutProfileNestedInput
   Notification_Notification_sender_idToProfile?: Prisma.NotificationUncheckedUpdateManyWithoutProfile_Notification_sender_idToProfileNestedInput
   Notification_Notification_user_idToProfile?: Prisma.NotificationUncheckedUpdateManyWithoutProfile_Notification_user_idToProfileNestedInput
+  Wishlist?: Prisma.WishlistUncheckedUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileCreateWithoutUserInput = {
@@ -1435,17 +1480,18 @@ export type ProfileCreateWithoutUserInput = {
   public?: boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: boolean
-  avatar_url?: string | null
+  avatar_url?: string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_followed_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
   Like?: Prisma.LikeCreateNestedManyWithoutProfileInput
   Notification_Notification_sender_idToProfile?: Prisma.NotificationCreateNestedManyWithoutProfile_Notification_sender_idToProfileInput
   Notification_Notification_user_idToProfile?: Prisma.NotificationCreateNestedManyWithoutProfile_Notification_user_idToProfileInput
   Rating?: Prisma.RatingCreateNestedManyWithoutProfileInput
+  Wishlist?: Prisma.WishlistCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileUncheckedCreateWithoutUserInput = {
@@ -1460,17 +1506,18 @@ export type ProfileUncheckedCreateWithoutUserInput = {
   public?: boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: boolean
-  avatar_url?: string | null
+  avatar_url?: string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
   Like?: Prisma.LikeUncheckedCreateNestedManyWithoutProfileInput
   Notification_Notification_sender_idToProfile?: Prisma.NotificationUncheckedCreateNestedManyWithoutProfile_Notification_sender_idToProfileInput
   Notification_Notification_user_idToProfile?: Prisma.NotificationUncheckedCreateNestedManyWithoutProfile_Notification_user_idToProfileInput
   Rating?: Prisma.RatingUncheckedCreateNestedManyWithoutProfileInput
+  Wishlist?: Prisma.WishlistUncheckedCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileCreateOrConnectWithoutUserInput = {
@@ -1501,17 +1548,18 @@ export type ProfileUpdateWithoutUserInput = {
   public?: Prisma.BoolFieldUpdateOperationsInput | boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_url?: Prisma.StringFieldUpdateOperationsInput | string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_followed_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
   Like?: Prisma.LikeUpdateManyWithoutProfileNestedInput
   Notification_Notification_sender_idToProfile?: Prisma.NotificationUpdateManyWithoutProfile_Notification_sender_idToProfileNestedInput
   Notification_Notification_user_idToProfile?: Prisma.NotificationUpdateManyWithoutProfile_Notification_user_idToProfileNestedInput
   Rating?: Prisma.RatingUpdateManyWithoutProfileNestedInput
+  Wishlist?: Prisma.WishlistUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileUncheckedUpdateWithoutUserInput = {
@@ -1526,11 +1574,132 @@ export type ProfileUncheckedUpdateWithoutUserInput = {
   public?: Prisma.BoolFieldUpdateOperationsInput | boolean
   favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  avatar_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatar_url?: Prisma.StringFieldUpdateOperationsInput | string
   albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  lyrics?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
+  Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
+  Like?: Prisma.LikeUncheckedUpdateManyWithoutProfileNestedInput
+  Notification_Notification_sender_idToProfile?: Prisma.NotificationUncheckedUpdateManyWithoutProfile_Notification_sender_idToProfileNestedInput
+  Notification_Notification_user_idToProfile?: Prisma.NotificationUncheckedUpdateManyWithoutProfile_Notification_user_idToProfileNestedInput
+  Rating?: Prisma.RatingUncheckedUpdateManyWithoutProfileNestedInput
+  Wishlist?: Prisma.WishlistUncheckedUpdateManyWithoutProfileNestedInput
+}
+
+export type ProfileCreateWithoutWishlistInput = {
+  username?: string | null
+  name?: string | null
+  lowername?: string | null
+  bio?: string | null
+  pronouns?: string | null
+  site?: string | null
+  color?: string | null
+  created_at?: Date | string
+  public?: boolean
+  favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  verified?: boolean
+  avatar_url?: string
+  albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  location?: string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  Follow_Follow_followed_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
+  Follow_Follow_follower_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
+  Like?: Prisma.LikeCreateNestedManyWithoutProfileInput
+  Notification_Notification_sender_idToProfile?: Prisma.NotificationCreateNestedManyWithoutProfile_Notification_sender_idToProfileInput
+  Notification_Notification_user_idToProfile?: Prisma.NotificationCreateNestedManyWithoutProfile_Notification_user_idToProfileInput
+  User?: Prisma.UserCreateNestedOneWithoutProfileInput
+  Rating?: Prisma.RatingCreateNestedManyWithoutProfileInput
+}
+
+export type ProfileUncheckedCreateWithoutWishlistInput = {
+  id?: string
+  username?: string | null
+  name?: string | null
+  lowername?: string | null
+  bio?: string | null
+  pronouns?: string | null
+  site?: string | null
+  color?: string | null
+  created_at?: Date | string
+  public?: boolean
+  favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  verified?: boolean
+  avatar_url?: string
+  albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  location?: string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
+  Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
+  Like?: Prisma.LikeUncheckedCreateNestedManyWithoutProfileInput
+  Notification_Notification_sender_idToProfile?: Prisma.NotificationUncheckedCreateNestedManyWithoutProfile_Notification_sender_idToProfileInput
+  Notification_Notification_user_idToProfile?: Prisma.NotificationUncheckedCreateNestedManyWithoutProfile_Notification_user_idToProfileInput
+  Rating?: Prisma.RatingUncheckedCreateNestedManyWithoutProfileInput
+}
+
+export type ProfileCreateOrConnectWithoutWishlistInput = {
+  where: Prisma.ProfileWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProfileCreateWithoutWishlistInput, Prisma.ProfileUncheckedCreateWithoutWishlistInput>
+}
+
+export type ProfileUpsertWithoutWishlistInput = {
+  update: Prisma.XOR<Prisma.ProfileUpdateWithoutWishlistInput, Prisma.ProfileUncheckedUpdateWithoutWishlistInput>
+  create: Prisma.XOR<Prisma.ProfileCreateWithoutWishlistInput, Prisma.ProfileUncheckedCreateWithoutWishlistInput>
+  where?: Prisma.ProfileWhereInput
+}
+
+export type ProfileUpdateToOneWithWhereWithoutWishlistInput = {
+  where?: Prisma.ProfileWhereInput
+  data: Prisma.XOR<Prisma.ProfileUpdateWithoutWishlistInput, Prisma.ProfileUncheckedUpdateWithoutWishlistInput>
+}
+
+export type ProfileUpdateWithoutWishlistInput = {
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lowername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronouns?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  public?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatar_url?: Prisma.StringFieldUpdateOperationsInput | string
+  albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  Follow_Follow_followed_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
+  Follow_Follow_follower_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
+  Like?: Prisma.LikeUpdateManyWithoutProfileNestedInput
+  Notification_Notification_sender_idToProfile?: Prisma.NotificationUpdateManyWithoutProfile_Notification_sender_idToProfileNestedInput
+  Notification_Notification_user_idToProfile?: Prisma.NotificationUpdateManyWithoutProfile_Notification_user_idToProfileNestedInput
+  User?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
+  Rating?: Prisma.RatingUpdateManyWithoutProfileNestedInput
+}
+
+export type ProfileUncheckedUpdateWithoutWishlistInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lowername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronouns?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  public?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatar_url?: Prisma.StringFieldUpdateOperationsInput | string
+  albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
   Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
   Like?: Prisma.LikeUncheckedUpdateManyWithoutProfileNestedInput
@@ -1551,6 +1720,7 @@ export type ProfileCountOutputType = {
   Notification_Notification_sender_idToProfile: number
   Notification_Notification_user_idToProfile: number
   Rating: number
+  Wishlist: number
 }
 
 export type ProfileCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1560,6 +1730,7 @@ export type ProfileCountOutputTypeSelect<ExtArgs extends runtime.Types.Extension
   Notification_Notification_sender_idToProfile?: boolean | ProfileCountOutputTypeCountNotification_Notification_sender_idToProfileArgs
   Notification_Notification_user_idToProfile?: boolean | ProfileCountOutputTypeCountNotification_Notification_user_idToProfileArgs
   Rating?: boolean | ProfileCountOutputTypeCountRatingArgs
+  Wishlist?: boolean | ProfileCountOutputTypeCountWishlistArgs
 }
 
 /**
@@ -1614,6 +1785,13 @@ export type ProfileCountOutputTypeCountRatingArgs<ExtArgs extends runtime.Types.
   where?: Prisma.RatingWhereInput
 }
 
+/**
+ * ProfileCountOutputType without action
+ */
+export type ProfileCountOutputTypeCountWishlistArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WishlistWhereInput
+}
+
 
 export type ProfileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1631,8 +1809,8 @@ export type ProfileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   avatar_url?: boolean
   albuns?: boolean
   artists?: boolean
-  lyrics?: boolean
   location?: boolean
+  lyrics?: boolean
   Follow_Follow_followed_idToProfile?: boolean | Prisma.Profile$Follow_Follow_followed_idToProfileArgs<ExtArgs>
   Follow_Follow_follower_idToProfile?: boolean | Prisma.Profile$Follow_Follow_follower_idToProfileArgs<ExtArgs>
   Like?: boolean | Prisma.Profile$LikeArgs<ExtArgs>
@@ -1640,6 +1818,7 @@ export type ProfileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   Notification_Notification_user_idToProfile?: boolean | Prisma.Profile$Notification_Notification_user_idToProfileArgs<ExtArgs>
   User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   Rating?: boolean | Prisma.Profile$RatingArgs<ExtArgs>
+  Wishlist?: boolean | Prisma.Profile$WishlistArgs<ExtArgs>
   _count?: boolean | Prisma.ProfileCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["profile"]>
 
@@ -1659,8 +1838,8 @@ export type ProfileSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   avatar_url?: boolean
   albuns?: boolean
   artists?: boolean
-  lyrics?: boolean
   location?: boolean
+  lyrics?: boolean
   User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["profile"]>
 
@@ -1680,8 +1859,8 @@ export type ProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   avatar_url?: boolean
   albuns?: boolean
   artists?: boolean
-  lyrics?: boolean
   location?: boolean
+  lyrics?: boolean
   User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["profile"]>
 
@@ -1701,11 +1880,11 @@ export type ProfileSelectScalar = {
   avatar_url?: boolean
   albuns?: boolean
   artists?: boolean
-  lyrics?: boolean
   location?: boolean
+  lyrics?: boolean
 }
 
-export type ProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "username" | "name" | "lowername" | "bio" | "pronouns" | "site" | "color" | "created_at" | "public" | "favorites" | "verified" | "avatar_url" | "albuns" | "artists" | "lyrics" | "location", ExtArgs["result"]["profile"]>
+export type ProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "username" | "name" | "lowername" | "bio" | "pronouns" | "site" | "color" | "created_at" | "public" | "favorites" | "verified" | "avatar_url" | "albuns" | "artists" | "location" | "lyrics", ExtArgs["result"]["profile"]>
 export type ProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   Follow_Follow_followed_idToProfile?: boolean | Prisma.Profile$Follow_Follow_followed_idToProfileArgs<ExtArgs>
   Follow_Follow_follower_idToProfile?: boolean | Prisma.Profile$Follow_Follow_follower_idToProfileArgs<ExtArgs>
@@ -1714,6 +1893,7 @@ export type ProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   Notification_Notification_user_idToProfile?: boolean | Prisma.Profile$Notification_Notification_user_idToProfileArgs<ExtArgs>
   User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   Rating?: boolean | Prisma.Profile$RatingArgs<ExtArgs>
+  Wishlist?: boolean | Prisma.Profile$WishlistArgs<ExtArgs>
   _count?: boolean | Prisma.ProfileCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProfileIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1733,6 +1913,7 @@ export type $ProfilePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     Notification_Notification_user_idToProfile: Prisma.$NotificationPayload<ExtArgs>[]
     User: Prisma.$UserPayload<ExtArgs>
     Rating: Prisma.$RatingPayload<ExtArgs>[]
+    Wishlist: Prisma.$WishlistPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1747,11 +1928,11 @@ export type $ProfilePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     public: boolean
     favorites: runtime.JsonValue
     verified: boolean
-    avatar_url: string | null
+    avatar_url: string
     albuns: runtime.JsonValue
     artists: runtime.JsonValue
-    lyrics: runtime.JsonValue
     location: string | null
+    lyrics: runtime.JsonValue | null
   }, ExtArgs["result"]["profile"]>
   composites: {}
 }
@@ -2153,6 +2334,7 @@ export interface Prisma__ProfileClient<T, Null = never, ExtArgs extends runtime.
   Notification_Notification_user_idToProfile<T extends Prisma.Profile$Notification_Notification_user_idToProfileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Profile$Notification_Notification_user_idToProfileArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   User<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   Rating<T extends Prisma.Profile$RatingArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Profile$RatingArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RatingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  Wishlist<T extends Prisma.Profile$WishlistArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Profile$WishlistArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WishlistPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2197,8 +2379,8 @@ export interface ProfileFieldRefs {
   readonly avatar_url: Prisma.FieldRef<"Profile", 'String'>
   readonly albuns: Prisma.FieldRef<"Profile", 'Json'>
   readonly artists: Prisma.FieldRef<"Profile", 'Json'>
-  readonly lyrics: Prisma.FieldRef<"Profile", 'Json'>
   readonly location: Prisma.FieldRef<"Profile", 'String'>
+  readonly lyrics: Prisma.FieldRef<"Profile", 'Json'>
 }
     
 
@@ -2736,6 +2918,30 @@ export type Profile$RatingArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.RatingScalarFieldEnum | Prisma.RatingScalarFieldEnum[]
+}
+
+/**
+ * Profile.Wishlist
+ */
+export type Profile$WishlistArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Wishlist
+   */
+  select?: Prisma.WishlistSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Wishlist
+   */
+  omit?: Prisma.WishlistOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WishlistInclude<ExtArgs> | null
+  where?: Prisma.WishlistWhereInput
+  orderBy?: Prisma.WishlistOrderByWithRelationInput | Prisma.WishlistOrderByWithRelationInput[]
+  cursor?: Prisma.WishlistWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WishlistScalarFieldEnum | Prisma.WishlistScalarFieldEnum[]
 }
 
 /**
