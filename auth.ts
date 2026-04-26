@@ -38,6 +38,7 @@ export const auth = betterAuth({
         expo(),
         nextCookies(),
         emailOTP({
+            disableSignUp: false,
             async sendVerificationOTP({ email, otp, type }) {
                 if (type === "sign-in") {
                     try {
@@ -64,7 +65,26 @@ export const auth = betterAuth({
                         // Opcional: você pode jogar um erro aqui para o frontend saber que falhou
                     }
                 } else if (type === "email-verification") {
-                    // Send the OTP for email verification
+                    try {
+                        // 3. Aqui você dispara o e-mail usando o Resend
+                        await resend.emails.send({
+                            from: "Acme <onboarding@kaizin.work>", // Coloque o seu domínio verificado aqui
+                            to: email,
+                            subject: "Verifique seu e-mail",
+                            html: `
+                            <h2>Olá!</h2>
+                            <p>Seu código de verificação é: <strong>${otp}</strong></p>
+                            <p>Ele expira em alguns minutos.</p>
+                        `,
+                        });
+                        console.log(`E-mail enviado com sucesso para ${email}`);
+                    } catch (error) {
+                        console.error(
+                            "Erro ao enviar o e-mail pelo Resend:",
+                            error,
+                        );
+                        // Opcional: você pode jogar um erro aqui para o frontend saber que falhou
+                    }
                 } else {
                     // Send the OTP for password reset
                 }
@@ -101,7 +121,7 @@ export const auth = betterAuth({
                     await prisma.profile.create({
                         data: {
                             id: user.id, // mesmo id do User
-                            avatar_url: user.image || null,
+                            avatarUrl: user.image || null,
                             username: tempUsername,
                             lowername: tempUsername.toLowerCase(),
                             name: user.name || user.email || "Usuário",
