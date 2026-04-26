@@ -38,7 +38,7 @@ export const auth = betterAuth({
         expo(),
         nextCookies(),
         emailOTP({
-            disableSignUp: false,
+            // disableSignUp: false,
             async sendVerificationOTP({ email, otp, type }) {
                 if (type === "sign-in") {
                     try {
@@ -121,7 +121,7 @@ export const auth = betterAuth({
                     await prisma.profile.create({
                         data: {
                             id: user.id, // mesmo id do User
-                            avatarUrl: user.image || null,
+                            avatar_url: user.image || 'https://zf4goehfa7fevldb.public.blob.vercel-storage.com/default.jpg',
                             username: tempUsername,
                             lowername: tempUsername.toLowerCase(),
                             name: user.name || user.email || "Usuário",
