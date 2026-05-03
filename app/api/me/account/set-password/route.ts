@@ -4,10 +4,11 @@ import { headers } from "next/headers";
 import { auth } from "@/auth";
 
 
-export async function GET(
+export async function POST(
     request: Request,
 ) {
 
+    const { new_password, confirm_password } = await request.json();
     
     const session = await auth.api.getSession({
         headers: await headers()
@@ -20,19 +21,29 @@ export async function GET(
         );
     }
 
+    if (new_password !== confirm_password) {
+        return NextResponse.json(
+            { error: "As senhas não coincidem" },
+            { status: 400 }
+        );
+    }
+
     try {
-        const account = await prisma.account.findMany({
-            where: { userId: session?.user?.id },
+        const pass = await auth.api.setPassword({
+            body: {
+                newPassword: "new-password",
+            },
+            headers: await headers() // headers containing the user's session token
         });
 
-        if (!account || account.length === 0) {
+        if (!pass) {
             return NextResponse.json(
-                { error: "account not found" },
-                { status: 404 }
+                { error: "Failed to set password" },
+                { status: 400 }
             );
         }
 
-        return NextResponse.json(account, { status: 200 });
+        return NextResponse.json(pass, { status: 200 });
     } catch (err) {
         console.error("fetch error", err);
         return NextResponse.json(
