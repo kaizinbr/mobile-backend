@@ -160,6 +160,7 @@ model BA_Account {
   createdAt             DateTime  @default(now()) @db.Timestamptz(6)
   updatedAt             DateTime  @default(now()) @updatedAt @db.Timestamptz(6)
   id                    String?   @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  scope                 String?
 
   @@index([userId], map: "ba_account_userid_idx")
   @@map("ba_account")

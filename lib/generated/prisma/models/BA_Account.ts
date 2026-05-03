@@ -37,6 +37,7 @@ export type BA_AccountMinAggregateOutputType = {
   createdAt: Date | null
   updatedAt: Date | null
   id: string | null
+  scope: string | null
 }
 
 export type BA_AccountMaxAggregateOutputType = {
@@ -52,6 +53,7 @@ export type BA_AccountMaxAggregateOutputType = {
   createdAt: Date | null
   updatedAt: Date | null
   id: string | null
+  scope: string | null
 }
 
 export type BA_AccountCountAggregateOutputType = {
@@ -67,6 +69,7 @@ export type BA_AccountCountAggregateOutputType = {
   createdAt: number
   updatedAt: number
   id: number
+  scope: number
   _all: number
 }
 
@@ -84,6 +87,7 @@ export type BA_AccountMinAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   id?: true
+  scope?: true
 }
 
 export type BA_AccountMaxAggregateInputType = {
@@ -99,6 +103,7 @@ export type BA_AccountMaxAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   id?: true
+  scope?: true
 }
 
 export type BA_AccountCountAggregateInputType = {
@@ -114,6 +119,7 @@ export type BA_AccountCountAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   id?: true
+  scope?: true
   _all?: true
 }
 
@@ -202,6 +208,7 @@ export type BA_AccountGroupByOutputType = {
   createdAt: Date
   updatedAt: Date
   id: string | null
+  scope: string | null
   _count: BA_AccountCountAggregateOutputType | null
   _min: BA_AccountMinAggregateOutputType | null
   _max: BA_AccountMaxAggregateOutputType | null
@@ -238,6 +245,7 @@ export type BA_AccountWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"BA_Account"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"BA_Account"> | Date | string
   id?: Prisma.UuidNullableFilter<"BA_Account"> | string | null
+  scope?: Prisma.StringNullableFilter<"BA_Account"> | string | null
 }
 
 export type BA_AccountOrderByWithRelationInput = {
@@ -253,6 +261,7 @@ export type BA_AccountOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   id?: Prisma.SortOrderInput | Prisma.SortOrder
+  scope?: Prisma.SortOrderInput | Prisma.SortOrder
 }
 
 export type BA_AccountWhereUniqueInput = Prisma.AtLeast<{
@@ -271,6 +280,7 @@ export type BA_AccountWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"BA_Account"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"BA_Account"> | Date | string
   id?: Prisma.UuidNullableFilter<"BA_Account"> | string | null
+  scope?: Prisma.StringNullableFilter<"BA_Account"> | string | null
 }, "accountId">
 
 export type BA_AccountOrderByWithAggregationInput = {
@@ -286,6 +296,7 @@ export type BA_AccountOrderByWithAggregationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   id?: Prisma.SortOrderInput | Prisma.SortOrder
+  scope?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.BA_AccountCountOrderByAggregateInput
   _max?: Prisma.BA_AccountMaxOrderByAggregateInput
   _min?: Prisma.BA_AccountMinOrderByAggregateInput
@@ -307,6 +318,7 @@ export type BA_AccountScalarWhereWithAggregatesInput = {
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"BA_Account"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"BA_Account"> | Date | string
   id?: Prisma.UuidNullableWithAggregatesFilter<"BA_Account"> | string | null
+  scope?: Prisma.StringNullableWithAggregatesFilter<"BA_Account"> | string | null
 }
 
 export type BA_AccountCreateInput = {
@@ -322,6 +334,7 @@ export type BA_AccountCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   id?: string | null
+  scope?: string | null
 }
 
 export type BA_AccountUncheckedCreateInput = {
@@ -337,6 +350,7 @@ export type BA_AccountUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   id?: string | null
+  scope?: string | null
 }
 
 export type BA_AccountUpdateInput = {
@@ -352,6 +366,7 @@ export type BA_AccountUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scope?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type BA_AccountUncheckedUpdateInput = {
@@ -367,6 +382,7 @@ export type BA_AccountUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scope?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type BA_AccountCreateManyInput = {
@@ -382,6 +398,7 @@ export type BA_AccountCreateManyInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   id?: string | null
+  scope?: string | null
 }
 
 export type BA_AccountUpdateManyMutationInput = {
@@ -397,6 +414,7 @@ export type BA_AccountUpdateManyMutationInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scope?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type BA_AccountUncheckedUpdateManyInput = {
@@ -412,6 +430,7 @@ export type BA_AccountUncheckedUpdateManyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scope?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type BA_AccountCountOrderByAggregateInput = {
@@ -427,6 +446,7 @@ export type BA_AccountCountOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   id?: Prisma.SortOrder
+  scope?: Prisma.SortOrder
 }
 
 export type BA_AccountMaxOrderByAggregateInput = {
@@ -442,6 +462,7 @@ export type BA_AccountMaxOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   id?: Prisma.SortOrder
+  scope?: Prisma.SortOrder
 }
 
 export type BA_AccountMinOrderByAggregateInput = {
@@ -457,6 +478,7 @@ export type BA_AccountMinOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   id?: Prisma.SortOrder
+  scope?: Prisma.SortOrder
 }
 
 
@@ -474,6 +496,7 @@ export type BA_AccountSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   createdAt?: boolean
   updatedAt?: boolean
   id?: boolean
+  scope?: boolean
 }, ExtArgs["result"]["bA_Account"]>
 
 export type BA_AccountSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -489,6 +512,7 @@ export type BA_AccountSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   createdAt?: boolean
   updatedAt?: boolean
   id?: boolean
+  scope?: boolean
 }, ExtArgs["result"]["bA_Account"]>
 
 export type BA_AccountSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -504,6 +528,7 @@ export type BA_AccountSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   createdAt?: boolean
   updatedAt?: boolean
   id?: boolean
+  scope?: boolean
 }, ExtArgs["result"]["bA_Account"]>
 
 export type BA_AccountSelectScalar = {
@@ -519,9 +544,10 @@ export type BA_AccountSelectScalar = {
   createdAt?: boolean
   updatedAt?: boolean
   id?: boolean
+  scope?: boolean
 }
 
-export type BA_AccountOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"userId" | "accountId" | "providerId" | "accessToken" | "refreshToken" | "idToken" | "accessTokenExpiresAt" | "refreshTokenExpiresAt" | "password" | "createdAt" | "updatedAt" | "id", ExtArgs["result"]["bA_Account"]>
+export type BA_AccountOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"userId" | "accountId" | "providerId" | "accessToken" | "refreshToken" | "idToken" | "accessTokenExpiresAt" | "refreshTokenExpiresAt" | "password" | "createdAt" | "updatedAt" | "id" | "scope", ExtArgs["result"]["bA_Account"]>
 
 export type $BA_AccountPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "BA_Account"
@@ -539,6 +565,7 @@ export type $BA_AccountPayload<ExtArgs extends runtime.Types.Extensions.Internal
     createdAt: Date
     updatedAt: Date
     id: string | null
+    scope: string | null
   }, ExtArgs["result"]["bA_Account"]>
   composites: {}
 }
@@ -974,6 +1001,7 @@ export interface BA_AccountFieldRefs {
   readonly createdAt: Prisma.FieldRef<"BA_Account", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"BA_Account", 'DateTime'>
   readonly id: Prisma.FieldRef<"BA_Account", 'String'>
+  readonly scope: Prisma.FieldRef<"BA_Account", 'String'>
 }
     
 

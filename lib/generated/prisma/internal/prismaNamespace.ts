@@ -1804,7 +1804,8 @@ export const BA_AccountScalarFieldEnum = {
   password: 'password',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  id: 'id'
+  id: 'id',
+  scope: 'scope'
 } as const
 
 export type BA_AccountScalarFieldEnum = (typeof BA_AccountScalarFieldEnum)[keyof typeof BA_AccountScalarFieldEnum]
