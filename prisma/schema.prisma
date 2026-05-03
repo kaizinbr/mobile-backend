@@ -141,7 +141,7 @@ model Account {
   password              String?
   createdAt             DateTime  @default(now()) @db.Timestamptz(6)
   updatedAt             DateTime  @default(now()) @db.Timestamptz(6)
-  id                    String?   @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id                    String    @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   scope                 String?
 
   @@index([userId], map: "ba_account_userid_idx")
