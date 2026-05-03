@@ -23,12 +23,12 @@ export const auth = betterAuth({
         tokenCharset: "numeric", // default is "alphanumeric"
         tokenExpiration: 10 * 60, // 10 minutes in seconds, default is 15 minutes
     },
-    baseURL: "http://192.168.18.152:3000",
+    baseURL: "https://api.kaizin.work",
     socialProviders: {
-        google: { 
-            clientId: process.env.AUTH_GOOGLE_ID as string, 
-            clientSecret: process.env.AUTH_GOOGLE_SECRET as string, 
-        }, 
+        google: {
+            clientId: process.env.AUTH_GOOGLE_ID as string,
+            clientSecret: process.env.AUTH_GOOGLE_SECRET as string,
+        },
     },
     account: {
         modelName: "BA_Account",
@@ -102,8 +102,8 @@ export const auth = betterAuth({
         // "*",
         "myapp://",
         "firstapp://",
-
-    "http://localhost:3000",
+        "https://api.kaizin.work",
+        "http://localhost:3000",
         // Development mode - Expo's exp:// scheme with local IP ranges
         ...(process.env.NODE_ENV === "development"
             ? [
@@ -130,7 +130,9 @@ export const auth = betterAuth({
                     await prisma.profile.create({
                         data: {
                             id: user.id, // mesmo id do User
-                            avatar_url: user.image || 'https://zf4goehfa7fevldb.public.blob.vercel-storage.com/default.jpg',
+                            avatar_url:
+                                user.image ||
+                                "https://zf4goehfa7fevldb.public.blob.vercel-storage.com/default.jpg",
                             username: tempUsername,
                             lowername: tempUsername.toLowerCase(),
                             name: user.name || user.email || "Usuário",
