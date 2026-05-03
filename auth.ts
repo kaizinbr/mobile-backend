@@ -23,6 +23,13 @@ export const auth = betterAuth({
         tokenCharset: "numeric", // default is "alphanumeric"
         tokenExpiration: 10 * 60, // 10 minutes in seconds, default is 15 minutes
     },
+    baseURL: "http://192.168.18.152:3000",
+    socialProviders: {
+        google: { 
+            clientId: process.env.AUTH_GOOGLE_ID as string, 
+            clientSecret: process.env.AUTH_GOOGLE_SECRET as string, 
+        }, 
+    },
     account: {
         modelName: "BA_Account",
     },
@@ -95,6 +102,8 @@ export const auth = betterAuth({
         // "*",
         "myapp://",
         "firstapp://",
+
+    "http://localhost:3000",
         // Development mode - Expo's exp:// scheme with local IP ranges
         ...(process.env.NODE_ENV === "development"
             ? [
