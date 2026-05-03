@@ -21,22 +21,22 @@ export async function GET(
     }
 
     try {
-        const account = await prisma.account.findFirst({
-            where: { userId: session?.user?.id },
+        const user = await prisma.user.findFirst({
+            where: { id: session?.user?.id },
         });
 
-        if (!account) {
+        if (!user) {
             return NextResponse.json(
-                { error: "account not found" },
+                { error: "user not found" },
                 { status: 404 }
             );
         }
 
-        return NextResponse.json(account, { status: 200 });
+        return NextResponse.json(user, { status: 200 });
     } catch (err) {
         console.error("fetch error", err);
         return NextResponse.json(
-            { error: "Failed to fetch account" },
+            { error: "Failed to fetch user" },
             { status: 500 }
         );
     }

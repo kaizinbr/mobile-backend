@@ -6,6 +6,7 @@ import { emailOTP } from "better-auth/plugins";
 import { Resend } from "resend";
 import { prisma } from "@/lib/prisma";
 import { nextCookies } from "better-auth/next-js";
+import { sendVerificationRequest, sendResetPasswordEmail } from "@/lib/emails";
 
 const resend = new Resend(process.env.AUTH_RESEND_KEY);
 
@@ -16,6 +17,20 @@ export const auth = betterAuth({
     }),
     emailAndPassword: {
         enabled: true,
+        // sendResetPassword: async ({ user, url, token }, request) => {
+        //     await sendVerificationRequest({
+        //                     otp: token,
+        //                     identifier: user.email,
+        //                     from: "Acme <onboarding@kaizin.work>",
+        //                     to: user.email,
+        //                     subject: "Redefinir senha para sua conta",
+        //                 });
+        //                 console.log(`E-mail enviado com sucesso para ${user.email}`);
+        // },
+        // onPasswordReset: async ({ user }, request) => {
+        //     // your logic here
+        //     console.log(`Password for user ${user.email} has been reset.`);
+        // },
     },
     oneTimeToken: {
         enabled: true,
@@ -42,23 +57,15 @@ export const auth = betterAuth({
         expo(),
         nextCookies(),
         emailOTP({
-            // disableSignUp: false,
             async sendVerificationOTP({ email, otp, type }) {
                 if (type === "sign-in") {
                     try {
                         // 3. Aqui você dispara o e-mail usando o Resend
-                        await resend.emails.send({
-                            from: "Acme <onboarding@kaizin.work>", // Coloque o seu domínio verificado aqui
+                        await sendVerificationRequest({
+                            otp,
+                            identifier: email,
+                            from: "Acme <onboarding@kaizin.work>",
                             to: email,
-                            subject:
-                                type === "sign-in"
-                                    ? "Seu código de acesso"
-                                    : "Verifique seu e-mail",
-                            html: `
-                            <h2>Olá!</h2>
-                            <p>Seu código de verificação é: <strong>${otp}</strong></p>
-                            <p>Ele expira em alguns minutos.</p>
-                        `,
                         });
                         console.log(`E-mail enviado com sucesso para ${email}`);
                     } catch (error) {
@@ -70,16 +77,12 @@ export const auth = betterAuth({
                     }
                 } else if (type === "email-verification") {
                     try {
-                        // 3. Aqui você dispara o e-mail usando o Resend
-                        await resend.emails.send({
-                            from: "Acme <onboarding@kaizin.work>", // Coloque o seu domínio verificado aqui
+                         await sendVerificationRequest({
+                            otp,
+                            identifier: email,
+                            from: "Acme <onboarding@kaizin.work>",
                             to: email,
-                            subject: "Verifique seu e-mail",
-                            html: `
-                            <h2>Olá!</h2>
-                            <p>Seu código de verificação é: <strong>${otp}</strong></p>
-                            <p>Ele expira em alguns minutos.</p>
-                        `,
+                            subject: "Verifique seu e-mail para continuar",
                         });
                         console.log(`E-mail enviado com sucesso para ${email}`);
                     } catch (error) {
@@ -90,7 +93,22 @@ export const auth = betterAuth({
                         // Opcional: você pode jogar um erro aqui para o frontend saber que falhou
                     }
                 } else {
-                    // Send the OTP for password reset
+                    try {
+                         await sendVerificationRequest({
+                            otp,
+                            identifier: email,
+                            from: "Acme <onboarding@kaizin.work>",
+                            to: email,
+                            subject: "Redefinir senha para sua conta",
+                        });
+                        console.log(`E-mail enviado com sucesso para ${email}`);
+                    } catch (error) {
+                        console.error(
+                            "Erro ao enviar o e-mail pelo Resend:",
+                            error,
+                        );
+                        // Opcional: você pode jogar um erro aqui para o frontend saber que falhou
+                    }
                 }
             },
         }),
