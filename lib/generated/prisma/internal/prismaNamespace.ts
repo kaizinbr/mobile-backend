@@ -395,11 +395,11 @@ export const ModelName = {
   playing_with_neon: 'playing_with_neon',
   temp_users_import: 'temp_users_import',
   Account: 'Account',
-  BA_Account: 'BA_Account',
   Session: 'Session',
   User: 'User',
   Verification: 'Verification',
-  Wishlist: 'Wishlist'
+  Wishlist: 'Wishlist',
+  Legacy_Account: 'Legacy_Account'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -415,7 +415,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "comment" | "follow" | "like" | "notification" | "profile" | "rating" | "tokenOTP" | "verificationToken" | "playing_with_neon" | "temp_users_import" | "account" | "bA_Account" | "session" | "user" | "verification" | "wishlist"
+    modelProps: "comment" | "follow" | "like" | "notification" | "profile" | "rating" | "tokenOTP" | "verificationToken" | "playing_with_neon" | "temp_users_import" | "account" | "session" | "user" | "verification" | "wishlist" | "legacy_Account"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1233,80 +1233,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    BA_Account: {
-      payload: Prisma.$BA_AccountPayload<ExtArgs>
-      fields: Prisma.BA_AccountFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.BA_AccountFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BA_AccountPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.BA_AccountFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BA_AccountPayload>
-        }
-        findFirst: {
-          args: Prisma.BA_AccountFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BA_AccountPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.BA_AccountFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BA_AccountPayload>
-        }
-        findMany: {
-          args: Prisma.BA_AccountFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BA_AccountPayload>[]
-        }
-        create: {
-          args: Prisma.BA_AccountCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BA_AccountPayload>
-        }
-        createMany: {
-          args: Prisma.BA_AccountCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.BA_AccountCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BA_AccountPayload>[]
-        }
-        delete: {
-          args: Prisma.BA_AccountDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BA_AccountPayload>
-        }
-        update: {
-          args: Prisma.BA_AccountUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BA_AccountPayload>
-        }
-        deleteMany: {
-          args: Prisma.BA_AccountDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.BA_AccountUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.BA_AccountUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BA_AccountPayload>[]
-        }
-        upsert: {
-          args: Prisma.BA_AccountUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BA_AccountPayload>
-        }
-        aggregate: {
-          args: Prisma.BA_AccountAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateBA_Account>
-        }
-        groupBy: {
-          args: Prisma.BA_AccountGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.BA_AccountGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.BA_AccountCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.BA_AccountCountAggregateOutputType> | number
-        }
-      }
-    }
     Session: {
       payload: Prisma.$SessionPayload<ExtArgs>
       fields: Prisma.SessionFieldRefs
@@ -1603,6 +1529,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Legacy_Account: {
+      payload: Prisma.$Legacy_AccountPayload<ExtArgs>
+      fields: Prisma.Legacy_AccountFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.Legacy_AccountFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$Legacy_AccountPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.Legacy_AccountFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$Legacy_AccountPayload>
+        }
+        findFirst: {
+          args: Prisma.Legacy_AccountFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$Legacy_AccountPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.Legacy_AccountFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$Legacy_AccountPayload>
+        }
+        findMany: {
+          args: Prisma.Legacy_AccountFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$Legacy_AccountPayload>[]
+        }
+        create: {
+          args: Prisma.Legacy_AccountCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$Legacy_AccountPayload>
+        }
+        createMany: {
+          args: Prisma.Legacy_AccountCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.Legacy_AccountCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$Legacy_AccountPayload>[]
+        }
+        delete: {
+          args: Prisma.Legacy_AccountDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$Legacy_AccountPayload>
+        }
+        update: {
+          args: Prisma.Legacy_AccountUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$Legacy_AccountPayload>
+        }
+        deleteMany: {
+          args: Prisma.Legacy_AccountDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.Legacy_AccountUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.Legacy_AccountUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$Legacy_AccountPayload>[]
+        }
+        upsert: {
+          args: Prisma.Legacy_AccountUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$Legacy_AccountPayload>
+        }
+        aggregate: {
+          args: Prisma.Legacy_AccountAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLegacy_Account>
+        }
+        groupBy: {
+          args: Prisma.Legacy_AccountGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Legacy_AccountGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.Legacy_AccountCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Legacy_AccountCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1775,24 +1775,6 @@ export type Temp_users_importScalarFieldEnum = (typeof Temp_users_importScalarFi
 
 
 export const AccountScalarFieldEnum = {
-  user_id: 'user_id',
-  type: 'type',
-  provider: 'provider',
-  provider_account_id: 'provider_account_id',
-  refresh_token: 'refresh_token',
-  access_token: 'access_token',
-  expires_at: 'expires_at',
-  token_type: 'token_type',
-  scope: 'scope',
-  id_token: 'id_token',
-  session_state: 'session_state',
-  id: 'id'
-} as const
-
-export type AccountScalarFieldEnum = (typeof AccountScalarFieldEnum)[keyof typeof AccountScalarFieldEnum]
-
-
-export const BA_AccountScalarFieldEnum = {
   userId: 'userId',
   accountId: 'accountId',
   providerId: 'providerId',
@@ -1808,7 +1790,7 @@ export const BA_AccountScalarFieldEnum = {
   scope: 'scope'
 } as const
 
-export type BA_AccountScalarFieldEnum = (typeof BA_AccountScalarFieldEnum)[keyof typeof BA_AccountScalarFieldEnum]
+export type AccountScalarFieldEnum = (typeof AccountScalarFieldEnum)[keyof typeof AccountScalarFieldEnum]
 
 
 export const SessionScalarFieldEnum = {
@@ -1863,6 +1845,24 @@ export const WishlistScalarFieldEnum = {
 } as const
 
 export type WishlistScalarFieldEnum = (typeof WishlistScalarFieldEnum)[keyof typeof WishlistScalarFieldEnum]
+
+
+export const Legacy_AccountScalarFieldEnum = {
+  user_id: 'user_id',
+  type: 'type',
+  provider: 'provider',
+  provider_account_id: 'provider_account_id',
+  refresh_token: 'refresh_token',
+  access_token: 'access_token',
+  expires_at: 'expires_at',
+  token_type: 'token_type',
+  scope: 'scope',
+  id_token: 'id_token',
+  session_state: 'session_state',
+  id: 'id'
+} as const
+
+export type Legacy_AccountScalarFieldEnum = (typeof Legacy_AccountScalarFieldEnum)[keyof typeof Legacy_AccountScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -2129,11 +2129,11 @@ export type GlobalOmitConfig = {
   playing_with_neon?: Prisma.playing_with_neonOmit
   temp_users_import?: Prisma.temp_users_importOmit
   account?: Prisma.AccountOmit
-  bA_Account?: Prisma.BA_AccountOmit
   session?: Prisma.SessionOmit
   user?: Prisma.UserOmit
   verification?: Prisma.VerificationOmit
   wishlist?: Prisma.WishlistOmit
+  legacy_Account?: Prisma.Legacy_AccountOmit
 }
 
 /* Types for Logging */

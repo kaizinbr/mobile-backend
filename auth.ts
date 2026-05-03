@@ -30,9 +30,6 @@ export const auth = betterAuth({
             clientSecret: process.env.AUTH_GOOGLE_SECRET as string,
         },
     },
-    account: {
-        modelName: "BA_Account",
-    },
     session: {
         modelName: "Session",
     },

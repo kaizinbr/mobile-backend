@@ -130,24 +130,6 @@ model temp_users_import {
 }
 
 model Account {
-  user_id             String  @db.Uuid
-  type                String
-  provider            String
-  provider_account_id String
-  refresh_token       String?
-  access_token        String?
-  expires_at          Int?
-  token_type          String?
-  scope               String?
-  id_token            String?
-  session_state       String?
-  id                  String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  User                User    @relation(fields: [user_id], references: [id], onDelete: Cascade)
-
-  @@unique([provider, provider_account_id])
-}
-
-model BA_Account {
   userId                String    @db.Uuid
   accountId             String    @id(map: "ba_account_pk")
   providerId            String
@@ -158,12 +140,11 @@ model BA_Account {
   refreshTokenExpiresAt DateTime? @db.Timestamptz(6)
   password              String?
   createdAt             DateTime  @default(now()) @db.Timestamptz(6)
-  updatedAt             DateTime  @default(now()) @updatedAt @db.Timestamptz(6)
+  updatedAt             DateTime  @default(now()) @db.Timestamptz(6)
   id                    String?   @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   scope                 String?
 
   @@index([userId], map: "ba_account_userid_idx")
-  @@map("ba_account")
 }
 
 model Session {
@@ -182,16 +163,16 @@ model Session {
 }
 
 model User {
-  id                  String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id                  String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name                String?
-  email               String?   @unique
+  email               String?          @unique
   email_verified_when DateTime?
   image               String?
-  createdAt           DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
-  encrypted_password  String?   @db.VarChar(255)
-  emailVerified       Boolean?  @map("email_verified")
-  updatedAt           DateTime  @default(now()) @map("updated_at") @db.Timestamptz(6)
-  accounts            Account[]
+  createdAt           DateTime         @default(now()) @map("created_at") @db.Timestamptz(6)
+  encrypted_password  String?          @db.VarChar(255)
+  emailVerified       Boolean?         @map("email_verified")
+  updatedAt           DateTime         @default(now()) @map("updated_at") @db.Timestamptz(6)
+  Legacy_Account      Legacy_Account[]
   Profile             Profile?
   sessions            Session[]
 }
@@ -220,4 +201,22 @@ model Wishlist {
 
   @@unique([profileId, albumId])
   @@index([profileId])
+}
+
+model Legacy_Account {
+  user_id             String  @db.Uuid
+  type                String
+  provider            String
+  provider_account_id String
+  refresh_token       String?
+  access_token        String?
+  expires_at          Int?
+  token_type          String?
+  scope               String?
+  id_token            String?
+  session_state       String?
+  id                  String  @id(map: "Account_pkey") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  User                User    @relation(fields: [user_id], references: [id], onDelete: Cascade, map: "Account_user_id_fkey")
+
+  @@unique([provider, provider_account_id], map: "Account_provider_provider_account_id_key")
 }

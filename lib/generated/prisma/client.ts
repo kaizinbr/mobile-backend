@@ -95,11 +95,6 @@ export type temp_users_import = Prisma.temp_users_importModel
  */
 export type Account = Prisma.AccountModel
 /**
- * Model BA_Account
- * 
- */
-export type BA_Account = Prisma.BA_AccountModel
-/**
  * Model Session
  * 
  */
@@ -119,3 +114,8 @@ export type Verification = Prisma.VerificationModel
  * 
  */
 export type Wishlist = Prisma.WishlistModel
+/**
+ * Model Legacy_Account
+ * 
+ */
+export type Legacy_Account = Prisma.Legacy_AccountModel

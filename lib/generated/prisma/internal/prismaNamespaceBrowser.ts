@@ -62,11 +62,11 @@ export const ModelName = {
   playing_with_neon: 'playing_with_neon',
   temp_users_import: 'temp_users_import',
   Account: 'Account',
-  BA_Account: 'BA_Account',
   Session: 'Session',
   User: 'User',
   Verification: 'Verification',
-  Wishlist: 'Wishlist'
+  Wishlist: 'Wishlist',
+  Legacy_Account: 'Legacy_Account'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -218,24 +218,6 @@ export type Temp_users_importScalarFieldEnum = (typeof Temp_users_importScalarFi
 
 
 export const AccountScalarFieldEnum = {
-  user_id: 'user_id',
-  type: 'type',
-  provider: 'provider',
-  provider_account_id: 'provider_account_id',
-  refresh_token: 'refresh_token',
-  access_token: 'access_token',
-  expires_at: 'expires_at',
-  token_type: 'token_type',
-  scope: 'scope',
-  id_token: 'id_token',
-  session_state: 'session_state',
-  id: 'id'
-} as const
-
-export type AccountScalarFieldEnum = (typeof AccountScalarFieldEnum)[keyof typeof AccountScalarFieldEnum]
-
-
-export const BA_AccountScalarFieldEnum = {
   userId: 'userId',
   accountId: 'accountId',
   providerId: 'providerId',
@@ -251,7 +233,7 @@ export const BA_AccountScalarFieldEnum = {
   scope: 'scope'
 } as const
 
-export type BA_AccountScalarFieldEnum = (typeof BA_AccountScalarFieldEnum)[keyof typeof BA_AccountScalarFieldEnum]
+export type AccountScalarFieldEnum = (typeof AccountScalarFieldEnum)[keyof typeof AccountScalarFieldEnum]
 
 
 export const SessionScalarFieldEnum = {
@@ -306,6 +288,24 @@ export const WishlistScalarFieldEnum = {
 } as const
 
 export type WishlistScalarFieldEnum = (typeof WishlistScalarFieldEnum)[keyof typeof WishlistScalarFieldEnum]
+
+
+export const Legacy_AccountScalarFieldEnum = {
+  user_id: 'user_id',
+  type: 'type',
+  provider: 'provider',
+  provider_account_id: 'provider_account_id',
+  refresh_token: 'refresh_token',
+  access_token: 'access_token',
+  expires_at: 'expires_at',
+  token_type: 'token_type',
+  scope: 'scope',
+  id_token: 'id_token',
+  session_state: 'session_state',
+  id: 'id'
+} as const
+
+export type Legacy_AccountScalarFieldEnum = (typeof Legacy_AccountScalarFieldEnum)[keyof typeof Legacy_AccountScalarFieldEnum]
 
 
 export const SortOrder = {
