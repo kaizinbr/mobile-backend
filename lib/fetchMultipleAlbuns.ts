@@ -31,7 +31,7 @@ const getAccessToken = async () => {
     return response.data.access_token;
 };
 
-export default async function fetchMultipleAlbuns(ids: string) {
+export default async function fetchMultipleAlbuns(ids: string | null) {
 
     if (!ids) {
         return []
