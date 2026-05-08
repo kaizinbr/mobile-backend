@@ -68,6 +68,7 @@ model Profile {
   artists                                      Json           @default("[]")
   location                                     String?
   lyrics                                       Json?          @default("[]")
+  lastfm_username                              String?
   Follow_Follow_followed_idToProfile           Follow[]       @relation("Follow_followed_idToProfile")
   Follow_Follow_follower_idToProfile           Follow[]       @relation("Follow_follower_idToProfile")
   Like                                         Like[]

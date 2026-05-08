@@ -148,7 +148,8 @@ export const ProfileScalarFieldEnum = {
   albuns: 'albuns',
   artists: 'artists',
   location: 'location',
-  lyrics: 'lyrics'
+  lyrics: 'lyrics',
+  lastfm_username: 'lastfm_username'
 } as const
 
 export type ProfileScalarFieldEnum = (typeof ProfileScalarFieldEnum)[keyof typeof ProfileScalarFieldEnum]

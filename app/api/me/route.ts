@@ -40,12 +40,11 @@ export async function GET(request: Request) {
 }
 
 export async function PUT(request: NextRequest) {
-    const { username, lowername, site, name, bio, pronouns, avatar, albuns, artists, lyrics } =
-        await request.json();
-    console.log("update request", {
+    const {
         username,
         lowername,
         site,
+        lastfm,
         name,
         bio,
         pronouns,
@@ -53,7 +52,19 @@ export async function PUT(request: NextRequest) {
         albuns,
         artists,
         lyrics,
-
+    } = await request.json();
+    console.log("update request", {
+        username,
+        lowername,
+        site,
+        lastfm,
+        name,
+        bio,
+        pronouns,
+        avatar,
+        albuns,
+        artists,
+        lyrics,
     });
 
     try {
@@ -81,6 +92,7 @@ export async function PUT(request: NextRequest) {
                 username: username,
                 lowername: username.toLowerCase(),
                 site: site || null,
+                lastfm_username: lastfm || null,
                 avatar_url: avatar || null,
                 name: name || null,
                 bio: bio || null,

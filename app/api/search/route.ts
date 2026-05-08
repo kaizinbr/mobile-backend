@@ -68,6 +68,7 @@ export async function GET(req: Request) {
                 },
             ],
         },
+        take: 20,
     });
 
     const reviews = await prisma.rating.findMany({
