@@ -100,11 +100,6 @@ export type Account = Prisma.AccountModel
  */
 export type Session = Prisma.SessionModel
 /**
- * Model User
- * 
- */
-export type User = Prisma.UserModel
-/**
  * Model Verification
  * 
  */
@@ -119,3 +114,8 @@ export type Wishlist = Prisma.WishlistModel
  * 
  */
 export type Legacy_Account = Prisma.Legacy_AccountModel
+/**
+ * Model User
+ * 
+ */
+export type User = Prisma.UserModel

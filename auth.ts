@@ -13,24 +13,10 @@ const resend = new Resend(process.env.AUTH_RESEND_KEY);
 // const prisma = new prisma();
 export const auth = betterAuth({
     database: prismaAdapter(prisma, {
-        provider: "postgresql", // or "mysql", "postgresql", ...etc
+        provider: "postgresql", 
     }),
     emailAndPassword: {
         enabled: true,
-        // sendResetPassword: async ({ user, url, token }, request) => {
-        //     await sendVerificationRequest({
-        //                     otp: token,
-        //                     identifier: user.email,
-        //                     from: "Acme <onboarding@kaizin.work>",
-        //                     to: user.email,
-        //                     subject: "Redefinir senha para sua conta",
-        //                 });
-        //                 console.log(`E-mail enviado com sucesso para ${user.email}`);
-        // },
-        // onPasswordReset: async ({ user }, request) => {
-        //     // your logic here
-        //     console.log(`Password for user ${user.email} has been reset.`);
-        // },
     },
     oneTimeToken: {
         enabled: true,
@@ -47,6 +33,13 @@ export const auth = betterAuth({
     },
     session: {
         modelName: "Session",
+    },
+    account:{
+        accountLinking: {
+			enabled: true,
+			trustedProviders: ["google", "github", "email-password"], // or async (request) => ["google", "github"]
+			allowDifferentEmails: false
+		},
     },
     advanced: {
         database: {
@@ -158,5 +151,8 @@ export const auth = betterAuth({
                 },
             },
         },
+    },
+    logger: {
+        level: "debug", // vai logar cada passo da autenticação
     },
 });

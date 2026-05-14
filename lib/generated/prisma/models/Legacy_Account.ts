@@ -453,16 +453,6 @@ export type Legacy_AccountUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
-export type Legacy_AccountListRelationFilter = {
-  every?: Prisma.Legacy_AccountWhereInput
-  some?: Prisma.Legacy_AccountWhereInput
-  none?: Prisma.Legacy_AccountWhereInput
-}
-
-export type Legacy_AccountOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
-}
-
 export type Legacy_AccountProviderProvider_account_idCompoundUniqueInput = {
   provider: string
   provider_account_id: string
@@ -521,6 +511,24 @@ export type Legacy_AccountSumOrderByAggregateInput = {
   expires_at?: Prisma.SortOrder
 }
 
+export type Legacy_AccountListRelationFilter = {
+  every?: Prisma.Legacy_AccountWhereInput
+  some?: Prisma.Legacy_AccountWhereInput
+  none?: Prisma.Legacy_AccountWhereInput
+}
+
+export type Legacy_AccountOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
 export type Legacy_AccountCreateNestedManyWithoutUserInput = {
   create?: Prisma.XOR<Prisma.Legacy_AccountCreateWithoutUserInput, Prisma.Legacy_AccountUncheckedCreateWithoutUserInput> | Prisma.Legacy_AccountCreateWithoutUserInput[] | Prisma.Legacy_AccountUncheckedCreateWithoutUserInput[]
   connectOrCreate?: Prisma.Legacy_AccountCreateOrConnectWithoutUserInput | Prisma.Legacy_AccountCreateOrConnectWithoutUserInput[]
@@ -561,14 +569,6 @@ export type Legacy_AccountUncheckedUpdateManyWithoutUserNestedInput = {
   update?: Prisma.Legacy_AccountUpdateWithWhereUniqueWithoutUserInput | Prisma.Legacy_AccountUpdateWithWhereUniqueWithoutUserInput[]
   updateMany?: Prisma.Legacy_AccountUpdateManyWithWhereWithoutUserInput | Prisma.Legacy_AccountUpdateManyWithWhereWithoutUserInput[]
   deleteMany?: Prisma.Legacy_AccountScalarWhereInput | Prisma.Legacy_AccountScalarWhereInput[]
-}
-
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
 }
 
 export type Legacy_AccountCreateWithoutUserInput = {

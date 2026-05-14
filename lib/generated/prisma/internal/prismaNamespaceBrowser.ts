@@ -63,10 +63,10 @@ export const ModelName = {
   temp_users_import: 'temp_users_import',
   Account: 'Account',
   Session: 'Session',
-  User: 'User',
   Verification: 'Verification',
   Wishlist: 'Wishlist',
-  Legacy_Account: 'Legacy_Account'
+  Legacy_Account: 'Legacy_Account',
+  User: 'User'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -251,21 +251,6 @@ export const SessionScalarFieldEnum = {
 export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
 
 
-export const UserScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  email: 'email',
-  email_verified_when: 'email_verified_when',
-  image: 'image',
-  createdAt: 'createdAt',
-  encrypted_password: 'encrypted_password',
-  emailVerified: 'emailVerified',
-  updatedAt: 'updatedAt'
-} as const
-
-export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
-
-
 export const VerificationScalarFieldEnum = {
   id: 'id',
   identifier: 'identifier',
@@ -307,6 +292,19 @@ export const Legacy_AccountScalarFieldEnum = {
 } as const
 
 export type Legacy_AccountScalarFieldEnum = (typeof Legacy_AccountScalarFieldEnum)[keyof typeof Legacy_AccountScalarFieldEnum]
+
+
+export const UserScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  emailVerified: 'emailVerified',
+  image: 'image',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
 export const SortOrder = {

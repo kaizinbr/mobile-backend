@@ -42,10 +42,11 @@ export default function Login() {
 			<button
 				className="bg-white text-black"
 				onClick={async () => {
-                    console.log("Signing in with email and password:", { email, password });
-					const { error } = await authClient.signIn.email({
+                    // console.log("Signing in with email and password:", { email, password });
+					const { error } = await authClient.signUp.email({
+                        name: "teste",
 						email,
-						password,
+						password: "Vikai1812",
 					});
 				}}
 			>

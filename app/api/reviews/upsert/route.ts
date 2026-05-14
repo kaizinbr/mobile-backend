@@ -25,6 +25,8 @@ export async function POST(request: NextRequest) {
         published,
     });
 
+    console.log(markdown)
+
     const session = await auth.api.getSession({
         headers: await headers(),
     });

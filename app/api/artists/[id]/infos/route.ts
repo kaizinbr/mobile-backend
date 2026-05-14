@@ -37,7 +37,7 @@ const getAccessToken = async () => {
 export async function getMusicBrainzArtist(name: string) {
     const response = await fetch(
         `https://musicbrainz.org/ws/2/artist/?query=artist:${encodeURIComponent(name)}&fmt=json`,
-        { headers: { "User-Agent": "seuapp/1.0 (kaizin@kaizin.work)" } },
+        { headers: { "User-Agent": "whistle/1.0 (https://kaizin.work)" } },
     );
     const data = await response.json();
     const mbid = data.artists?.[0]?.id;
@@ -46,7 +46,7 @@ export async function getMusicBrainzArtist(name: string) {
     // Depois busca os detalhes completos com os links externos
     const detailResponse = await fetch(
         `https://musicbrainz.org/ws/2/artist/${mbid}?inc=url-rels&fmt=json`,
-        { headers: { "User-Agent": "seuapp/1.0 (seuemail@email.com)" } },
+        { headers: { "User-Agent": "whistle/1.0 (https://kaizin.work)" } },
     );
     const detailData = await detailResponse.json();
     // console.log("MusicBrainz data:", detailData);
@@ -59,7 +59,7 @@ export async function getWikipediaSummary(name: string) {
         `https://pt.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(name)}`,
         {
             headers: {
-                "User-Agent": "seuapp/1.0 (seuemail@email.com)",
+                "User-Agent": "whistle/1.0 (https://kaizin.work)",
                 "Accept": "application/json",
             },
         }
@@ -77,9 +77,17 @@ export async function getArtistExtra(spotifyArtist: {
     name: string;
     id: string;
 }) {
-    const [mbArtist, wiki] = await Promise.all([
-        getMusicBrainzArtist(spotifyArtist.name),
-        getWikipediaSummary(spotifyArtist.name),
+    // Aguarda no máximo 15 segundos; se demorar mais, considera ambos como null
+    const timeout = new Promise<any>((resolve) =>
+        setTimeout(() => resolve([null, null]), 15000),
+    );
+
+    const [mbArtist, wiki] = await Promise.race([
+        Promise.all([
+            getMusicBrainzArtist(spotifyArtist.name),
+            getWikipediaSummary(spotifyArtist.name),
+        ]),
+        timeout,
     ]);
 
     return {

@@ -142,10 +142,11 @@ model Account {
   password              String?
   createdAt             DateTime  @default(now()) @db.Timestamptz(6)
   updatedAt             DateTime  @default(now()) @db.Timestamptz(6)
-  id                    String    @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id                    String    @unique(map: "Account_id_key") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   scope                 String?
 
   @@index([userId], map: "ba_account_userid_idx")
+  @@map("account")
 }
 
 model Session {
@@ -161,21 +162,6 @@ model Session {
 
   @@index([userId], map: "session_userid_idx")
   @@map("session")
-}
-
-model User {
-  id                  String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name                String?
-  email               String?          @unique
-  email_verified_when DateTime?
-  image               String?
-  createdAt           DateTime         @default(now()) @map("created_at") @db.Timestamptz(6)
-  encrypted_password  String?          @db.VarChar(255)
-  emailVerified       Boolean?         @map("email_verified")
-  updatedAt           DateTime         @default(now()) @map("updated_at") @db.Timestamptz(6)
-  Legacy_Account      Legacy_Account[]
-  Profile             Profile?
-  sessions            Session[]
 }
 
 model Verification {
@@ -220,4 +206,19 @@ model Legacy_Account {
   User                User    @relation(fields: [user_id], references: [id], onDelete: Cascade, map: "Account_user_id_fkey")
 
   @@unique([provider, provider_account_id], map: "Account_provider_provider_account_id_key")
+}
+
+model User {
+  id             String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name           String?
+  email          String?        @unique
+  emailVerified  Boolean?       @default(false) @map("email_verified")
+  image          String?
+  createdAt      DateTime       @default(now()) @db.Timestamptz(6) @map("created_at")
+  updatedAt      DateTime       @default(now()) @db.Timestamptz(6) @map("updated_at")
+  Legacy_Account Legacy_Account[]
+  Profile        Profile?
+  sessions       Session[]
+
+  @@map("User")
 }

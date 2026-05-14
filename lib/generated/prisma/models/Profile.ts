@@ -724,6 +724,20 @@ export type ProfileUpdateOneWithoutRatingNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProfileUpdateToOneWithWhereWithoutRatingInput, Prisma.ProfileUpdateWithoutRatingInput>, Prisma.ProfileUncheckedUpdateWithoutRatingInput>
 }
 
+export type ProfileCreateNestedOneWithoutWishlistInput = {
+  create?: Prisma.XOR<Prisma.ProfileCreateWithoutWishlistInput, Prisma.ProfileUncheckedCreateWithoutWishlistInput>
+  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutWishlistInput
+  connect?: Prisma.ProfileWhereUniqueInput
+}
+
+export type ProfileUpdateOneRequiredWithoutWishlistNestedInput = {
+  create?: Prisma.XOR<Prisma.ProfileCreateWithoutWishlistInput, Prisma.ProfileUncheckedCreateWithoutWishlistInput>
+  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutWishlistInput
+  upsert?: Prisma.ProfileUpsertWithoutWishlistInput
+  connect?: Prisma.ProfileWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProfileUpdateToOneWithWhereWithoutWishlistInput, Prisma.ProfileUpdateWithoutWishlistInput>, Prisma.ProfileUncheckedUpdateWithoutWishlistInput>
+}
+
 export type ProfileCreateNestedOneWithoutUserInput = {
   create?: Prisma.XOR<Prisma.ProfileCreateWithoutUserInput, Prisma.ProfileUncheckedCreateWithoutUserInput>
   connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutUserInput
@@ -754,20 +768,6 @@ export type ProfileUncheckedUpdateOneWithoutUserNestedInput = {
   delete?: Prisma.ProfileWhereInput | boolean
   connect?: Prisma.ProfileWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProfileUpdateToOneWithWhereWithoutUserInput, Prisma.ProfileUpdateWithoutUserInput>, Prisma.ProfileUncheckedUpdateWithoutUserInput>
-}
-
-export type ProfileCreateNestedOneWithoutWishlistInput = {
-  create?: Prisma.XOR<Prisma.ProfileCreateWithoutWishlistInput, Prisma.ProfileUncheckedCreateWithoutWishlistInput>
-  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutWishlistInput
-  connect?: Prisma.ProfileWhereUniqueInput
-}
-
-export type ProfileUpdateOneRequiredWithoutWishlistNestedInput = {
-  create?: Prisma.XOR<Prisma.ProfileCreateWithoutWishlistInput, Prisma.ProfileUncheckedCreateWithoutWishlistInput>
-  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutWishlistInput
-  upsert?: Prisma.ProfileUpsertWithoutWishlistInput
-  connect?: Prisma.ProfileWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ProfileUpdateToOneWithWhereWithoutWishlistInput, Prisma.ProfileUpdateWithoutWishlistInput>, Prisma.ProfileUncheckedUpdateWithoutWishlistInput>
 }
 
 export type ProfileCreateWithoutFollow_Follow_followed_idToProfileInput = {
@@ -1514,130 +1514,6 @@ export type ProfileUncheckedUpdateWithoutRatingInput = {
   Wishlist?: Prisma.WishlistUncheckedUpdateManyWithoutProfileNestedInput
 }
 
-export type ProfileCreateWithoutUserInput = {
-  username?: string | null
-  name?: string | null
-  lowername?: string | null
-  bio?: string | null
-  pronouns?: string | null
-  site?: string | null
-  color?: string | null
-  created_at?: Date | string
-  public?: boolean
-  favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  verified?: boolean
-  avatar_url?: string
-  albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  location?: string | null
-  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  lastfm_username?: string | null
-  Follow_Follow_followed_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
-  Follow_Follow_follower_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
-  Like?: Prisma.LikeCreateNestedManyWithoutProfileInput
-  Notification_Notification_sender_idToProfile?: Prisma.NotificationCreateNestedManyWithoutProfile_Notification_sender_idToProfileInput
-  Notification_Notification_user_idToProfile?: Prisma.NotificationCreateNestedManyWithoutProfile_Notification_user_idToProfileInput
-  Rating?: Prisma.RatingCreateNestedManyWithoutProfileInput
-  Wishlist?: Prisma.WishlistCreateNestedManyWithoutProfileInput
-}
-
-export type ProfileUncheckedCreateWithoutUserInput = {
-  username?: string | null
-  name?: string | null
-  lowername?: string | null
-  bio?: string | null
-  pronouns?: string | null
-  site?: string | null
-  color?: string | null
-  created_at?: Date | string
-  public?: boolean
-  favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  verified?: boolean
-  avatar_url?: string
-  albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  location?: string | null
-  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  lastfm_username?: string | null
-  Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
-  Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
-  Like?: Prisma.LikeUncheckedCreateNestedManyWithoutProfileInput
-  Notification_Notification_sender_idToProfile?: Prisma.NotificationUncheckedCreateNestedManyWithoutProfile_Notification_sender_idToProfileInput
-  Notification_Notification_user_idToProfile?: Prisma.NotificationUncheckedCreateNestedManyWithoutProfile_Notification_user_idToProfileInput
-  Rating?: Prisma.RatingUncheckedCreateNestedManyWithoutProfileInput
-  Wishlist?: Prisma.WishlistUncheckedCreateNestedManyWithoutProfileInput
-}
-
-export type ProfileCreateOrConnectWithoutUserInput = {
-  where: Prisma.ProfileWhereUniqueInput
-  create: Prisma.XOR<Prisma.ProfileCreateWithoutUserInput, Prisma.ProfileUncheckedCreateWithoutUserInput>
-}
-
-export type ProfileUpsertWithoutUserInput = {
-  update: Prisma.XOR<Prisma.ProfileUpdateWithoutUserInput, Prisma.ProfileUncheckedUpdateWithoutUserInput>
-  create: Prisma.XOR<Prisma.ProfileCreateWithoutUserInput, Prisma.ProfileUncheckedCreateWithoutUserInput>
-  where?: Prisma.ProfileWhereInput
-}
-
-export type ProfileUpdateToOneWithWhereWithoutUserInput = {
-  where?: Prisma.ProfileWhereInput
-  data: Prisma.XOR<Prisma.ProfileUpdateWithoutUserInput, Prisma.ProfileUncheckedUpdateWithoutUserInput>
-}
-
-export type ProfileUpdateWithoutUserInput = {
-  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lowername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  pronouns?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  public?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  avatar_url?: Prisma.StringFieldUpdateOperationsInput | string
-  albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  lastfm_username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  Follow_Follow_followed_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
-  Follow_Follow_follower_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
-  Like?: Prisma.LikeUpdateManyWithoutProfileNestedInput
-  Notification_Notification_sender_idToProfile?: Prisma.NotificationUpdateManyWithoutProfile_Notification_sender_idToProfileNestedInput
-  Notification_Notification_user_idToProfile?: Prisma.NotificationUpdateManyWithoutProfile_Notification_user_idToProfileNestedInput
-  Rating?: Prisma.RatingUpdateManyWithoutProfileNestedInput
-  Wishlist?: Prisma.WishlistUpdateManyWithoutProfileNestedInput
-}
-
-export type ProfileUncheckedUpdateWithoutUserInput = {
-  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lowername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  pronouns?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  public?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  avatar_url?: Prisma.StringFieldUpdateOperationsInput | string
-  albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  lastfm_username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
-  Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
-  Like?: Prisma.LikeUncheckedUpdateManyWithoutProfileNestedInput
-  Notification_Notification_sender_idToProfile?: Prisma.NotificationUncheckedUpdateManyWithoutProfile_Notification_sender_idToProfileNestedInput
-  Notification_Notification_user_idToProfile?: Prisma.NotificationUncheckedUpdateManyWithoutProfile_Notification_user_idToProfileNestedInput
-  Rating?: Prisma.RatingUncheckedUpdateManyWithoutProfileNestedInput
-  Wishlist?: Prisma.WishlistUncheckedUpdateManyWithoutProfileNestedInput
-}
-
 export type ProfileCreateWithoutWishlistInput = {
   username?: string | null
   name?: string | null
@@ -1760,6 +1636,130 @@ export type ProfileUncheckedUpdateWithoutWishlistInput = {
   Notification_Notification_sender_idToProfile?: Prisma.NotificationUncheckedUpdateManyWithoutProfile_Notification_sender_idToProfileNestedInput
   Notification_Notification_user_idToProfile?: Prisma.NotificationUncheckedUpdateManyWithoutProfile_Notification_user_idToProfileNestedInput
   Rating?: Prisma.RatingUncheckedUpdateManyWithoutProfileNestedInput
+}
+
+export type ProfileCreateWithoutUserInput = {
+  username?: string | null
+  name?: string | null
+  lowername?: string | null
+  bio?: string | null
+  pronouns?: string | null
+  site?: string | null
+  color?: string | null
+  created_at?: Date | string
+  public?: boolean
+  favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  verified?: boolean
+  avatar_url?: string
+  albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  location?: string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  lastfm_username?: string | null
+  Follow_Follow_followed_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
+  Follow_Follow_follower_idToProfile?: Prisma.FollowCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
+  Like?: Prisma.LikeCreateNestedManyWithoutProfileInput
+  Notification_Notification_sender_idToProfile?: Prisma.NotificationCreateNestedManyWithoutProfile_Notification_sender_idToProfileInput
+  Notification_Notification_user_idToProfile?: Prisma.NotificationCreateNestedManyWithoutProfile_Notification_user_idToProfileInput
+  Rating?: Prisma.RatingCreateNestedManyWithoutProfileInput
+  Wishlist?: Prisma.WishlistCreateNestedManyWithoutProfileInput
+}
+
+export type ProfileUncheckedCreateWithoutUserInput = {
+  username?: string | null
+  name?: string | null
+  lowername?: string | null
+  bio?: string | null
+  pronouns?: string | null
+  site?: string | null
+  color?: string | null
+  created_at?: Date | string
+  public?: boolean
+  favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  verified?: boolean
+  avatar_url?: string
+  albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  location?: string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  lastfm_username?: string | null
+  Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput
+  Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedCreateNestedManyWithoutProfile_Follow_follower_idToProfileInput
+  Like?: Prisma.LikeUncheckedCreateNestedManyWithoutProfileInput
+  Notification_Notification_sender_idToProfile?: Prisma.NotificationUncheckedCreateNestedManyWithoutProfile_Notification_sender_idToProfileInput
+  Notification_Notification_user_idToProfile?: Prisma.NotificationUncheckedCreateNestedManyWithoutProfile_Notification_user_idToProfileInput
+  Rating?: Prisma.RatingUncheckedCreateNestedManyWithoutProfileInput
+  Wishlist?: Prisma.WishlistUncheckedCreateNestedManyWithoutProfileInput
+}
+
+export type ProfileCreateOrConnectWithoutUserInput = {
+  where: Prisma.ProfileWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProfileCreateWithoutUserInput, Prisma.ProfileUncheckedCreateWithoutUserInput>
+}
+
+export type ProfileUpsertWithoutUserInput = {
+  update: Prisma.XOR<Prisma.ProfileUpdateWithoutUserInput, Prisma.ProfileUncheckedUpdateWithoutUserInput>
+  create: Prisma.XOR<Prisma.ProfileCreateWithoutUserInput, Prisma.ProfileUncheckedCreateWithoutUserInput>
+  where?: Prisma.ProfileWhereInput
+}
+
+export type ProfileUpdateToOneWithWhereWithoutUserInput = {
+  where?: Prisma.ProfileWhereInput
+  data: Prisma.XOR<Prisma.ProfileUpdateWithoutUserInput, Prisma.ProfileUncheckedUpdateWithoutUserInput>
+}
+
+export type ProfileUpdateWithoutUserInput = {
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lowername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronouns?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  public?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatar_url?: Prisma.StringFieldUpdateOperationsInput | string
+  albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  lastfm_username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Follow_Follow_followed_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
+  Follow_Follow_follower_idToProfile?: Prisma.FollowUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
+  Like?: Prisma.LikeUpdateManyWithoutProfileNestedInput
+  Notification_Notification_sender_idToProfile?: Prisma.NotificationUpdateManyWithoutProfile_Notification_sender_idToProfileNestedInput
+  Notification_Notification_user_idToProfile?: Prisma.NotificationUpdateManyWithoutProfile_Notification_user_idToProfileNestedInput
+  Rating?: Prisma.RatingUpdateManyWithoutProfileNestedInput
+  Wishlist?: Prisma.WishlistUpdateManyWithoutProfileNestedInput
+}
+
+export type ProfileUncheckedUpdateWithoutUserInput = {
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lowername?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pronouns?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  public?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  favorites?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avatar_url?: Prisma.StringFieldUpdateOperationsInput | string
+  albuns?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  artists?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lyrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  lastfm_username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Follow_Follow_followed_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_followed_idToProfileNestedInput
+  Follow_Follow_follower_idToProfile?: Prisma.FollowUncheckedUpdateManyWithoutProfile_Follow_follower_idToProfileNestedInput
+  Like?: Prisma.LikeUncheckedUpdateManyWithoutProfileNestedInput
+  Notification_Notification_sender_idToProfile?: Prisma.NotificationUncheckedUpdateManyWithoutProfile_Notification_sender_idToProfileNestedInput
+  Notification_Notification_user_idToProfile?: Prisma.NotificationUncheckedUpdateManyWithoutProfile_Notification_user_idToProfileNestedInput
+  Rating?: Prisma.RatingUncheckedUpdateManyWithoutProfileNestedInput
+  Wishlist?: Prisma.WishlistUncheckedUpdateManyWithoutProfileNestedInput
 }
 
 

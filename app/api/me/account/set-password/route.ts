@@ -31,7 +31,8 @@ export async function POST(
     try {
         const pass = await auth.api.setPassword({
             body: {
-                newPassword: "new-password",
+                newPassword: new_password,
+                // newPassword: "new-password",
             },
             headers: await headers() // headers containing the user's session token
         });
