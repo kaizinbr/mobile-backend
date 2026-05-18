@@ -162,11 +162,11 @@ export type NotificationGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 export type NotificationGroupByOutputType = {
   id: string
   ratingId: string | null
-  type: string | null
-  seen: boolean | null
+  type: string
+  seen: boolean
   created_at: Date | null
-  sender_id: string | null
-  user_id: string | null
+  sender_id: string
+  user_id: string
   _count: NotificationCountAggregateOutputType | null
   _min: NotificationMinAggregateOutputType | null
   _max: NotificationMaxAggregateOutputType | null
@@ -193,24 +193,24 @@ export type NotificationWhereInput = {
   NOT?: Prisma.NotificationWhereInput | Prisma.NotificationWhereInput[]
   id?: Prisma.UuidFilter<"Notification"> | string
   ratingId?: Prisma.UuidNullableFilter<"Notification"> | string | null
-  type?: Prisma.StringNullableFilter<"Notification"> | string | null
-  seen?: Prisma.BoolNullableFilter<"Notification"> | boolean | null
+  type?: Prisma.StringFilter<"Notification"> | string
+  seen?: Prisma.BoolFilter<"Notification"> | boolean
   created_at?: Prisma.DateTimeNullableFilter<"Notification"> | Date | string | null
-  sender_id?: Prisma.UuidNullableFilter<"Notification"> | string | null
-  user_id?: Prisma.UuidNullableFilter<"Notification"> | string | null
+  sender_id?: Prisma.UuidFilter<"Notification"> | string
+  user_id?: Prisma.UuidFilter<"Notification"> | string
   Rating?: Prisma.XOR<Prisma.RatingNullableScalarRelationFilter, Prisma.RatingWhereInput> | null
-  Profile_Notification_sender_idToProfile?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
-  Profile_Notification_user_idToProfile?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
+  Profile_Notification_sender_idToProfile?: Prisma.XOR<Prisma.ProfileScalarRelationFilter, Prisma.ProfileWhereInput>
+  Profile_Notification_user_idToProfile?: Prisma.XOR<Prisma.ProfileScalarRelationFilter, Prisma.ProfileWhereInput>
 }
 
 export type NotificationOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   ratingId?: Prisma.SortOrderInput | Prisma.SortOrder
-  type?: Prisma.SortOrderInput | Prisma.SortOrder
-  seen?: Prisma.SortOrderInput | Prisma.SortOrder
+  type?: Prisma.SortOrder
+  seen?: Prisma.SortOrder
   created_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  sender_id?: Prisma.SortOrderInput | Prisma.SortOrder
-  user_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  sender_id?: Prisma.SortOrder
+  user_id?: Prisma.SortOrder
   Rating?: Prisma.RatingOrderByWithRelationInput
   Profile_Notification_sender_idToProfile?: Prisma.ProfileOrderByWithRelationInput
   Profile_Notification_user_idToProfile?: Prisma.ProfileOrderByWithRelationInput
@@ -222,24 +222,24 @@ export type NotificationWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.NotificationWhereInput[]
   NOT?: Prisma.NotificationWhereInput | Prisma.NotificationWhereInput[]
   ratingId?: Prisma.UuidNullableFilter<"Notification"> | string | null
-  type?: Prisma.StringNullableFilter<"Notification"> | string | null
-  seen?: Prisma.BoolNullableFilter<"Notification"> | boolean | null
+  type?: Prisma.StringFilter<"Notification"> | string
+  seen?: Prisma.BoolFilter<"Notification"> | boolean
   created_at?: Prisma.DateTimeNullableFilter<"Notification"> | Date | string | null
-  sender_id?: Prisma.UuidNullableFilter<"Notification"> | string | null
-  user_id?: Prisma.UuidNullableFilter<"Notification"> | string | null
+  sender_id?: Prisma.UuidFilter<"Notification"> | string
+  user_id?: Prisma.UuidFilter<"Notification"> | string
   Rating?: Prisma.XOR<Prisma.RatingNullableScalarRelationFilter, Prisma.RatingWhereInput> | null
-  Profile_Notification_sender_idToProfile?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
-  Profile_Notification_user_idToProfile?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
+  Profile_Notification_sender_idToProfile?: Prisma.XOR<Prisma.ProfileScalarRelationFilter, Prisma.ProfileWhereInput>
+  Profile_Notification_user_idToProfile?: Prisma.XOR<Prisma.ProfileScalarRelationFilter, Prisma.ProfileWhereInput>
 }, "id">
 
 export type NotificationOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   ratingId?: Prisma.SortOrderInput | Prisma.SortOrder
-  type?: Prisma.SortOrderInput | Prisma.SortOrder
-  seen?: Prisma.SortOrderInput | Prisma.SortOrder
+  type?: Prisma.SortOrder
+  seen?: Prisma.SortOrder
   created_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  sender_id?: Prisma.SortOrderInput | Prisma.SortOrder
-  user_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  sender_id?: Prisma.SortOrder
+  user_id?: Prisma.SortOrder
   _count?: Prisma.NotificationCountOrderByAggregateInput
   _max?: Prisma.NotificationMaxOrderByAggregateInput
   _min?: Prisma.NotificationMinOrderByAggregateInput
@@ -251,78 +251,78 @@ export type NotificationScalarWhereWithAggregatesInput = {
   NOT?: Prisma.NotificationScalarWhereWithAggregatesInput | Prisma.NotificationScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"Notification"> | string
   ratingId?: Prisma.UuidNullableWithAggregatesFilter<"Notification"> | string | null
-  type?: Prisma.StringNullableWithAggregatesFilter<"Notification"> | string | null
-  seen?: Prisma.BoolNullableWithAggregatesFilter<"Notification"> | boolean | null
+  type?: Prisma.StringWithAggregatesFilter<"Notification"> | string
+  seen?: Prisma.BoolWithAggregatesFilter<"Notification"> | boolean
   created_at?: Prisma.DateTimeNullableWithAggregatesFilter<"Notification"> | Date | string | null
-  sender_id?: Prisma.UuidNullableWithAggregatesFilter<"Notification"> | string | null
-  user_id?: Prisma.UuidNullableWithAggregatesFilter<"Notification"> | string | null
+  sender_id?: Prisma.UuidWithAggregatesFilter<"Notification"> | string
+  user_id?: Prisma.UuidWithAggregatesFilter<"Notification"> | string
 }
 
 export type NotificationCreateInput = {
   id?: string
-  type?: string | null
-  seen?: boolean | null
+  type: string
+  seen?: boolean
   created_at?: Date | string | null
   Rating?: Prisma.RatingCreateNestedOneWithoutNotificationInput
-  Profile_Notification_sender_idToProfile?: Prisma.ProfileCreateNestedOneWithoutNotification_Notification_sender_idToProfileInput
-  Profile_Notification_user_idToProfile?: Prisma.ProfileCreateNestedOneWithoutNotification_Notification_user_idToProfileInput
+  Profile_Notification_sender_idToProfile: Prisma.ProfileCreateNestedOneWithoutNotification_Notification_sender_idToProfileInput
+  Profile_Notification_user_idToProfile: Prisma.ProfileCreateNestedOneWithoutNotification_Notification_user_idToProfileInput
 }
 
 export type NotificationUncheckedCreateInput = {
   id?: string
   ratingId?: string | null
-  type?: string | null
-  seen?: boolean | null
+  type: string
+  seen?: boolean
   created_at?: Date | string | null
-  sender_id?: string | null
-  user_id?: string | null
+  sender_id: string
+  user_id: string
 }
 
 export type NotificationUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  seen?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  seen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   Rating?: Prisma.RatingUpdateOneWithoutNotificationNestedInput
-  Profile_Notification_sender_idToProfile?: Prisma.ProfileUpdateOneWithoutNotification_Notification_sender_idToProfileNestedInput
-  Profile_Notification_user_idToProfile?: Prisma.ProfileUpdateOneWithoutNotification_Notification_user_idToProfileNestedInput
+  Profile_Notification_sender_idToProfile?: Prisma.ProfileUpdateOneRequiredWithoutNotification_Notification_sender_idToProfileNestedInput
+  Profile_Notification_user_idToProfile?: Prisma.ProfileUpdateOneRequiredWithoutNotification_Notification_user_idToProfileNestedInput
 }
 
 export type NotificationUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   ratingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  seen?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  seen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  sender_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sender_id?: Prisma.StringFieldUpdateOperationsInput | string
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type NotificationCreateManyInput = {
   id?: string
   ratingId?: string | null
-  type?: string | null
-  seen?: boolean | null
+  type: string
+  seen?: boolean
   created_at?: Date | string | null
-  sender_id?: string | null
-  user_id?: string | null
+  sender_id: string
+  user_id: string
 }
 
 export type NotificationUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  seen?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  seen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type NotificationUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   ratingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  seen?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  seen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  sender_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sender_id?: Prisma.StringFieldUpdateOperationsInput | string
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type NotificationCountOrderByAggregateInput = {
@@ -365,8 +365,8 @@ export type NotificationOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type NullableBoolFieldUpdateOperationsInput = {
-  set?: boolean | null
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
 }
 
 export type NotificationCreateNestedManyWithoutProfile_Notification_sender_idToProfileInput = {
@@ -497,20 +497,20 @@ export type NotificationUncheckedUpdateManyWithoutRatingNestedInput = {
 
 export type NotificationCreateWithoutProfile_Notification_sender_idToProfileInput = {
   id?: string
-  type?: string | null
-  seen?: boolean | null
+  type: string
+  seen?: boolean
   created_at?: Date | string | null
   Rating?: Prisma.RatingCreateNestedOneWithoutNotificationInput
-  Profile_Notification_user_idToProfile?: Prisma.ProfileCreateNestedOneWithoutNotification_Notification_user_idToProfileInput
+  Profile_Notification_user_idToProfile: Prisma.ProfileCreateNestedOneWithoutNotification_Notification_user_idToProfileInput
 }
 
 export type NotificationUncheckedCreateWithoutProfile_Notification_sender_idToProfileInput = {
   id?: string
   ratingId?: string | null
-  type?: string | null
-  seen?: boolean | null
+  type: string
+  seen?: boolean
   created_at?: Date | string | null
-  user_id?: string | null
+  user_id: string
 }
 
 export type NotificationCreateOrConnectWithoutProfile_Notification_sender_idToProfileInput = {
@@ -525,20 +525,20 @@ export type NotificationCreateManyProfile_Notification_sender_idToProfileInputEn
 
 export type NotificationCreateWithoutProfile_Notification_user_idToProfileInput = {
   id?: string
-  type?: string | null
-  seen?: boolean | null
+  type: string
+  seen?: boolean
   created_at?: Date | string | null
   Rating?: Prisma.RatingCreateNestedOneWithoutNotificationInput
-  Profile_Notification_sender_idToProfile?: Prisma.ProfileCreateNestedOneWithoutNotification_Notification_sender_idToProfileInput
+  Profile_Notification_sender_idToProfile: Prisma.ProfileCreateNestedOneWithoutNotification_Notification_sender_idToProfileInput
 }
 
 export type NotificationUncheckedCreateWithoutProfile_Notification_user_idToProfileInput = {
   id?: string
   ratingId?: string | null
-  type?: string | null
-  seen?: boolean | null
+  type: string
+  seen?: boolean
   created_at?: Date | string | null
-  sender_id?: string | null
+  sender_id: string
 }
 
 export type NotificationCreateOrConnectWithoutProfile_Notification_user_idToProfileInput = {
@@ -573,11 +573,11 @@ export type NotificationScalarWhereInput = {
   NOT?: Prisma.NotificationScalarWhereInput | Prisma.NotificationScalarWhereInput[]
   id?: Prisma.UuidFilter<"Notification"> | string
   ratingId?: Prisma.UuidNullableFilter<"Notification"> | string | null
-  type?: Prisma.StringNullableFilter<"Notification"> | string | null
-  seen?: Prisma.BoolNullableFilter<"Notification"> | boolean | null
+  type?: Prisma.StringFilter<"Notification"> | string
+  seen?: Prisma.BoolFilter<"Notification"> | boolean
   created_at?: Prisma.DateTimeNullableFilter<"Notification"> | Date | string | null
-  sender_id?: Prisma.UuidNullableFilter<"Notification"> | string | null
-  user_id?: Prisma.UuidNullableFilter<"Notification"> | string | null
+  sender_id?: Prisma.UuidFilter<"Notification"> | string
+  user_id?: Prisma.UuidFilter<"Notification"> | string
 }
 
 export type NotificationUpsertWithWhereUniqueWithoutProfile_Notification_user_idToProfileInput = {
@@ -598,20 +598,20 @@ export type NotificationUpdateManyWithWhereWithoutProfile_Notification_user_idTo
 
 export type NotificationCreateWithoutRatingInput = {
   id?: string
-  type?: string | null
-  seen?: boolean | null
+  type: string
+  seen?: boolean
   created_at?: Date | string | null
-  Profile_Notification_sender_idToProfile?: Prisma.ProfileCreateNestedOneWithoutNotification_Notification_sender_idToProfileInput
-  Profile_Notification_user_idToProfile?: Prisma.ProfileCreateNestedOneWithoutNotification_Notification_user_idToProfileInput
+  Profile_Notification_sender_idToProfile: Prisma.ProfileCreateNestedOneWithoutNotification_Notification_sender_idToProfileInput
+  Profile_Notification_user_idToProfile: Prisma.ProfileCreateNestedOneWithoutNotification_Notification_user_idToProfileInput
 }
 
 export type NotificationUncheckedCreateWithoutRatingInput = {
   id?: string
-  type?: string | null
-  seen?: boolean | null
+  type: string
+  seen?: boolean
   created_at?: Date | string | null
-  sender_id?: string | null
-  user_id?: string | null
+  sender_id: string
+  user_id: string
 }
 
 export type NotificationCreateOrConnectWithoutRatingInput = {
@@ -643,109 +643,109 @@ export type NotificationUpdateManyWithWhereWithoutRatingInput = {
 export type NotificationCreateManyProfile_Notification_sender_idToProfileInput = {
   id?: string
   ratingId?: string | null
-  type?: string | null
-  seen?: boolean | null
+  type: string
+  seen?: boolean
   created_at?: Date | string | null
-  user_id?: string | null
+  user_id: string
 }
 
 export type NotificationCreateManyProfile_Notification_user_idToProfileInput = {
   id?: string
   ratingId?: string | null
-  type?: string | null
-  seen?: boolean | null
+  type: string
+  seen?: boolean
   created_at?: Date | string | null
-  sender_id?: string | null
+  sender_id: string
 }
 
 export type NotificationUpdateWithoutProfile_Notification_sender_idToProfileInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  seen?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  seen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   Rating?: Prisma.RatingUpdateOneWithoutNotificationNestedInput
-  Profile_Notification_user_idToProfile?: Prisma.ProfileUpdateOneWithoutNotification_Notification_user_idToProfileNestedInput
+  Profile_Notification_user_idToProfile?: Prisma.ProfileUpdateOneRequiredWithoutNotification_Notification_user_idToProfileNestedInput
 }
 
 export type NotificationUncheckedUpdateWithoutProfile_Notification_sender_idToProfileInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   ratingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  seen?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  seen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type NotificationUncheckedUpdateManyWithoutProfile_Notification_sender_idToProfileInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   ratingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  seen?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  seen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type NotificationUpdateWithoutProfile_Notification_user_idToProfileInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  seen?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  seen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   Rating?: Prisma.RatingUpdateOneWithoutNotificationNestedInput
-  Profile_Notification_sender_idToProfile?: Prisma.ProfileUpdateOneWithoutNotification_Notification_sender_idToProfileNestedInput
+  Profile_Notification_sender_idToProfile?: Prisma.ProfileUpdateOneRequiredWithoutNotification_Notification_sender_idToProfileNestedInput
 }
 
 export type NotificationUncheckedUpdateWithoutProfile_Notification_user_idToProfileInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   ratingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  seen?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  seen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  sender_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sender_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type NotificationUncheckedUpdateManyWithoutProfile_Notification_user_idToProfileInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   ratingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  seen?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  seen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  sender_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sender_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type NotificationCreateManyRatingInput = {
   id?: string
-  type?: string | null
-  seen?: boolean | null
+  type: string
+  seen?: boolean
   created_at?: Date | string | null
-  sender_id?: string | null
-  user_id?: string | null
+  sender_id: string
+  user_id: string
 }
 
 export type NotificationUpdateWithoutRatingInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  seen?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  seen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  Profile_Notification_sender_idToProfile?: Prisma.ProfileUpdateOneWithoutNotification_Notification_sender_idToProfileNestedInput
-  Profile_Notification_user_idToProfile?: Prisma.ProfileUpdateOneWithoutNotification_Notification_user_idToProfileNestedInput
+  Profile_Notification_sender_idToProfile?: Prisma.ProfileUpdateOneRequiredWithoutNotification_Notification_sender_idToProfileNestedInput
+  Profile_Notification_user_idToProfile?: Prisma.ProfileUpdateOneRequiredWithoutNotification_Notification_user_idToProfileNestedInput
 }
 
 export type NotificationUncheckedUpdateWithoutRatingInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  seen?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  seen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  sender_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sender_id?: Prisma.StringFieldUpdateOperationsInput | string
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type NotificationUncheckedUpdateManyWithoutRatingInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  seen?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  seen?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  sender_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sender_id?: Prisma.StringFieldUpdateOperationsInput | string
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -759,8 +759,8 @@ export type NotificationSelect<ExtArgs extends runtime.Types.Extensions.Internal
   sender_id?: boolean
   user_id?: boolean
   Rating?: boolean | Prisma.Notification$RatingArgs<ExtArgs>
-  Profile_Notification_sender_idToProfile?: boolean | Prisma.Notification$Profile_Notification_sender_idToProfileArgs<ExtArgs>
-  Profile_Notification_user_idToProfile?: boolean | Prisma.Notification$Profile_Notification_user_idToProfileArgs<ExtArgs>
+  Profile_Notification_sender_idToProfile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
+  Profile_Notification_user_idToProfile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["notification"]>
 
 export type NotificationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -772,8 +772,8 @@ export type NotificationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   sender_id?: boolean
   user_id?: boolean
   Rating?: boolean | Prisma.Notification$RatingArgs<ExtArgs>
-  Profile_Notification_sender_idToProfile?: boolean | Prisma.Notification$Profile_Notification_sender_idToProfileArgs<ExtArgs>
-  Profile_Notification_user_idToProfile?: boolean | Prisma.Notification$Profile_Notification_user_idToProfileArgs<ExtArgs>
+  Profile_Notification_sender_idToProfile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
+  Profile_Notification_user_idToProfile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["notification"]>
 
 export type NotificationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -785,8 +785,8 @@ export type NotificationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   sender_id?: boolean
   user_id?: boolean
   Rating?: boolean | Prisma.Notification$RatingArgs<ExtArgs>
-  Profile_Notification_sender_idToProfile?: boolean | Prisma.Notification$Profile_Notification_sender_idToProfileArgs<ExtArgs>
-  Profile_Notification_user_idToProfile?: boolean | Prisma.Notification$Profile_Notification_user_idToProfileArgs<ExtArgs>
+  Profile_Notification_sender_idToProfile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
+  Profile_Notification_user_idToProfile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["notification"]>
 
 export type NotificationSelectScalar = {
@@ -802,35 +802,35 @@ export type NotificationSelectScalar = {
 export type NotificationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ratingId" | "type" | "seen" | "created_at" | "sender_id" | "user_id", ExtArgs["result"]["notification"]>
 export type NotificationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   Rating?: boolean | Prisma.Notification$RatingArgs<ExtArgs>
-  Profile_Notification_sender_idToProfile?: boolean | Prisma.Notification$Profile_Notification_sender_idToProfileArgs<ExtArgs>
-  Profile_Notification_user_idToProfile?: boolean | Prisma.Notification$Profile_Notification_user_idToProfileArgs<ExtArgs>
+  Profile_Notification_sender_idToProfile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
+  Profile_Notification_user_idToProfile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
 }
 export type NotificationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   Rating?: boolean | Prisma.Notification$RatingArgs<ExtArgs>
-  Profile_Notification_sender_idToProfile?: boolean | Prisma.Notification$Profile_Notification_sender_idToProfileArgs<ExtArgs>
-  Profile_Notification_user_idToProfile?: boolean | Prisma.Notification$Profile_Notification_user_idToProfileArgs<ExtArgs>
+  Profile_Notification_sender_idToProfile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
+  Profile_Notification_user_idToProfile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
 }
 export type NotificationIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   Rating?: boolean | Prisma.Notification$RatingArgs<ExtArgs>
-  Profile_Notification_sender_idToProfile?: boolean | Prisma.Notification$Profile_Notification_sender_idToProfileArgs<ExtArgs>
-  Profile_Notification_user_idToProfile?: boolean | Prisma.Notification$Profile_Notification_user_idToProfileArgs<ExtArgs>
+  Profile_Notification_sender_idToProfile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
+  Profile_Notification_user_idToProfile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
 }
 
 export type $NotificationPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Notification"
   objects: {
     Rating: Prisma.$RatingPayload<ExtArgs> | null
-    Profile_Notification_sender_idToProfile: Prisma.$ProfilePayload<ExtArgs> | null
-    Profile_Notification_user_idToProfile: Prisma.$ProfilePayload<ExtArgs> | null
+    Profile_Notification_sender_idToProfile: Prisma.$ProfilePayload<ExtArgs>
+    Profile_Notification_user_idToProfile: Prisma.$ProfilePayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     ratingId: string | null
-    type: string | null
-    seen: boolean | null
+    type: string
+    seen: boolean
     created_at: Date | null
-    sender_id: string | null
-    user_id: string | null
+    sender_id: string
+    user_id: string
   }, ExtArgs["result"]["notification"]>
   composites: {}
 }
@@ -1226,8 +1226,8 @@ readonly fields: NotificationFieldRefs;
 export interface Prisma__NotificationClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   Rating<T extends Prisma.Notification$RatingArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Notification$RatingArgs<ExtArgs>>): Prisma.Prisma__RatingClient<runtime.Types.Result.GetResult<Prisma.$RatingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  Profile_Notification_sender_idToProfile<T extends Prisma.Notification$Profile_Notification_sender_idToProfileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Notification$Profile_Notification_sender_idToProfileArgs<ExtArgs>>): Prisma.Prisma__ProfileClient<runtime.Types.Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  Profile_Notification_user_idToProfile<T extends Prisma.Notification$Profile_Notification_user_idToProfileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Notification$Profile_Notification_user_idToProfileArgs<ExtArgs>>): Prisma.Prisma__ProfileClient<runtime.Types.Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  Profile_Notification_sender_idToProfile<T extends Prisma.ProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__ProfileClient<runtime.Types.Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  Profile_Notification_user_idToProfile<T extends Prisma.ProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__ProfileClient<runtime.Types.Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1482,7 +1482,7 @@ export type NotificationCreateArgs<ExtArgs extends runtime.Types.Extensions.Inte
   /**
    * The data needed to create a Notification.
    */
-  data?: Prisma.XOR<Prisma.NotificationCreateInput, Prisma.NotificationUncheckedCreateInput>
+  data: Prisma.XOR<Prisma.NotificationCreateInput, Prisma.NotificationUncheckedCreateInput>
 }
 
 /**
@@ -1676,44 +1676,6 @@ export type Notification$RatingArgs<ExtArgs extends runtime.Types.Extensions.Int
    */
   include?: Prisma.RatingInclude<ExtArgs> | null
   where?: Prisma.RatingWhereInput
-}
-
-/**
- * Notification.Profile_Notification_sender_idToProfile
- */
-export type Notification$Profile_Notification_sender_idToProfileArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Profile
-   */
-  select?: Prisma.ProfileSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Profile
-   */
-  omit?: Prisma.ProfileOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ProfileInclude<ExtArgs> | null
-  where?: Prisma.ProfileWhereInput
-}
-
-/**
- * Notification.Profile_Notification_user_idToProfile
- */
-export type Notification$Profile_Notification_user_idToProfileArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Profile
-   */
-  select?: Prisma.ProfileSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Profile
-   */
-  omit?: Prisma.ProfileOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ProfileInclude<ExtArgs> | null
-  where?: Prisma.ProfileWhereInput
 }
 
 /**

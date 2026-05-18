@@ -458,6 +458,11 @@ export type RatingUncheckedUpdateManyInput = {
   html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
+export type RatingScalarRelationFilter = {
+  is?: Prisma.RatingWhereInput
+  isNot?: Prisma.RatingWhereInput
+}
+
 export type RatingNullableScalarRelationFilter = {
   is?: Prisma.RatingWhereInput | null
   isNot?: Prisma.RatingWhereInput | null
@@ -528,12 +533,10 @@ export type RatingCreateNestedOneWithoutLikeInput = {
   connect?: Prisma.RatingWhereUniqueInput
 }
 
-export type RatingUpdateOneWithoutLikeNestedInput = {
+export type RatingUpdateOneRequiredWithoutLikeNestedInput = {
   create?: Prisma.XOR<Prisma.RatingCreateWithoutLikeInput, Prisma.RatingUncheckedCreateWithoutLikeInput>
   connectOrCreate?: Prisma.RatingCreateOrConnectWithoutLikeInput
   upsert?: Prisma.RatingUpsertWithoutLikeInput
-  disconnect?: Prisma.RatingWhereInput | boolean
-  delete?: Prisma.RatingWhereInput | boolean
   connect?: Prisma.RatingWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.RatingUpdateToOneWithWhereWithoutLikeInput, Prisma.RatingUpdateWithoutLikeInput>, Prisma.RatingUncheckedUpdateWithoutLikeInput>
 }

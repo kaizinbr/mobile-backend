@@ -36,7 +36,6 @@ export type LikeSumAggregateOutputType = {
 
 export type LikeMinAggregateOutputType = {
   id: bigint | null
-  userId: string | null
   ratingId: string | null
   inserted_at: Date | null
   updated_at: Date | null
@@ -45,7 +44,6 @@ export type LikeMinAggregateOutputType = {
 
 export type LikeMaxAggregateOutputType = {
   id: bigint | null
-  userId: string | null
   ratingId: string | null
   inserted_at: Date | null
   updated_at: Date | null
@@ -54,7 +52,6 @@ export type LikeMaxAggregateOutputType = {
 
 export type LikeCountAggregateOutputType = {
   id: number
-  userId: number
   ratingId: number
   inserted_at: number
   updated_at: number
@@ -73,7 +70,6 @@ export type LikeSumAggregateInputType = {
 
 export type LikeMinAggregateInputType = {
   id?: true
-  userId?: true
   ratingId?: true
   inserted_at?: true
   updated_at?: true
@@ -82,7 +78,6 @@ export type LikeMinAggregateInputType = {
 
 export type LikeMaxAggregateInputType = {
   id?: true
-  userId?: true
   ratingId?: true
   inserted_at?: true
   updated_at?: true
@@ -91,7 +86,6 @@ export type LikeMaxAggregateInputType = {
 
 export type LikeCountAggregateInputType = {
   id?: true
-  userId?: true
   ratingId?: true
   inserted_at?: true
   updated_at?: true
@@ -187,11 +181,10 @@ export type LikeGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 
 export type LikeGroupByOutputType = {
   id: bigint
-  userId: string | null
-  ratingId: string | null
+  ratingId: string
   inserted_at: Date
   updated_at: Date
-  user_profile: string | null
+  user_profile: string
   _count: LikeCountAggregateOutputType | null
   _avg: LikeAvgAggregateOutputType | null
   _sum: LikeSumAggregateOutputType | null
@@ -219,47 +212,44 @@ export type LikeWhereInput = {
   OR?: Prisma.LikeWhereInput[]
   NOT?: Prisma.LikeWhereInput | Prisma.LikeWhereInput[]
   id?: Prisma.BigIntFilter<"Like"> | bigint | number
-  userId?: Prisma.UuidNullableFilter<"Like"> | string | null
-  ratingId?: Prisma.UuidNullableFilter<"Like"> | string | null
+  ratingId?: Prisma.UuidFilter<"Like"> | string
   inserted_at?: Prisma.DateTimeFilter<"Like"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"Like"> | Date | string
-  user_profile?: Prisma.UuidNullableFilter<"Like"> | string | null
-  Rating?: Prisma.XOR<Prisma.RatingNullableScalarRelationFilter, Prisma.RatingWhereInput> | null
-  Profile?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
+  user_profile?: Prisma.UuidFilter<"Like"> | string
+  Rating?: Prisma.XOR<Prisma.RatingScalarRelationFilter, Prisma.RatingWhereInput>
+  Profile?: Prisma.XOR<Prisma.ProfileScalarRelationFilter, Prisma.ProfileWhereInput>
 }
 
 export type LikeOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrderInput | Prisma.SortOrder
-  ratingId?: Prisma.SortOrderInput | Prisma.SortOrder
+  ratingId?: Prisma.SortOrder
   inserted_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
-  user_profile?: Prisma.SortOrderInput | Prisma.SortOrder
+  user_profile?: Prisma.SortOrder
   Rating?: Prisma.RatingOrderByWithRelationInput
   Profile?: Prisma.ProfileOrderByWithRelationInput
 }
 
 export type LikeWhereUniqueInput = Prisma.AtLeast<{
   id?: bigint | number
+  user_profile_ratingId?: Prisma.LikeUser_profileRatingIdCompoundUniqueInput
   AND?: Prisma.LikeWhereInput | Prisma.LikeWhereInput[]
   OR?: Prisma.LikeWhereInput[]
   NOT?: Prisma.LikeWhereInput | Prisma.LikeWhereInput[]
-  userId?: Prisma.UuidNullableFilter<"Like"> | string | null
-  ratingId?: Prisma.UuidNullableFilter<"Like"> | string | null
+  ratingId?: Prisma.UuidFilter<"Like"> | string
   inserted_at?: Prisma.DateTimeFilter<"Like"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"Like"> | Date | string
-  user_profile?: Prisma.UuidNullableFilter<"Like"> | string | null
-  Rating?: Prisma.XOR<Prisma.RatingNullableScalarRelationFilter, Prisma.RatingWhereInput> | null
-  Profile?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
-}, "id">
+  user_profile?: Prisma.UuidFilter<"Like"> | string
+  Rating?: Prisma.XOR<Prisma.RatingScalarRelationFilter, Prisma.RatingWhereInput>
+  Profile?: Prisma.XOR<Prisma.ProfileScalarRelationFilter, Prisma.ProfileWhereInput>
+}, "id" | "user_profile_ratingId">
 
 export type LikeOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrderInput | Prisma.SortOrder
-  ratingId?: Prisma.SortOrderInput | Prisma.SortOrder
+  ratingId?: Prisma.SortOrder
   inserted_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
-  user_profile?: Prisma.SortOrderInput | Prisma.SortOrder
+  user_profile?: Prisma.SortOrder
   _count?: Prisma.LikeCountOrderByAggregateInput
   _avg?: Prisma.LikeAvgOrderByAggregateInput
   _max?: Prisma.LikeMaxOrderByAggregateInput
@@ -272,77 +262,73 @@ export type LikeScalarWhereWithAggregatesInput = {
   OR?: Prisma.LikeScalarWhereWithAggregatesInput[]
   NOT?: Prisma.LikeScalarWhereWithAggregatesInput | Prisma.LikeScalarWhereWithAggregatesInput[]
   id?: Prisma.BigIntWithAggregatesFilter<"Like"> | bigint | number
-  userId?: Prisma.UuidNullableWithAggregatesFilter<"Like"> | string | null
-  ratingId?: Prisma.UuidNullableWithAggregatesFilter<"Like"> | string | null
+  ratingId?: Prisma.UuidWithAggregatesFilter<"Like"> | string
   inserted_at?: Prisma.DateTimeWithAggregatesFilter<"Like"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"Like"> | Date | string
-  user_profile?: Prisma.UuidNullableWithAggregatesFilter<"Like"> | string | null
+  user_profile?: Prisma.UuidWithAggregatesFilter<"Like"> | string
 }
 
 export type LikeCreateInput = {
   id?: bigint | number
-  userId?: string | null
   inserted_at?: Date | string
   updated_at?: Date | string
-  Rating?: Prisma.RatingCreateNestedOneWithoutLikeInput
-  Profile?: Prisma.ProfileCreateNestedOneWithoutLikeInput
+  Rating: Prisma.RatingCreateNestedOneWithoutLikeInput
+  Profile: Prisma.ProfileCreateNestedOneWithoutLikeInput
 }
 
 export type LikeUncheckedCreateInput = {
   id?: bigint | number
-  userId?: string | null
-  ratingId?: string | null
+  ratingId: string
   inserted_at?: Date | string
   updated_at?: Date | string
-  user_profile?: string | null
+  user_profile: string
 }
 
 export type LikeUpdateInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   inserted_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  Rating?: Prisma.RatingUpdateOneWithoutLikeNestedInput
-  Profile?: Prisma.ProfileUpdateOneWithoutLikeNestedInput
+  Rating?: Prisma.RatingUpdateOneRequiredWithoutLikeNestedInput
+  Profile?: Prisma.ProfileUpdateOneRequiredWithoutLikeNestedInput
 }
 
 export type LikeUncheckedUpdateInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ratingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ratingId?: Prisma.StringFieldUpdateOperationsInput | string
   inserted_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user_profile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  user_profile?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type LikeCreateManyInput = {
   id?: bigint | number
-  userId?: string | null
-  ratingId?: string | null
+  ratingId: string
   inserted_at?: Date | string
   updated_at?: Date | string
-  user_profile?: string | null
+  user_profile: string
 }
 
 export type LikeUpdateManyMutationInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   inserted_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type LikeUncheckedUpdateManyInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ratingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ratingId?: Prisma.StringFieldUpdateOperationsInput | string
   inserted_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user_profile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  user_profile?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type LikeUser_profileRatingIdCompoundUniqueInput = {
+  user_profile: string
+  ratingId: string
 }
 
 export type LikeCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   ratingId?: Prisma.SortOrder
   inserted_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
@@ -355,7 +341,6 @@ export type LikeAvgOrderByAggregateInput = {
 
 export type LikeMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   ratingId?: Prisma.SortOrder
   inserted_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
@@ -364,7 +349,6 @@ export type LikeMaxOrderByAggregateInput = {
 
 export type LikeMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   ratingId?: Prisma.SortOrder
   inserted_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
@@ -475,16 +459,14 @@ export type LikeUncheckedUpdateManyWithoutRatingNestedInput = {
 
 export type LikeCreateWithoutProfileInput = {
   id?: bigint | number
-  userId?: string | null
   inserted_at?: Date | string
   updated_at?: Date | string
-  Rating?: Prisma.RatingCreateNestedOneWithoutLikeInput
+  Rating: Prisma.RatingCreateNestedOneWithoutLikeInput
 }
 
 export type LikeUncheckedCreateWithoutProfileInput = {
   id?: bigint | number
-  userId?: string | null
-  ratingId?: string | null
+  ratingId: string
   inserted_at?: Date | string
   updated_at?: Date | string
 }
@@ -520,27 +502,24 @@ export type LikeScalarWhereInput = {
   OR?: Prisma.LikeScalarWhereInput[]
   NOT?: Prisma.LikeScalarWhereInput | Prisma.LikeScalarWhereInput[]
   id?: Prisma.BigIntFilter<"Like"> | bigint | number
-  userId?: Prisma.UuidNullableFilter<"Like"> | string | null
-  ratingId?: Prisma.UuidNullableFilter<"Like"> | string | null
+  ratingId?: Prisma.UuidFilter<"Like"> | string
   inserted_at?: Prisma.DateTimeFilter<"Like"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"Like"> | Date | string
-  user_profile?: Prisma.UuidNullableFilter<"Like"> | string | null
+  user_profile?: Prisma.UuidFilter<"Like"> | string
 }
 
 export type LikeCreateWithoutRatingInput = {
   id?: bigint | number
-  userId?: string | null
   inserted_at?: Date | string
   updated_at?: Date | string
-  Profile?: Prisma.ProfileCreateNestedOneWithoutLikeInput
+  Profile: Prisma.ProfileCreateNestedOneWithoutLikeInput
 }
 
 export type LikeUncheckedCreateWithoutRatingInput = {
   id?: bigint | number
-  userId?: string | null
   inserted_at?: Date | string
   updated_at?: Date | string
-  user_profile?: string | null
+  user_profile: string
 }
 
 export type LikeCreateOrConnectWithoutRatingInput = {
@@ -571,139 +550,126 @@ export type LikeUpdateManyWithWhereWithoutRatingInput = {
 
 export type LikeCreateManyProfileInput = {
   id?: bigint | number
-  userId?: string | null
-  ratingId?: string | null
+  ratingId: string
   inserted_at?: Date | string
   updated_at?: Date | string
 }
 
 export type LikeUpdateWithoutProfileInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   inserted_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  Rating?: Prisma.RatingUpdateOneWithoutLikeNestedInput
+  Rating?: Prisma.RatingUpdateOneRequiredWithoutLikeNestedInput
 }
 
 export type LikeUncheckedUpdateWithoutProfileInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ratingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ratingId?: Prisma.StringFieldUpdateOperationsInput | string
   inserted_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type LikeUncheckedUpdateManyWithoutProfileInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  ratingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ratingId?: Prisma.StringFieldUpdateOperationsInput | string
   inserted_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type LikeCreateManyRatingInput = {
   id?: bigint | number
-  userId?: string | null
   inserted_at?: Date | string
   updated_at?: Date | string
-  user_profile?: string | null
+  user_profile: string
 }
 
 export type LikeUpdateWithoutRatingInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   inserted_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  Profile?: Prisma.ProfileUpdateOneWithoutLikeNestedInput
+  Profile?: Prisma.ProfileUpdateOneRequiredWithoutLikeNestedInput
 }
 
 export type LikeUncheckedUpdateWithoutRatingInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   inserted_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user_profile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  user_profile?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type LikeUncheckedUpdateManyWithoutRatingInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   inserted_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user_profile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  user_profile?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
 
 export type LikeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  userId?: boolean
   ratingId?: boolean
   inserted_at?: boolean
   updated_at?: boolean
   user_profile?: boolean
-  Rating?: boolean | Prisma.Like$RatingArgs<ExtArgs>
-  Profile?: boolean | Prisma.Like$ProfileArgs<ExtArgs>
+  Rating?: boolean | Prisma.RatingDefaultArgs<ExtArgs>
+  Profile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["like"]>
 
 export type LikeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  userId?: boolean
   ratingId?: boolean
   inserted_at?: boolean
   updated_at?: boolean
   user_profile?: boolean
-  Rating?: boolean | Prisma.Like$RatingArgs<ExtArgs>
-  Profile?: boolean | Prisma.Like$ProfileArgs<ExtArgs>
+  Rating?: boolean | Prisma.RatingDefaultArgs<ExtArgs>
+  Profile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["like"]>
 
 export type LikeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  userId?: boolean
   ratingId?: boolean
   inserted_at?: boolean
   updated_at?: boolean
   user_profile?: boolean
-  Rating?: boolean | Prisma.Like$RatingArgs<ExtArgs>
-  Profile?: boolean | Prisma.Like$ProfileArgs<ExtArgs>
+  Rating?: boolean | Prisma.RatingDefaultArgs<ExtArgs>
+  Profile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["like"]>
 
 export type LikeSelectScalar = {
   id?: boolean
-  userId?: boolean
   ratingId?: boolean
   inserted_at?: boolean
   updated_at?: boolean
   user_profile?: boolean
 }
 
-export type LikeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "ratingId" | "inserted_at" | "updated_at" | "user_profile", ExtArgs["result"]["like"]>
+export type LikeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ratingId" | "inserted_at" | "updated_at" | "user_profile", ExtArgs["result"]["like"]>
 export type LikeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Rating?: boolean | Prisma.Like$RatingArgs<ExtArgs>
-  Profile?: boolean | Prisma.Like$ProfileArgs<ExtArgs>
+  Rating?: boolean | Prisma.RatingDefaultArgs<ExtArgs>
+  Profile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
 }
 export type LikeIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Rating?: boolean | Prisma.Like$RatingArgs<ExtArgs>
-  Profile?: boolean | Prisma.Like$ProfileArgs<ExtArgs>
+  Rating?: boolean | Prisma.RatingDefaultArgs<ExtArgs>
+  Profile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
 }
 export type LikeIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Rating?: boolean | Prisma.Like$RatingArgs<ExtArgs>
-  Profile?: boolean | Prisma.Like$ProfileArgs<ExtArgs>
+  Rating?: boolean | Prisma.RatingDefaultArgs<ExtArgs>
+  Profile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
 }
 
 export type $LikePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Like"
   objects: {
-    Rating: Prisma.$RatingPayload<ExtArgs> | null
-    Profile: Prisma.$ProfilePayload<ExtArgs> | null
+    Rating: Prisma.$RatingPayload<ExtArgs>
+    Profile: Prisma.$ProfilePayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: bigint
-    userId: string | null
-    ratingId: string | null
+    ratingId: string
     inserted_at: Date
     updated_at: Date
-    user_profile: string | null
+    user_profile: string
   }, ExtArgs["result"]["like"]>
   composites: {}
 }
@@ -1098,8 +1064,8 @@ readonly fields: LikeFieldRefs;
  */
 export interface Prisma__LikeClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  Rating<T extends Prisma.Like$RatingArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Like$RatingArgs<ExtArgs>>): Prisma.Prisma__RatingClient<runtime.Types.Result.GetResult<Prisma.$RatingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  Profile<T extends Prisma.Like$ProfileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Like$ProfileArgs<ExtArgs>>): Prisma.Prisma__ProfileClient<runtime.Types.Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  Rating<T extends Prisma.RatingDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RatingDefaultArgs<ExtArgs>>): Prisma.Prisma__RatingClient<runtime.Types.Result.GetResult<Prisma.$RatingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  Profile<T extends Prisma.ProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__ProfileClient<runtime.Types.Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1130,7 +1096,6 @@ export interface Prisma__LikeClient<T, Null = never, ExtArgs extends runtime.Typ
  */
 export interface LikeFieldRefs {
   readonly id: Prisma.FieldRef<"Like", 'BigInt'>
-  readonly userId: Prisma.FieldRef<"Like", 'String'>
   readonly ratingId: Prisma.FieldRef<"Like", 'String'>
   readonly inserted_at: Prisma.FieldRef<"Like", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"Like", 'DateTime'>
@@ -1353,7 +1318,7 @@ export type LikeCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
   /**
    * The data needed to create a Like.
    */
-  data?: Prisma.XOR<Prisma.LikeCreateInput, Prisma.LikeUncheckedCreateInput>
+  data: Prisma.XOR<Prisma.LikeCreateInput, Prisma.LikeUncheckedCreateInput>
 }
 
 /**
@@ -1528,44 +1493,6 @@ export type LikeDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Limit how many Likes to delete.
    */
   limit?: number
-}
-
-/**
- * Like.Rating
- */
-export type Like$RatingArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Rating
-   */
-  select?: Prisma.RatingSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Rating
-   */
-  omit?: Prisma.RatingOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.RatingInclude<ExtArgs> | null
-  where?: Prisma.RatingWhereInput
-}
-
-/**
- * Like.Profile
- */
-export type Like$ProfileArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Profile
-   */
-  select?: Prisma.ProfileSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Profile
-   */
-  omit?: Prisma.ProfileOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ProfileInclude<ExtArgs> | null
-  where?: Prisma.ProfileWhereInput
 }
 
 /**

@@ -568,11 +568,6 @@ export type ProfileScalarRelationFilter = {
   isNot?: Prisma.ProfileWhereInput
 }
 
-export type ProfileNullableScalarRelationFilter = {
-  is?: Prisma.ProfileWhereInput | null
-  isNot?: Prisma.ProfileWhereInput | null
-}
-
 export type ProfileCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   username?: Prisma.SortOrder
@@ -628,6 +623,11 @@ export type ProfileMinOrderByAggregateInput = {
   lastfm_username?: Prisma.SortOrder
 }
 
+export type ProfileNullableScalarRelationFilter = {
+  is?: Prisma.ProfileWhereInput | null
+  isNot?: Prisma.ProfileWhereInput | null
+}
+
 export type ProfileCreateNestedOneWithoutFollow_Follow_followed_idToProfileInput = {
   create?: Prisma.XOR<Prisma.ProfileCreateWithoutFollow_Follow_followed_idToProfileInput, Prisma.ProfileUncheckedCreateWithoutFollow_Follow_followed_idToProfileInput>
   connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutFollow_Follow_followed_idToProfileInput
@@ -662,12 +662,10 @@ export type ProfileCreateNestedOneWithoutLikeInput = {
   connect?: Prisma.ProfileWhereUniqueInput
 }
 
-export type ProfileUpdateOneWithoutLikeNestedInput = {
+export type ProfileUpdateOneRequiredWithoutLikeNestedInput = {
   create?: Prisma.XOR<Prisma.ProfileCreateWithoutLikeInput, Prisma.ProfileUncheckedCreateWithoutLikeInput>
   connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutLikeInput
   upsert?: Prisma.ProfileUpsertWithoutLikeInput
-  disconnect?: Prisma.ProfileWhereInput | boolean
-  delete?: Prisma.ProfileWhereInput | boolean
   connect?: Prisma.ProfileWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProfileUpdateToOneWithWhereWithoutLikeInput, Prisma.ProfileUpdateWithoutLikeInput>, Prisma.ProfileUncheckedUpdateWithoutLikeInput>
 }
@@ -684,28 +682,20 @@ export type ProfileCreateNestedOneWithoutNotification_Notification_user_idToProf
   connect?: Prisma.ProfileWhereUniqueInput
 }
 
-export type ProfileUpdateOneWithoutNotification_Notification_sender_idToProfileNestedInput = {
+export type ProfileUpdateOneRequiredWithoutNotification_Notification_sender_idToProfileNestedInput = {
   create?: Prisma.XOR<Prisma.ProfileCreateWithoutNotification_Notification_sender_idToProfileInput, Prisma.ProfileUncheckedCreateWithoutNotification_Notification_sender_idToProfileInput>
   connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutNotification_Notification_sender_idToProfileInput
   upsert?: Prisma.ProfileUpsertWithoutNotification_Notification_sender_idToProfileInput
-  disconnect?: Prisma.ProfileWhereInput | boolean
-  delete?: Prisma.ProfileWhereInput | boolean
   connect?: Prisma.ProfileWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProfileUpdateToOneWithWhereWithoutNotification_Notification_sender_idToProfileInput, Prisma.ProfileUpdateWithoutNotification_Notification_sender_idToProfileInput>, Prisma.ProfileUncheckedUpdateWithoutNotification_Notification_sender_idToProfileInput>
 }
 
-export type ProfileUpdateOneWithoutNotification_Notification_user_idToProfileNestedInput = {
+export type ProfileUpdateOneRequiredWithoutNotification_Notification_user_idToProfileNestedInput = {
   create?: Prisma.XOR<Prisma.ProfileCreateWithoutNotification_Notification_user_idToProfileInput, Prisma.ProfileUncheckedCreateWithoutNotification_Notification_user_idToProfileInput>
   connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutNotification_Notification_user_idToProfileInput
   upsert?: Prisma.ProfileUpsertWithoutNotification_Notification_user_idToProfileInput
-  disconnect?: Prisma.ProfileWhereInput | boolean
-  delete?: Prisma.ProfileWhereInput | boolean
   connect?: Prisma.ProfileWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProfileUpdateToOneWithWhereWithoutNotification_Notification_user_idToProfileInput, Prisma.ProfileUpdateWithoutNotification_Notification_user_idToProfileInput>, Prisma.ProfileUncheckedUpdateWithoutNotification_Notification_user_idToProfileInput>
-}
-
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
 }
 
 export type ProfileCreateNestedOneWithoutRatingInput = {

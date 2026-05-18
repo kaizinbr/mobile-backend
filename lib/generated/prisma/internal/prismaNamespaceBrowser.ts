@@ -108,7 +108,6 @@ export type FollowScalarFieldEnum = (typeof FollowScalarFieldEnum)[keyof typeof 
 
 export const LikeScalarFieldEnum = {
   id: 'id',
-  userId: 'userId',
   ratingId: 'ratingId',
   inserted_at: 'inserted_at',
   updated_at: 'updated_at',
@@ -298,9 +297,11 @@ export const UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
   email: 'email',
-  emailVerified: 'emailVerified',
+  email_verified_when: 'email_verified_when',
   image: 'image',
   createdAt: 'createdAt',
+  encrypted_password: 'encrypted_password',
+  emailVerified: 'emailVerified',
   updatedAt: 'updatedAt'
 } as const
 

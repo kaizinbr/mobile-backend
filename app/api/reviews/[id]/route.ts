@@ -26,6 +26,8 @@ export async function GET(
             where: { id: id },
             include: {
                 Profile: true,
+                _count: { select: { Like: true } },
+                Like: true,
             },
         });
 
@@ -41,6 +43,7 @@ export async function GET(
 
         const reviewWithAlbumData = reviews.map((review) => ({
             ...review,
+            likesCount: review._count.Like,
             album: albumData,
         }));
 

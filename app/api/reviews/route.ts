@@ -3,7 +3,6 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import fetchMultipleAlbuns from "@/lib/fetchMultipleAlbuns";
 
-
 export async function GET(request: Request) {
     try {
         const { searchParams } = new URL(request.url);
@@ -17,7 +16,9 @@ export async function GET(request: Request) {
                 published: true,
             },
             include: {
+                _count: { select: { Like: true } },
                 Profile: true,
+                Like: true,
             },
             orderBy: {
                 created_at: "desc",
@@ -33,8 +34,10 @@ export async function GET(request: Request) {
         });
 
         const reviewsAlbunsIDs = reviews.map((review) => review.album_id);
-        const albunsData = await fetchMultipleAlbuns(reviewsAlbunsIDs.join(","));
-        
+        const albunsData = await fetchMultipleAlbuns(
+            reviewsAlbunsIDs.join(","),
+        );
+
         const albunsMap: Record<string, any> = {};
         if (!("error" in albunsData)) {
             albunsData.albums.forEach((album: any) => {
@@ -48,14 +51,22 @@ export async function GET(request: Request) {
         }));
 
         return NextResponse.json(
-            { reviews: reviewsWithAlbumData, totalReviews, page: pageNumber, next: pageNumber * pageSize < totalReviews ? pageNumber + 1 : null },
-            { status: 200 }
+            {
+                reviews: reviewsWithAlbumData,
+                totalReviews,
+                page: pageNumber,
+                next:
+                    pageNumber * pageSize < totalReviews
+                        ? pageNumber + 1
+                        : null,
+            },
+            { status: 200 },
         );
     } catch (err) {
         console.error("fetch error", err);
         return NextResponse.json(
             { error: "Failed to fetch reviews" },
-            { status: 500 }
+            { status: 500 },
         );
     }
 }
