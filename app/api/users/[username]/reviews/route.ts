@@ -16,6 +16,8 @@ export async function GET(
         const pageSize = 20;
         const skip = (pageNumber - 1) * pageSize;
 
+        const order = searchParams.get("sort") === "asc" ? "asc" : "desc";
+
         const reviews = await prisma.rating.findMany({
             where: {
                 published: true,
@@ -27,7 +29,7 @@ export async function GET(
                 Profile: true,
             },
             orderBy: {
-                created_at: "desc",
+                created_at: order,
             },
             skip,
             take: pageSize,

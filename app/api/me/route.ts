@@ -27,7 +27,7 @@ export async function GET(request: Request) {
             );
         }
 
-        console.log("profile fetched", profile);
+        // console.log("profile fetched", profile);
 
         return NextResponse.json(profile, { status: 200 });
     } catch (err) {
@@ -53,19 +53,19 @@ export async function PUT(request: NextRequest) {
         artists,
         lyrics,
     } = await request.json();
-    console.log("update request", {
-        username,
-        lowername,
-        site,
-        lastfm,
-        name,
-        bio,
-        pronouns,
-        avatar,
-        albuns,
-        artists,
-        lyrics,
-    });
+    // console.log("update request", {
+    //     username,
+    //     lowername,
+    //     site,
+    //     lastfm,
+    //     name,
+    //     bio,
+    //     pronouns,
+    //     avatar,
+    //     albuns,
+    //     artists,
+    //     lyrics,
+    // });
 
     try {
         const session = await auth.api.getSession({
