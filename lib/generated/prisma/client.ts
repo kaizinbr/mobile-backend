@@ -119,3 +119,8 @@ export type Legacy_Account = Prisma.Legacy_AccountModel
  * 
  */
 export type User = Prisma.UserModel
+/**
+ * Model CommentLike
+ * 
+ */
+export type CommentLike = Prisma.CommentLikeModel

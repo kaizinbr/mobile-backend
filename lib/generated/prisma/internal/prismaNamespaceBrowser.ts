@@ -66,7 +66,8 @@ export const ModelName = {
   Verification: 'Verification',
   Wishlist: 'Wishlist',
   Legacy_Account: 'Legacy_Account',
-  User: 'User'
+  User: 'User',
+  CommentLike: 'CommentLike'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -87,10 +88,12 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const CommentScalarFieldEnum = {
   id: 'id',
-  userId: 'userId',
-  rating: 'rating',
-  comment: 'comment',
-  created_at: 'created_at'
+  body: 'body',
+  authorId: 'authorId',
+  ratingId: 'ratingId',
+  parentId: 'parentId',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 } as const
 
 export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum]
@@ -107,11 +110,11 @@ export type FollowScalarFieldEnum = (typeof FollowScalarFieldEnum)[keyof typeof 
 
 
 export const LikeScalarFieldEnum = {
-  id: 'id',
   ratingId: 'ratingId',
   inserted_at: 'inserted_at',
   updated_at: 'updated_at',
-  user_profile: 'user_profile'
+  user_profile: 'user_profile',
+  id: 'id'
 } as const
 
 export type LikeScalarFieldEnum = (typeof LikeScalarFieldEnum)[keyof typeof LikeScalarFieldEnum]
@@ -306,6 +309,16 @@ export const UserScalarFieldEnum = {
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const CommentLikeScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  commentId: 'commentId',
+  created_at: 'created_at'
+} as const
+
+export type CommentLikeScalarFieldEnum = (typeof CommentLikeScalarFieldEnum)[keyof typeof CommentLikeScalarFieldEnum]
 
 
 export const SortOrder = {

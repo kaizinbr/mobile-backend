@@ -4,31 +4,21 @@ import { prisma } from "@/lib/prisma";
 export async function GET(request: Request) {
     try {
         const { searchParams } = new URL(request.url);
-        const page = searchParams.get("p");
-        const pageNumber = page ? parseInt(page, 10) : 1;
-        const pageSize = 5;
-        const skip = (pageNumber - 1) * pageSize;
+        const q = searchParams.get("q") ?? "";
+        const limit = Math.min(Number(searchParams.get("limit") ?? 5), 10);
 
-        const usernames = await prisma.profile.findMany({
-            orderBy: {
-                created_at: "desc",
-            },
-            select: {
-                username: true,
-                lowername: true,
-            },
-        });
+        if (q.length < 1) return Response.json({ profiles: [] });
 
-        const total = await prisma.profile.count({
+        const profiles = await prisma.profile.findMany({
             where: {
+                lowername: { contains: q.toLowerCase() },
                 public: true,
             },
+            select: { id: true, username: true, avatar_url: true },
+            take: limit,
         });
 
-        return NextResponse.json(
-            {usernames},
-            { status: 200 },
-        );
+        return NextResponse.json({ profiles }, { status: 200 });
     } catch (err) {
         console.error("fetch error", err);
         return NextResponse.json(

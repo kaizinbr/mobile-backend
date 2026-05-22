@@ -20,76 +20,58 @@ export type LikeModel = runtime.Types.Result.DefaultSelection<Prisma.$LikePayloa
 
 export type AggregateLike = {
   _count: LikeCountAggregateOutputType | null
-  _avg: LikeAvgAggregateOutputType | null
-  _sum: LikeSumAggregateOutputType | null
   _min: LikeMinAggregateOutputType | null
   _max: LikeMaxAggregateOutputType | null
 }
 
-export type LikeAvgAggregateOutputType = {
-  id: number | null
-}
-
-export type LikeSumAggregateOutputType = {
-  id: bigint | null
-}
-
 export type LikeMinAggregateOutputType = {
-  id: bigint | null
   ratingId: string | null
   inserted_at: Date | null
   updated_at: Date | null
   user_profile: string | null
+  id: string | null
 }
 
 export type LikeMaxAggregateOutputType = {
-  id: bigint | null
   ratingId: string | null
   inserted_at: Date | null
   updated_at: Date | null
   user_profile: string | null
+  id: string | null
 }
 
 export type LikeCountAggregateOutputType = {
-  id: number
   ratingId: number
   inserted_at: number
   updated_at: number
   user_profile: number
+  id: number
   _all: number
 }
 
 
-export type LikeAvgAggregateInputType = {
-  id?: true
-}
-
-export type LikeSumAggregateInputType = {
-  id?: true
-}
-
 export type LikeMinAggregateInputType = {
-  id?: true
   ratingId?: true
   inserted_at?: true
   updated_at?: true
   user_profile?: true
+  id?: true
 }
 
 export type LikeMaxAggregateInputType = {
-  id?: true
   ratingId?: true
   inserted_at?: true
   updated_at?: true
   user_profile?: true
+  id?: true
 }
 
 export type LikeCountAggregateInputType = {
-  id?: true
   ratingId?: true
   inserted_at?: true
   updated_at?: true
   user_profile?: true
+  id?: true
   _all?: true
 }
 
@@ -131,18 +113,6 @@ export type LikeAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: LikeAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: LikeSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: LikeMinAggregateInputType
@@ -173,21 +143,17 @@ export type LikeGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   _count?: LikeCountAggregateInputType | true
-  _avg?: LikeAvgAggregateInputType
-  _sum?: LikeSumAggregateInputType
   _min?: LikeMinAggregateInputType
   _max?: LikeMaxAggregateInputType
 }
 
 export type LikeGroupByOutputType = {
-  id: bigint
   ratingId: string
   inserted_at: Date
   updated_at: Date
   user_profile: string
+  id: string
   _count: LikeCountAggregateOutputType | null
-  _avg: LikeAvgAggregateOutputType | null
-  _sum: LikeSumAggregateOutputType | null
   _min: LikeMinAggregateOutputType | null
   _max: LikeMaxAggregateOutputType | null
 }
@@ -211,27 +177,27 @@ export type LikeWhereInput = {
   AND?: Prisma.LikeWhereInput | Prisma.LikeWhereInput[]
   OR?: Prisma.LikeWhereInput[]
   NOT?: Prisma.LikeWhereInput | Prisma.LikeWhereInput[]
-  id?: Prisma.BigIntFilter<"Like"> | bigint | number
   ratingId?: Prisma.UuidFilter<"Like"> | string
   inserted_at?: Prisma.DateTimeFilter<"Like"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"Like"> | Date | string
   user_profile?: Prisma.UuidFilter<"Like"> | string
+  id?: Prisma.UuidFilter<"Like"> | string
   Rating?: Prisma.XOR<Prisma.RatingScalarRelationFilter, Prisma.RatingWhereInput>
   Profile?: Prisma.XOR<Prisma.ProfileScalarRelationFilter, Prisma.ProfileWhereInput>
 }
 
 export type LikeOrderByWithRelationInput = {
-  id?: Prisma.SortOrder
   ratingId?: Prisma.SortOrder
   inserted_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   user_profile?: Prisma.SortOrder
+  id?: Prisma.SortOrder
   Rating?: Prisma.RatingOrderByWithRelationInput
   Profile?: Prisma.ProfileOrderByWithRelationInput
 }
 
 export type LikeWhereUniqueInput = Prisma.AtLeast<{
-  id?: bigint | number
+  id?: string
   user_profile_ratingId?: Prisma.LikeUser_profileRatingIdCompoundUniqueInput
   AND?: Prisma.LikeWhereInput | Prisma.LikeWhereInput[]
   OR?: Prisma.LikeWhereInput[]
@@ -245,81 +211,79 @@ export type LikeWhereUniqueInput = Prisma.AtLeast<{
 }, "id" | "user_profile_ratingId">
 
 export type LikeOrderByWithAggregationInput = {
-  id?: Prisma.SortOrder
   ratingId?: Prisma.SortOrder
   inserted_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   user_profile?: Prisma.SortOrder
+  id?: Prisma.SortOrder
   _count?: Prisma.LikeCountOrderByAggregateInput
-  _avg?: Prisma.LikeAvgOrderByAggregateInput
   _max?: Prisma.LikeMaxOrderByAggregateInput
   _min?: Prisma.LikeMinOrderByAggregateInput
-  _sum?: Prisma.LikeSumOrderByAggregateInput
 }
 
 export type LikeScalarWhereWithAggregatesInput = {
   AND?: Prisma.LikeScalarWhereWithAggregatesInput | Prisma.LikeScalarWhereWithAggregatesInput[]
   OR?: Prisma.LikeScalarWhereWithAggregatesInput[]
   NOT?: Prisma.LikeScalarWhereWithAggregatesInput | Prisma.LikeScalarWhereWithAggregatesInput[]
-  id?: Prisma.BigIntWithAggregatesFilter<"Like"> | bigint | number
   ratingId?: Prisma.UuidWithAggregatesFilter<"Like"> | string
   inserted_at?: Prisma.DateTimeWithAggregatesFilter<"Like"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"Like"> | Date | string
   user_profile?: Prisma.UuidWithAggregatesFilter<"Like"> | string
+  id?: Prisma.UuidWithAggregatesFilter<"Like"> | string
 }
 
 export type LikeCreateInput = {
-  id?: bigint | number
   inserted_at?: Date | string
   updated_at?: Date | string
+  id?: string
   Rating: Prisma.RatingCreateNestedOneWithoutLikeInput
   Profile: Prisma.ProfileCreateNestedOneWithoutLikeInput
 }
 
 export type LikeUncheckedCreateInput = {
-  id?: bigint | number
   ratingId: string
   inserted_at?: Date | string
   updated_at?: Date | string
   user_profile: string
+  id?: string
 }
 
 export type LikeUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   inserted_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   Rating?: Prisma.RatingUpdateOneRequiredWithoutLikeNestedInput
   Profile?: Prisma.ProfileUpdateOneRequiredWithoutLikeNestedInput
 }
 
 export type LikeUncheckedUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   ratingId?: Prisma.StringFieldUpdateOperationsInput | string
   inserted_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user_profile?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type LikeCreateManyInput = {
-  id?: bigint | number
   ratingId: string
   inserted_at?: Date | string
   updated_at?: Date | string
   user_profile: string
+  id?: string
 }
 
 export type LikeUpdateManyMutationInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   inserted_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type LikeUncheckedUpdateManyInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   ratingId?: Prisma.StringFieldUpdateOperationsInput | string
   inserted_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user_profile?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type LikeUser_profileRatingIdCompoundUniqueInput = {
@@ -328,34 +292,26 @@ export type LikeUser_profileRatingIdCompoundUniqueInput = {
 }
 
 export type LikeCountOrderByAggregateInput = {
-  id?: Prisma.SortOrder
   ratingId?: Prisma.SortOrder
   inserted_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   user_profile?: Prisma.SortOrder
-}
-
-export type LikeAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
 }
 
 export type LikeMaxOrderByAggregateInput = {
-  id?: Prisma.SortOrder
   ratingId?: Prisma.SortOrder
   inserted_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   user_profile?: Prisma.SortOrder
+  id?: Prisma.SortOrder
 }
 
 export type LikeMinOrderByAggregateInput = {
-  id?: Prisma.SortOrder
   ratingId?: Prisma.SortOrder
   inserted_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   user_profile?: Prisma.SortOrder
-}
-
-export type LikeSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
 }
 
@@ -367,10 +323,6 @@ export type LikeListRelationFilter = {
 
 export type LikeOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
-}
-
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
 }
 
 export type LikeCreateNestedManyWithoutProfileInput = {
@@ -458,17 +410,17 @@ export type LikeUncheckedUpdateManyWithoutRatingNestedInput = {
 }
 
 export type LikeCreateWithoutProfileInput = {
-  id?: bigint | number
   inserted_at?: Date | string
   updated_at?: Date | string
+  id?: string
   Rating: Prisma.RatingCreateNestedOneWithoutLikeInput
 }
 
 export type LikeUncheckedCreateWithoutProfileInput = {
-  id?: bigint | number
   ratingId: string
   inserted_at?: Date | string
   updated_at?: Date | string
+  id?: string
 }
 
 export type LikeCreateOrConnectWithoutProfileInput = {
@@ -501,25 +453,25 @@ export type LikeScalarWhereInput = {
   AND?: Prisma.LikeScalarWhereInput | Prisma.LikeScalarWhereInput[]
   OR?: Prisma.LikeScalarWhereInput[]
   NOT?: Prisma.LikeScalarWhereInput | Prisma.LikeScalarWhereInput[]
-  id?: Prisma.BigIntFilter<"Like"> | bigint | number
   ratingId?: Prisma.UuidFilter<"Like"> | string
   inserted_at?: Prisma.DateTimeFilter<"Like"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"Like"> | Date | string
   user_profile?: Prisma.UuidFilter<"Like"> | string
+  id?: Prisma.UuidFilter<"Like"> | string
 }
 
 export type LikeCreateWithoutRatingInput = {
-  id?: bigint | number
   inserted_at?: Date | string
   updated_at?: Date | string
+  id?: string
   Profile: Prisma.ProfileCreateNestedOneWithoutLikeInput
 }
 
 export type LikeUncheckedCreateWithoutRatingInput = {
-  id?: bigint | number
   inserted_at?: Date | string
   updated_at?: Date | string
   user_profile: string
+  id?: string
 }
 
 export type LikeCreateOrConnectWithoutRatingInput = {
@@ -549,102 +501,102 @@ export type LikeUpdateManyWithWhereWithoutRatingInput = {
 }
 
 export type LikeCreateManyProfileInput = {
-  id?: bigint | number
   ratingId: string
   inserted_at?: Date | string
   updated_at?: Date | string
+  id?: string
 }
 
 export type LikeUpdateWithoutProfileInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   inserted_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   Rating?: Prisma.RatingUpdateOneRequiredWithoutLikeNestedInput
 }
 
 export type LikeUncheckedUpdateWithoutProfileInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   ratingId?: Prisma.StringFieldUpdateOperationsInput | string
   inserted_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type LikeUncheckedUpdateManyWithoutProfileInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   ratingId?: Prisma.StringFieldUpdateOperationsInput | string
   inserted_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type LikeCreateManyRatingInput = {
-  id?: bigint | number
   inserted_at?: Date | string
   updated_at?: Date | string
   user_profile: string
+  id?: string
 }
 
 export type LikeUpdateWithoutRatingInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   inserted_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   Profile?: Prisma.ProfileUpdateOneRequiredWithoutLikeNestedInput
 }
 
 export type LikeUncheckedUpdateWithoutRatingInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   inserted_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user_profile?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type LikeUncheckedUpdateManyWithoutRatingInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   inserted_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user_profile?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
 
 export type LikeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
   ratingId?: boolean
   inserted_at?: boolean
   updated_at?: boolean
   user_profile?: boolean
+  id?: boolean
   Rating?: boolean | Prisma.RatingDefaultArgs<ExtArgs>
   Profile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["like"]>
 
 export type LikeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
   ratingId?: boolean
   inserted_at?: boolean
   updated_at?: boolean
   user_profile?: boolean
+  id?: boolean
   Rating?: boolean | Prisma.RatingDefaultArgs<ExtArgs>
   Profile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["like"]>
 
 export type LikeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
   ratingId?: boolean
   inserted_at?: boolean
   updated_at?: boolean
   user_profile?: boolean
+  id?: boolean
   Rating?: boolean | Prisma.RatingDefaultArgs<ExtArgs>
   Profile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["like"]>
 
 export type LikeSelectScalar = {
-  id?: boolean
   ratingId?: boolean
   inserted_at?: boolean
   updated_at?: boolean
   user_profile?: boolean
+  id?: boolean
 }
 
-export type LikeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ratingId" | "inserted_at" | "updated_at" | "user_profile", ExtArgs["result"]["like"]>
+export type LikeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"ratingId" | "inserted_at" | "updated_at" | "user_profile" | "id", ExtArgs["result"]["like"]>
 export type LikeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   Rating?: boolean | Prisma.RatingDefaultArgs<ExtArgs>
   Profile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
@@ -665,11 +617,11 @@ export type $LikePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     Profile: Prisma.$ProfilePayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: bigint
     ratingId: string
     inserted_at: Date
     updated_at: Date
     user_profile: string
+    id: string
   }, ExtArgs["result"]["like"]>
   composites: {}
 }
@@ -753,8 +705,8 @@ export interface LikeDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
    * // Get first 10 Likes
    * const likes = await prisma.like.findMany({ take: 10 })
    * 
-   * // Only select the `id`
-   * const likeWithIdOnly = await prisma.like.findMany({ select: { id: true } })
+   * // Only select the `ratingId`
+   * const likeWithRatingIdOnly = await prisma.like.findMany({ select: { ratingId: true } })
    * 
    */
   findMany<T extends LikeFindManyArgs>(args?: Prisma.SelectSubset<T, LikeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -798,9 +750,9 @@ export interface LikeDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
    *   ]
    * })
    * 
-   * // Create many Likes and only return the `id`
-   * const likeWithIdOnly = await prisma.like.createManyAndReturn({
-   *   select: { id: true },
+   * // Create many Likes and only return the `ratingId`
+   * const likeWithRatingIdOnly = await prisma.like.createManyAndReturn({
+   *   select: { ratingId: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -889,9 +841,9 @@ export interface LikeDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
    *   ]
    * })
    * 
-   * // Update zero or more Likes and only return the `id`
-   * const likeWithIdOnly = await prisma.like.updateManyAndReturn({
-   *   select: { id: true },
+   * // Update zero or more Likes and only return the `ratingId`
+   * const likeWithRatingIdOnly = await prisma.like.updateManyAndReturn({
+   *   select: { ratingId: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1095,11 +1047,11 @@ export interface Prisma__LikeClient<T, Null = never, ExtArgs extends runtime.Typ
  * Fields of the Like model
  */
 export interface LikeFieldRefs {
-  readonly id: Prisma.FieldRef<"Like", 'BigInt'>
   readonly ratingId: Prisma.FieldRef<"Like", 'String'>
   readonly inserted_at: Prisma.FieldRef<"Like", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"Like", 'DateTime'>
   readonly user_profile: Prisma.FieldRef<"Like", 'String'>
+  readonly id: Prisma.FieldRef<"Like", 'String'>
 }
     
 

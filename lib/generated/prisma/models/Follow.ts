@@ -303,6 +303,10 @@ export type FollowOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
 export type FollowCreateNestedManyWithoutProfile_Follow_followed_idToProfileInput = {
   create?: Prisma.XOR<Prisma.FollowCreateWithoutProfile_Follow_followed_idToProfileInput, Prisma.FollowUncheckedCreateWithoutProfile_Follow_followed_idToProfileInput> | Prisma.FollowCreateWithoutProfile_Follow_followed_idToProfileInput[] | Prisma.FollowUncheckedCreateWithoutProfile_Follow_followed_idToProfileInput[]
   connectOrCreate?: Prisma.FollowCreateOrConnectWithoutProfile_Follow_followed_idToProfileInput | Prisma.FollowCreateOrConnectWithoutProfile_Follow_followed_idToProfileInput[]

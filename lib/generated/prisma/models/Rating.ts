@@ -264,6 +264,7 @@ export type RatingWhereInput = {
   album_id?: Prisma.StringNullableFilter<"Rating"> | string | null
   user_id?: Prisma.UuidNullableFilter<"Rating"> | string | null
   html?: Prisma.StringNullableFilter<"Rating"> | string | null
+  Comment?: Prisma.CommentListRelationFilter
   Like?: Prisma.LikeListRelationFilter
   Notification?: Prisma.NotificationListRelationFilter
   Profile?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
@@ -282,6 +283,7 @@ export type RatingOrderByWithRelationInput = {
   album_id?: Prisma.SortOrderInput | Prisma.SortOrder
   user_id?: Prisma.SortOrderInput | Prisma.SortOrder
   html?: Prisma.SortOrderInput | Prisma.SortOrder
+  Comment?: Prisma.CommentOrderByRelationAggregateInput
   Like?: Prisma.LikeOrderByRelationAggregateInput
   Notification?: Prisma.NotificationOrderByRelationAggregateInput
   Profile?: Prisma.ProfileOrderByWithRelationInput
@@ -303,6 +305,7 @@ export type RatingWhereUniqueInput = Prisma.AtLeast<{
   album_id?: Prisma.StringNullableFilter<"Rating"> | string | null
   user_id?: Prisma.UuidNullableFilter<"Rating"> | string | null
   html?: Prisma.StringNullableFilter<"Rating"> | string | null
+  Comment?: Prisma.CommentListRelationFilter
   Like?: Prisma.LikeListRelationFilter
   Notification?: Prisma.NotificationListRelationFilter
   Profile?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
@@ -358,6 +361,7 @@ export type RatingCreateInput = {
   updated_at?: Date | string
   album_id?: string | null
   html?: string | null
+  Comment?: Prisma.CommentCreateNestedManyWithoutRatingInput
   Like?: Prisma.LikeCreateNestedManyWithoutRatingInput
   Notification?: Prisma.NotificationCreateNestedManyWithoutRatingInput
   Profile?: Prisma.ProfileCreateNestedOneWithoutRatingInput
@@ -376,6 +380,7 @@ export type RatingUncheckedCreateInput = {
   album_id?: string | null
   user_id?: string | null
   html?: string | null
+  Comment?: Prisma.CommentUncheckedCreateNestedManyWithoutRatingInput
   Like?: Prisma.LikeUncheckedCreateNestedManyWithoutRatingInput
   Notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutRatingInput
 }
@@ -392,6 +397,7 @@ export type RatingUpdateInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Comment?: Prisma.CommentUpdateManyWithoutRatingNestedInput
   Like?: Prisma.LikeUpdateManyWithoutRatingNestedInput
   Notification?: Prisma.NotificationUpdateManyWithoutRatingNestedInput
   Profile?: Prisma.ProfileUpdateOneWithoutRatingNestedInput
@@ -410,6 +416,7 @@ export type RatingUncheckedUpdateInput = {
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Comment?: Prisma.CommentUncheckedUpdateManyWithoutRatingNestedInput
   Like?: Prisma.LikeUncheckedUpdateManyWithoutRatingNestedInput
   Notification?: Prisma.NotificationUncheckedUpdateManyWithoutRatingNestedInput
 }
@@ -527,6 +534,20 @@ export type RatingSumOrderByAggregateInput = {
   total?: Prisma.SortOrder
 }
 
+export type RatingCreateNestedOneWithoutCommentInput = {
+  create?: Prisma.XOR<Prisma.RatingCreateWithoutCommentInput, Prisma.RatingUncheckedCreateWithoutCommentInput>
+  connectOrCreate?: Prisma.RatingCreateOrConnectWithoutCommentInput
+  connect?: Prisma.RatingWhereUniqueInput
+}
+
+export type RatingUpdateOneRequiredWithoutCommentNestedInput = {
+  create?: Prisma.XOR<Prisma.RatingCreateWithoutCommentInput, Prisma.RatingUncheckedCreateWithoutCommentInput>
+  connectOrCreate?: Prisma.RatingCreateOrConnectWithoutCommentInput
+  upsert?: Prisma.RatingUpsertWithoutCommentInput
+  connect?: Prisma.RatingWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.RatingUpdateToOneWithWhereWithoutCommentInput, Prisma.RatingUpdateWithoutCommentInput>, Prisma.RatingUncheckedUpdateWithoutCommentInput>
+}
+
 export type RatingCreateNestedOneWithoutLikeInput = {
   create?: Prisma.XOR<Prisma.RatingCreateWithoutLikeInput, Prisma.RatingUncheckedCreateWithoutLikeInput>
   connectOrCreate?: Prisma.RatingCreateOrConnectWithoutLikeInput
@@ -607,6 +628,90 @@ export type DecimalFieldUpdateOperationsInput = {
   divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
+export type RatingCreateWithoutCommentInput = {
+  id?: string
+  ratings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  review?: string | null
+  total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  shorten?: string | null
+  content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  published?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  album_id?: string | null
+  html?: string | null
+  Like?: Prisma.LikeCreateNestedManyWithoutRatingInput
+  Notification?: Prisma.NotificationCreateNestedManyWithoutRatingInput
+  Profile?: Prisma.ProfileCreateNestedOneWithoutRatingInput
+}
+
+export type RatingUncheckedCreateWithoutCommentInput = {
+  id?: string
+  ratings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  review?: string | null
+  total?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  shorten?: string | null
+  content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  published?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  album_id?: string | null
+  user_id?: string | null
+  html?: string | null
+  Like?: Prisma.LikeUncheckedCreateNestedManyWithoutRatingInput
+  Notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutRatingInput
+}
+
+export type RatingCreateOrConnectWithoutCommentInput = {
+  where: Prisma.RatingWhereUniqueInput
+  create: Prisma.XOR<Prisma.RatingCreateWithoutCommentInput, Prisma.RatingUncheckedCreateWithoutCommentInput>
+}
+
+export type RatingUpsertWithoutCommentInput = {
+  update: Prisma.XOR<Prisma.RatingUpdateWithoutCommentInput, Prisma.RatingUncheckedUpdateWithoutCommentInput>
+  create: Prisma.XOR<Prisma.RatingCreateWithoutCommentInput, Prisma.RatingUncheckedCreateWithoutCommentInput>
+  where?: Prisma.RatingWhereInput
+}
+
+export type RatingUpdateToOneWithWhereWithoutCommentInput = {
+  where?: Prisma.RatingWhereInput
+  data: Prisma.XOR<Prisma.RatingUpdateWithoutCommentInput, Prisma.RatingUncheckedUpdateWithoutCommentInput>
+}
+
+export type RatingUpdateWithoutCommentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ratings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  review?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  shorten?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  published?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Like?: Prisma.LikeUpdateManyWithoutRatingNestedInput
+  Notification?: Prisma.NotificationUpdateManyWithoutRatingNestedInput
+  Profile?: Prisma.ProfileUpdateOneWithoutRatingNestedInput
+}
+
+export type RatingUncheckedUpdateWithoutCommentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ratings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  review?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  total?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  shorten?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  content?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  published?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Like?: Prisma.LikeUncheckedUpdateManyWithoutRatingNestedInput
+  Notification?: Prisma.NotificationUncheckedUpdateManyWithoutRatingNestedInput
+}
+
 export type RatingCreateWithoutLikeInput = {
   id?: string
   ratings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -619,6 +724,7 @@ export type RatingCreateWithoutLikeInput = {
   updated_at?: Date | string
   album_id?: string | null
   html?: string | null
+  Comment?: Prisma.CommentCreateNestedManyWithoutRatingInput
   Notification?: Prisma.NotificationCreateNestedManyWithoutRatingInput
   Profile?: Prisma.ProfileCreateNestedOneWithoutRatingInput
 }
@@ -636,6 +742,7 @@ export type RatingUncheckedCreateWithoutLikeInput = {
   album_id?: string | null
   user_id?: string | null
   html?: string | null
+  Comment?: Prisma.CommentUncheckedCreateNestedManyWithoutRatingInput
   Notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutRatingInput
 }
 
@@ -667,6 +774,7 @@ export type RatingUpdateWithoutLikeInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Comment?: Prisma.CommentUpdateManyWithoutRatingNestedInput
   Notification?: Prisma.NotificationUpdateManyWithoutRatingNestedInput
   Profile?: Prisma.ProfileUpdateOneWithoutRatingNestedInput
 }
@@ -684,6 +792,7 @@ export type RatingUncheckedUpdateWithoutLikeInput = {
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Comment?: Prisma.CommentUncheckedUpdateManyWithoutRatingNestedInput
   Notification?: Prisma.NotificationUncheckedUpdateManyWithoutRatingNestedInput
 }
 
@@ -699,6 +808,7 @@ export type RatingCreateWithoutNotificationInput = {
   updated_at?: Date | string
   album_id?: string | null
   html?: string | null
+  Comment?: Prisma.CommentCreateNestedManyWithoutRatingInput
   Like?: Prisma.LikeCreateNestedManyWithoutRatingInput
   Profile?: Prisma.ProfileCreateNestedOneWithoutRatingInput
 }
@@ -716,6 +826,7 @@ export type RatingUncheckedCreateWithoutNotificationInput = {
   album_id?: string | null
   user_id?: string | null
   html?: string | null
+  Comment?: Prisma.CommentUncheckedCreateNestedManyWithoutRatingInput
   Like?: Prisma.LikeUncheckedCreateNestedManyWithoutRatingInput
 }
 
@@ -747,6 +858,7 @@ export type RatingUpdateWithoutNotificationInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Comment?: Prisma.CommentUpdateManyWithoutRatingNestedInput
   Like?: Prisma.LikeUpdateManyWithoutRatingNestedInput
   Profile?: Prisma.ProfileUpdateOneWithoutRatingNestedInput
 }
@@ -764,6 +876,7 @@ export type RatingUncheckedUpdateWithoutNotificationInput = {
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Comment?: Prisma.CommentUncheckedUpdateManyWithoutRatingNestedInput
   Like?: Prisma.LikeUncheckedUpdateManyWithoutRatingNestedInput
 }
 
@@ -779,6 +892,7 @@ export type RatingCreateWithoutProfileInput = {
   updated_at?: Date | string
   album_id?: string | null
   html?: string | null
+  Comment?: Prisma.CommentCreateNestedManyWithoutRatingInput
   Like?: Prisma.LikeCreateNestedManyWithoutRatingInput
   Notification?: Prisma.NotificationCreateNestedManyWithoutRatingInput
 }
@@ -795,6 +909,7 @@ export type RatingUncheckedCreateWithoutProfileInput = {
   updated_at?: Date | string
   album_id?: string | null
   html?: string | null
+  Comment?: Prisma.CommentUncheckedCreateNestedManyWithoutRatingInput
   Like?: Prisma.LikeUncheckedCreateNestedManyWithoutRatingInput
   Notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutRatingInput
 }
@@ -869,6 +984,7 @@ export type RatingUpdateWithoutProfileInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Comment?: Prisma.CommentUpdateManyWithoutRatingNestedInput
   Like?: Prisma.LikeUpdateManyWithoutRatingNestedInput
   Notification?: Prisma.NotificationUpdateManyWithoutRatingNestedInput
 }
@@ -885,6 +1001,7 @@ export type RatingUncheckedUpdateWithoutProfileInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  Comment?: Prisma.CommentUncheckedUpdateManyWithoutRatingNestedInput
   Like?: Prisma.LikeUncheckedUpdateManyWithoutRatingNestedInput
   Notification?: Prisma.NotificationUncheckedUpdateManyWithoutRatingNestedInput
 }
@@ -909,11 +1026,13 @@ export type RatingUncheckedUpdateManyWithoutProfileInput = {
  */
 
 export type RatingCountOutputType = {
+  Comment: number
   Like: number
   Notification: number
 }
 
 export type RatingCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  Comment?: boolean | RatingCountOutputTypeCountCommentArgs
   Like?: boolean | RatingCountOutputTypeCountLikeArgs
   Notification?: boolean | RatingCountOutputTypeCountNotificationArgs
 }
@@ -926,6 +1045,13 @@ export type RatingCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exten
    * Select specific fields to fetch from the RatingCountOutputType
    */
   select?: Prisma.RatingCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * RatingCountOutputType without action
+ */
+export type RatingCountOutputTypeCountCommentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CommentWhereInput
 }
 
 /**
@@ -956,6 +1082,7 @@ export type RatingSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   album_id?: boolean
   user_id?: boolean
   html?: boolean
+  Comment?: boolean | Prisma.Rating$CommentArgs<ExtArgs>
   Like?: boolean | Prisma.Rating$LikeArgs<ExtArgs>
   Notification?: boolean | Prisma.Rating$NotificationArgs<ExtArgs>
   Profile?: boolean | Prisma.Rating$ProfileArgs<ExtArgs>
@@ -1011,6 +1138,7 @@ export type RatingSelectScalar = {
 
 export type RatingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ratings" | "review" | "total" | "shorten" | "content" | "published" | "created_at" | "updated_at" | "album_id" | "user_id" | "html", ExtArgs["result"]["rating"]>
 export type RatingInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  Comment?: boolean | Prisma.Rating$CommentArgs<ExtArgs>
   Like?: boolean | Prisma.Rating$LikeArgs<ExtArgs>
   Notification?: boolean | Prisma.Rating$NotificationArgs<ExtArgs>
   Profile?: boolean | Prisma.Rating$ProfileArgs<ExtArgs>
@@ -1026,6 +1154,7 @@ export type RatingIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type $RatingPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Rating"
   objects: {
+    Comment: Prisma.$CommentPayload<ExtArgs>[]
     Like: Prisma.$LikePayload<ExtArgs>[]
     Notification: Prisma.$NotificationPayload<ExtArgs>[]
     Profile: Prisma.$ProfilePayload<ExtArgs> | null
@@ -1437,6 +1566,7 @@ readonly fields: RatingFieldRefs;
  */
 export interface Prisma__RatingClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  Comment<T extends Prisma.Rating$CommentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Rating$CommentArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   Like<T extends Prisma.Rating$LikeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Rating$LikeArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   Notification<T extends Prisma.Rating$NotificationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Rating$NotificationArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   Profile<T extends Prisma.Rating$ProfileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Rating$ProfileArgs<ExtArgs>>): Prisma.Prisma__ProfileClient<runtime.Types.Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
@@ -1874,6 +2004,30 @@ export type RatingDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Limit how many Ratings to delete.
    */
   limit?: number
+}
+
+/**
+ * Rating.Comment
+ */
+export type Rating$CommentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Comment
+   */
+  select?: Prisma.CommentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Comment
+   */
+  omit?: Prisma.CommentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CommentInclude<ExtArgs> | null
+  where?: Prisma.CommentWhereInput
+  orderBy?: Prisma.CommentOrderByWithRelationInput | Prisma.CommentOrderByWithRelationInput[]
+  cursor?: Prisma.CommentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CommentScalarFieldEnum | Prisma.CommentScalarFieldEnum[]
 }
 
 /**
