@@ -22,41 +22,26 @@ export async function GET(
             );
         }
 
-        const reviews = await prisma.rating.findMany({
+        const comment = await prisma.comment.findMany({
             where: { id: id },
             include: {
                 Profile: true,
-                _count: { select: { Like: true, Comment: true } },
-                Like: true,
-                Comment: true,
+                _count: { select: { CommentLike: true } },
             },
         });
 
-        if (reviews.length === 0) {
+        if (comment.length === 0) {
             return NextResponse.json(
-                { error: "Review not found" },
+                { error: "Comment not found" },
                 { status: 404 }
             );
         }
 
-
-        const albumData = await fetchAlbum(reviews[0].album_id!);
-
-        const reviewWithAlbumData = reviews.map((review) => ({
-            ...review,
-            likesCount: review._count.Like,
-            commentsCount: review._count.Comment,
-            album: albumData,
-        }));
-
-
-
-
-        return NextResponse.json(reviewWithAlbumData, { status: 200 });
+        return NextResponse.json(comment, { status: 200 });
     } catch (err) {
         console.error("fetch error", err);
         return NextResponse.json(
-            { error: "Failed to fetch reviews" },
+            { error: "Failed to fetch comments" },
             { status: 500 }
         );
     }
@@ -79,7 +64,8 @@ export async function DELETE(
 
 
 
-    console.log("Deleting ratings for user:", id);
+
+    console.log("Deleting comments for user:", id);
     try {
         if (!id) {
             return NextResponse.json(
@@ -88,34 +74,32 @@ export async function DELETE(
             );
         }
 
-        const rating = await prisma.rating.findFirst({
+        const comment = await prisma.comment.findFirst({
             where: { id: id },
         });
-        if (!rating) {
+        if (!comment) {
             return NextResponse.json(
-                { error: "Rating not found" },
+                { error: "Comment not found" },
                 { status: 404 }
             );
         }
 
-        if (rating.user_id !== session?.user?.id) {
+        if (comment.authorId !== session?.user?.id) {
             return NextResponse.json(
-                { error: "Unauthorized to delete this rating" },
+                { error: "Unauthorized to delete this comment" },
                 { status: 403 }
             );
         }
 
-
-
-        const deletedRating = await prisma.rating.deleteMany({
+        const deletedComment = await prisma.comment.deleteMany({
             where: { id: id },
         });
 
-        return NextResponse.json(deletedRating, { status: 200 });
+        return NextResponse.json(deletedComment, { status: 200 });
     } catch (err) {
         console.error("delete error", err);
         return NextResponse.json(
-            { error: "Failed to delete rating" },
+            { error: "Failed to delete comment" },
             { status: 500 }
         );
     }

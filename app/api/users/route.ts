@@ -11,10 +11,17 @@ export async function GET(request: Request) {
 
         const profiles = await prisma.profile.findMany({
             where: {
-                lowername: { contains: q.toLowerCase() },
-                public: true,
+                OR: [
+                    { name: { contains: q, mode: "insensitive" } },
+                    {
+                        lowername: {
+                            contains: q.toLowerCase(),
+                            mode: "insensitive",
+                        },
+                    },
+                ],
             },
-            select: { id: true, username: true, avatar_url: true },
+            select: { id: true, username: true, name: true, avatar_url: true },
             take: limit,
         });
 
