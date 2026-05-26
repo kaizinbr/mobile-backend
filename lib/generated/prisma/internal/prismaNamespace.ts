@@ -1782,7 +1782,9 @@ export const ProfileScalarFieldEnum = {
   artists: 'artists',
   location: 'location',
   lyrics: 'lyrics',
-  lastfm_username: 'lastfm_username'
+  lastfm_username: 'lastfm_username',
+  pushToken: 'pushToken',
+  pushTokenUpdatedAt: 'pushTokenUpdatedAt'
 } as const
 
 export type ProfileScalarFieldEnum = (typeof ProfileScalarFieldEnum)[keyof typeof ProfileScalarFieldEnum]

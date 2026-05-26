@@ -1,6 +1,6 @@
 import { NextResponse, NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
-
+import { sendPushNotification } from "@/lib/pushNotification";
 import { auth } from "@/auth";
 import { headers } from "next/headers";
 
@@ -36,6 +36,33 @@ export async function POST(
             ratingId: id,
         },
     });
+
+    const currentUser = await prisma.profile.findUnique({
+        where: { id: userId },
+        select: { username: true },
+    });
+
+    const rating = await prisma.rating.findUnique({
+        where: { id },
+        select: { Profile: true },
+    });
+
+    if (rating?.Profile?.id !== userId && rating?.Profile?.id && currentUser?.username) {
+        const reviewOwner = await prisma.profile.findUnique({
+            where: { id: rating?.Profile.id },
+            select: { pushToken: true, username: true },
+        });
+
+        if (reviewOwner?.pushToken) {
+            await sendPushNotification({
+                to: reviewOwner.pushToken,
+                title: "Nova curtida",
+                body: `${currentUser.username} curtiu sua review`,
+                data: { reviewId: id, type: "like" },
+            });
+        }
+    }
+
     const likesCount = await prisma.like.count({ where: { ratingId: id } });
     return Response.json({ liked: !existing, likesCount });
 }
@@ -44,7 +71,7 @@ export async function GET(
     request: Request,
     { params }: { params: Promise<{ id: string }> },
 ) {
-     const session = await auth.api.getSession({
+    const session = await auth.api.getSession({
         headers: await headers(),
     });
 

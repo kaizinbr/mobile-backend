@@ -85,6 +85,8 @@ model Profile {
   location                                     String?
   lyrics                                       Json?          @default("[]")
   lastfm_username                              String?
+  pushToken                                    String?
+  pushTokenUpdatedAt                           DateTime?      @db.Timestamptz(6)
   Comment                                      Comment[]
   CommentLike                                  CommentLike[]
   Follow_Follow_followed_idToProfile           Follow[]       @relation("Follow_followed_idToProfile")
