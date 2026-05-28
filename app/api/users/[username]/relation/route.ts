@@ -2,6 +2,7 @@ import { NextResponse, NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { headers } from "next/headers"
 
+import { createNotification } from "@/lib/notifications";
 import { auth } from "@/auth";
 
 export async function POST(
@@ -50,6 +51,13 @@ export async function POST(
                     followed_id: userProfile.id,
                 },
             }); 
+            
+            await createNotification({
+                type: "follow",
+                senderId: currentUser.user.id,
+                recipientId: userProfile.id,
+            });
+
             return NextResponse.json(
                 {
                     message: "Successfully followed user",  
@@ -65,6 +73,8 @@ export async function POST(
                     followed_id: userProfile.id,
                 },  
             });
+
+
             return NextResponse.json(
                 {
                     message: "Successfully unfollowed user",    

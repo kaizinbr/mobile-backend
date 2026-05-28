@@ -1,6 +1,7 @@
 import { NextResponse, NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
 
+import { createNotification } from "@/lib/notifications";
 import { auth } from "@/auth";
 import { headers } from "next/headers";
 
@@ -28,6 +29,25 @@ export async function POST(
         await prisma.commentLike.delete({ where: { id: existing.id } });
         const likesCount = await prisma.commentLike.count({ where: { commentId: id } });
         return Response.json({ liked: !existing, likesCount });
+    }
+
+    const comment = await prisma.comment.findUnique({
+        where: { id },
+        select: {
+            id: true,
+            authorId: true,
+            Rating: true,
+        },
+    });
+
+    
+    if (comment?.authorId) {
+        await createNotification({
+            type: "comment_like",
+            senderId: userId,
+            recipientId: comment.authorId,
+            ratingId: id,
+        });
     }
 
     await prisma.commentLike.create({

@@ -2,6 +2,7 @@
 import { prisma } from "@/lib/prisma";
 import { auth } from "@/auth";
 import { headers } from "next/headers";
+import { createNotification } from "@/lib/notifications";
 
 const COMMENTS_PER_PAGE = 20;
 
@@ -53,8 +54,9 @@ export async function POST(
 
     const { id } = await params;
     const { body } = await request.json();
+        const userId = session.user.id;
 
-    console.log("Received comment body:", body, id);
+    // console.log("Received comment body:", body, id);
 
     if (!body || typeof body !== "string" || body.trim().length === 0)
         return Response.json({ error: "body is required" }, { status: 400 });
@@ -64,11 +66,21 @@ export async function POST(
 
     const rating = await prisma.rating.findUnique({
         where: { id },
-        select: { id: true },
+        select: { id: true, Profile: true },
     });
 
-    if (!rating)
+    if (!rating) {
         return Response.json({ error: "Rating not found" }, { status: 404 });
+    }
+
+    if (rating?.Profile?.id) {
+        await createNotification({
+            type: "comment",
+            senderId: userId,
+            recipientId: rating.Profile.id,
+            ratingId: id,
+        });
+    }
 
     const comment = await prisma.comment.create({
         data: {
