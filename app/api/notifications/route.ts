@@ -30,7 +30,8 @@ export async function GET(
                     avatar_url: true,
                     verified: true,
                 }
-            }
+            },
+            Rating: true,
             
         },
     });
