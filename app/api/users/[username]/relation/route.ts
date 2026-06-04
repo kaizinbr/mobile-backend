@@ -56,6 +56,7 @@ export async function POST(
                 type: "follow",
                 senderId: currentUser.user.id,
                 recipientId: userProfile.id,
+                username: currentUser.user.name,
             });
 
             return NextResponse.json(

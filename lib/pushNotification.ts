@@ -8,6 +8,7 @@ type PushPayload = {
 };
 
 export async function sendPushNotification(payload: PushPayload) {
+    console.log("Enviando notificação para token:", payload);
     await fetch(EXPO_PUSH_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

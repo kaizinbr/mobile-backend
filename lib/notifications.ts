@@ -14,6 +14,7 @@ interface NotificationPayload {
     recipientId: string;
     ratingId?: string;
     commentId?: string;
+    username?: string;
 }
 
 const NOTIFICATION_TEMPLATES: Record<
@@ -43,7 +44,7 @@ const NOTIFICATION_TEMPLATES: Record<
 };
 
 export async function createNotification(payload: NotificationPayload) {
-    const { type, senderId, recipientId, ratingId, commentId } = payload;
+    const { type, senderId, recipientId, ratingId, commentId, username } = payload;
 
     // Não notifica a si mesmo
     if (senderId === recipientId) return;
@@ -73,7 +74,7 @@ export async function createNotification(payload: NotificationPayload) {
 
     // Envia push se tiver token
     if (recipient?.pushToken) {
-        const { title, body } = NOTIFICATION_TEMPLATES[type](sender.username);
+        const { title, body } = NOTIFICATION_TEMPLATES[type](username || sender.username);
         await sendPushNotification({
             to: recipient.pushToken,
             title,
@@ -82,6 +83,7 @@ export async function createNotification(payload: NotificationPayload) {
                 type,
                 ...(ratingId ? { reviewId: ratingId } : {}),
                 ...(commentId ? { commentId } : {}),
+                ...(type === "follow" ? { username: sender.username } : {}),
             },
         });
     }
