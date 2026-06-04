@@ -26,9 +26,10 @@ export async function GET(
                 },
             },
             include: {
+                _count: { select: { Like: true, Comment: true } },
                 Profile: true,
-                _count: { select: { Like: true } },
-                // Like: true,
+                Like: true,
+                Comment: true,
             },
             orderBy: {
                 created_at: order,
@@ -70,6 +71,7 @@ export async function GET(
         const reviewsWithAlbumData = reviews.map((review) => ({
             ...review,
             likesCount: review._count.Like,
+            commentsCount: review._count.Comment,
             album: albunsMap[review.album_id!] || null,
         }));
 

@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
         published,
     });
 
-    console.log(markdown);
+    // console.log(markdown);
 
     const session = await auth.api.getSession({
         headers: await headers(),
@@ -65,6 +65,24 @@ export async function POST(request: NextRequest) {
                     published,
                 },
             });
+
+            const isWishlisted = await prisma.wishlist.findFirst({
+                where: {
+                    profileId: session?.user?.id,
+                    albumId: albumId,
+                },
+            });
+
+            if (isWishlisted) {
+                await prisma.wishlist.delete({
+                    where: {
+                        id: isWishlisted.id,
+                    },
+                });
+            }
+
+
+
             return NextResponse.json(
                 {
                     message: "Atualizado com sucesso",
@@ -92,6 +110,23 @@ export async function POST(request: NextRequest) {
                     total,
                 },
             });
+
+            
+            const isWishlisted = await prisma.wishlist.findFirst({
+                where: {
+                    profileId: session?.user?.id,
+                    albumId: albumId,
+                },
+            });
+
+            if (isWishlisted) {
+                await prisma.wishlist.delete({
+                    where: {
+                        id: isWishlisted.id,
+                    },
+                });
+            }
+
             return NextResponse.json(
                 {
                     message: "Salvo com sucesso",
