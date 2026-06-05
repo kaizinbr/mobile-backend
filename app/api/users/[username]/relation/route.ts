@@ -15,6 +15,10 @@ export async function POST(
         headers: await headers()
     })
     const currentUser = session;
+
+    const currentUserProfile = await prisma.profile.findUnique({
+        where: { id: currentUser?.user?.id },
+    });
     
     const { ACTION } = await request.json();
 
@@ -56,7 +60,7 @@ export async function POST(
                 type: "follow",
                 senderId: currentUser.user.id,
                 recipientId: userProfile.id,
-                username: currentUser.user.name,
+                username: currentUserProfile?.username || currentUser.user.name,
             });
 
             return NextResponse.json(
@@ -73,6 +77,21 @@ export async function POST(
                     follower_id: currentUser.user.id,
                     followed_id: userProfile.id,
                 },  
+            });
+
+            // await createNotification({
+            //     type: "unfollow",
+            //     senderId: currentUser.user.id,
+            //     recipientId: userProfile.id,
+            //     username: currentUser.user.name,
+            // });
+
+            const deleteNotifications = await prisma.notification.deleteMany({
+                where: {
+                    type: "follow",
+                    sender_id: currentUser.user.id,
+                    user_id: userProfile.id,
+                },
             });
 
 
