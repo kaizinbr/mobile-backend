@@ -97,12 +97,12 @@ export async function POST(request: NextRequest) {
 
 
 export async function DELETE(request: NextRequest) {
-    const { albumID } = await request.json();
+    const { id } = await request.json();
     const session = await auth.api.getSession({
         headers: await headers(),
     });
 
-    console.log("delete request", { albumID });
+    console.log("delete request", { id });
 
     try {
         if (!session?.user) {
@@ -115,7 +115,7 @@ export async function DELETE(request: NextRequest) {
         await prisma.wishlist.deleteMany({
             where: {
                 profileId: session.user.id,
-                albumId: albumID,
+                albumId: id,
             }
         });
 
