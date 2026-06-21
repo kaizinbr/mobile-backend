@@ -13,7 +13,7 @@ import { marked } from "marked";
 // O resto do código continua igual
 
 export async function POST(request: NextRequest) {
-    const { albumId, ratings, review, markdown, total, published } =
+    const { albumId, ratings, review, markdown, total, published, manual } =
         await request.json();
 
     console.log("received data:", {
@@ -23,6 +23,7 @@ export async function POST(request: NextRequest) {
         markdown,
         total,
         published,
+        manual,
     });
 
     // console.log(markdown);
@@ -63,6 +64,7 @@ export async function POST(request: NextRequest) {
                     content,
                     total,
                     published,
+                    manual
                 },
             });
 
@@ -108,6 +110,7 @@ export async function POST(request: NextRequest) {
                     content,
                     published,
                     total,
+                    manual
                 },
             });
 

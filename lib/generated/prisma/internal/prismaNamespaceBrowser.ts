@@ -171,7 +171,8 @@ export const RatingScalarFieldEnum = {
   updated_at: 'updated_at',
   album_id: 'album_id',
   user_id: 'user_id',
-  html: 'html'
+  html: 'html',
+  manual: 'manual'
 } as const
 
 export type RatingScalarFieldEnum = (typeof RatingScalarFieldEnum)[keyof typeof RatingScalarFieldEnum]

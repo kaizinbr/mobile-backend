@@ -112,6 +112,7 @@ model Rating {
   album_id     String?        @db.VarChar
   user_id      String?        @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   html         String?
+  manual       Boolean        @default(false)
   Comment      Comment[]
   Like         Like[]
   Notification Notification[]

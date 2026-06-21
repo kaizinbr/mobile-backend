@@ -45,6 +45,7 @@ export type RatingMinAggregateOutputType = {
   album_id: string | null
   user_id: string | null
   html: string | null
+  manual: boolean | null
 }
 
 export type RatingMaxAggregateOutputType = {
@@ -58,6 +59,7 @@ export type RatingMaxAggregateOutputType = {
   album_id: string | null
   user_id: string | null
   html: string | null
+  manual: boolean | null
 }
 
 export type RatingCountAggregateOutputType = {
@@ -73,6 +75,7 @@ export type RatingCountAggregateOutputType = {
   album_id: number
   user_id: number
   html: number
+  manual: number
   _all: number
 }
 
@@ -96,6 +99,7 @@ export type RatingMinAggregateInputType = {
   album_id?: true
   user_id?: true
   html?: true
+  manual?: true
 }
 
 export type RatingMaxAggregateInputType = {
@@ -109,6 +113,7 @@ export type RatingMaxAggregateInputType = {
   album_id?: true
   user_id?: true
   html?: true
+  manual?: true
 }
 
 export type RatingCountAggregateInputType = {
@@ -124,6 +129,7 @@ export type RatingCountAggregateInputType = {
   album_id?: true
   user_id?: true
   html?: true
+  manual?: true
   _all?: true
 }
 
@@ -226,6 +232,7 @@ export type RatingGroupByOutputType = {
   album_id: string | null
   user_id: string | null
   html: string | null
+  manual: boolean
   _count: RatingCountAggregateOutputType | null
   _avg: RatingAvgAggregateOutputType | null
   _sum: RatingSumAggregateOutputType | null
@@ -264,6 +271,7 @@ export type RatingWhereInput = {
   album_id?: Prisma.StringNullableFilter<"Rating"> | string | null
   user_id?: Prisma.UuidNullableFilter<"Rating"> | string | null
   html?: Prisma.StringNullableFilter<"Rating"> | string | null
+  manual?: Prisma.BoolFilter<"Rating"> | boolean
   Comment?: Prisma.CommentListRelationFilter
   Like?: Prisma.LikeListRelationFilter
   Notification?: Prisma.NotificationListRelationFilter
@@ -283,6 +291,7 @@ export type RatingOrderByWithRelationInput = {
   album_id?: Prisma.SortOrderInput | Prisma.SortOrder
   user_id?: Prisma.SortOrderInput | Prisma.SortOrder
   html?: Prisma.SortOrderInput | Prisma.SortOrder
+  manual?: Prisma.SortOrder
   Comment?: Prisma.CommentOrderByRelationAggregateInput
   Like?: Prisma.LikeOrderByRelationAggregateInput
   Notification?: Prisma.NotificationOrderByRelationAggregateInput
@@ -305,6 +314,7 @@ export type RatingWhereUniqueInput = Prisma.AtLeast<{
   album_id?: Prisma.StringNullableFilter<"Rating"> | string | null
   user_id?: Prisma.UuidNullableFilter<"Rating"> | string | null
   html?: Prisma.StringNullableFilter<"Rating"> | string | null
+  manual?: Prisma.BoolFilter<"Rating"> | boolean
   Comment?: Prisma.CommentListRelationFilter
   Like?: Prisma.LikeListRelationFilter
   Notification?: Prisma.NotificationListRelationFilter
@@ -324,6 +334,7 @@ export type RatingOrderByWithAggregationInput = {
   album_id?: Prisma.SortOrderInput | Prisma.SortOrder
   user_id?: Prisma.SortOrderInput | Prisma.SortOrder
   html?: Prisma.SortOrderInput | Prisma.SortOrder
+  manual?: Prisma.SortOrder
   _count?: Prisma.RatingCountOrderByAggregateInput
   _avg?: Prisma.RatingAvgOrderByAggregateInput
   _max?: Prisma.RatingMaxOrderByAggregateInput
@@ -347,6 +358,7 @@ export type RatingScalarWhereWithAggregatesInput = {
   album_id?: Prisma.StringNullableWithAggregatesFilter<"Rating"> | string | null
   user_id?: Prisma.UuidNullableWithAggregatesFilter<"Rating"> | string | null
   html?: Prisma.StringNullableWithAggregatesFilter<"Rating"> | string | null
+  manual?: Prisma.BoolWithAggregatesFilter<"Rating"> | boolean
 }
 
 export type RatingCreateInput = {
@@ -361,6 +373,7 @@ export type RatingCreateInput = {
   updated_at?: Date | string
   album_id?: string | null
   html?: string | null
+  manual?: boolean
   Comment?: Prisma.CommentCreateNestedManyWithoutRatingInput
   Like?: Prisma.LikeCreateNestedManyWithoutRatingInput
   Notification?: Prisma.NotificationCreateNestedManyWithoutRatingInput
@@ -380,6 +393,7 @@ export type RatingUncheckedCreateInput = {
   album_id?: string | null
   user_id?: string | null
   html?: string | null
+  manual?: boolean
   Comment?: Prisma.CommentUncheckedCreateNestedManyWithoutRatingInput
   Like?: Prisma.LikeUncheckedCreateNestedManyWithoutRatingInput
   Notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutRatingInput
@@ -397,6 +411,7 @@ export type RatingUpdateInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manual?: Prisma.BoolFieldUpdateOperationsInput | boolean
   Comment?: Prisma.CommentUpdateManyWithoutRatingNestedInput
   Like?: Prisma.LikeUpdateManyWithoutRatingNestedInput
   Notification?: Prisma.NotificationUpdateManyWithoutRatingNestedInput
@@ -416,6 +431,7 @@ export type RatingUncheckedUpdateInput = {
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manual?: Prisma.BoolFieldUpdateOperationsInput | boolean
   Comment?: Prisma.CommentUncheckedUpdateManyWithoutRatingNestedInput
   Like?: Prisma.LikeUncheckedUpdateManyWithoutRatingNestedInput
   Notification?: Prisma.NotificationUncheckedUpdateManyWithoutRatingNestedInput
@@ -434,6 +450,7 @@ export type RatingCreateManyInput = {
   album_id?: string | null
   user_id?: string | null
   html?: string | null
+  manual?: boolean
 }
 
 export type RatingUpdateManyMutationInput = {
@@ -448,6 +465,7 @@ export type RatingUpdateManyMutationInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manual?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type RatingUncheckedUpdateManyInput = {
@@ -463,6 +481,7 @@ export type RatingUncheckedUpdateManyInput = {
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manual?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type RatingScalarRelationFilter = {
@@ -498,6 +517,7 @@ export type RatingCountOrderByAggregateInput = {
   album_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   html?: Prisma.SortOrder
+  manual?: Prisma.SortOrder
 }
 
 export type RatingAvgOrderByAggregateInput = {
@@ -515,6 +535,7 @@ export type RatingMaxOrderByAggregateInput = {
   album_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   html?: Prisma.SortOrder
+  manual?: Prisma.SortOrder
 }
 
 export type RatingMinOrderByAggregateInput = {
@@ -528,6 +549,7 @@ export type RatingMinOrderByAggregateInput = {
   album_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   html?: Prisma.SortOrder
+  manual?: Prisma.SortOrder
 }
 
 export type RatingSumOrderByAggregateInput = {
@@ -640,6 +662,7 @@ export type RatingCreateWithoutCommentInput = {
   updated_at?: Date | string
   album_id?: string | null
   html?: string | null
+  manual?: boolean
   Like?: Prisma.LikeCreateNestedManyWithoutRatingInput
   Notification?: Prisma.NotificationCreateNestedManyWithoutRatingInput
   Profile?: Prisma.ProfileCreateNestedOneWithoutRatingInput
@@ -658,6 +681,7 @@ export type RatingUncheckedCreateWithoutCommentInput = {
   album_id?: string | null
   user_id?: string | null
   html?: string | null
+  manual?: boolean
   Like?: Prisma.LikeUncheckedCreateNestedManyWithoutRatingInput
   Notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutRatingInput
 }
@@ -690,6 +714,7 @@ export type RatingUpdateWithoutCommentInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manual?: Prisma.BoolFieldUpdateOperationsInput | boolean
   Like?: Prisma.LikeUpdateManyWithoutRatingNestedInput
   Notification?: Prisma.NotificationUpdateManyWithoutRatingNestedInput
   Profile?: Prisma.ProfileUpdateOneWithoutRatingNestedInput
@@ -708,6 +733,7 @@ export type RatingUncheckedUpdateWithoutCommentInput = {
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manual?: Prisma.BoolFieldUpdateOperationsInput | boolean
   Like?: Prisma.LikeUncheckedUpdateManyWithoutRatingNestedInput
   Notification?: Prisma.NotificationUncheckedUpdateManyWithoutRatingNestedInput
 }
@@ -724,6 +750,7 @@ export type RatingCreateWithoutLikeInput = {
   updated_at?: Date | string
   album_id?: string | null
   html?: string | null
+  manual?: boolean
   Comment?: Prisma.CommentCreateNestedManyWithoutRatingInput
   Notification?: Prisma.NotificationCreateNestedManyWithoutRatingInput
   Profile?: Prisma.ProfileCreateNestedOneWithoutRatingInput
@@ -742,6 +769,7 @@ export type RatingUncheckedCreateWithoutLikeInput = {
   album_id?: string | null
   user_id?: string | null
   html?: string | null
+  manual?: boolean
   Comment?: Prisma.CommentUncheckedCreateNestedManyWithoutRatingInput
   Notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutRatingInput
 }
@@ -774,6 +802,7 @@ export type RatingUpdateWithoutLikeInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manual?: Prisma.BoolFieldUpdateOperationsInput | boolean
   Comment?: Prisma.CommentUpdateManyWithoutRatingNestedInput
   Notification?: Prisma.NotificationUpdateManyWithoutRatingNestedInput
   Profile?: Prisma.ProfileUpdateOneWithoutRatingNestedInput
@@ -792,6 +821,7 @@ export type RatingUncheckedUpdateWithoutLikeInput = {
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manual?: Prisma.BoolFieldUpdateOperationsInput | boolean
   Comment?: Prisma.CommentUncheckedUpdateManyWithoutRatingNestedInput
   Notification?: Prisma.NotificationUncheckedUpdateManyWithoutRatingNestedInput
 }
@@ -808,6 +838,7 @@ export type RatingCreateWithoutNotificationInput = {
   updated_at?: Date | string
   album_id?: string | null
   html?: string | null
+  manual?: boolean
   Comment?: Prisma.CommentCreateNestedManyWithoutRatingInput
   Like?: Prisma.LikeCreateNestedManyWithoutRatingInput
   Profile?: Prisma.ProfileCreateNestedOneWithoutRatingInput
@@ -826,6 +857,7 @@ export type RatingUncheckedCreateWithoutNotificationInput = {
   album_id?: string | null
   user_id?: string | null
   html?: string | null
+  manual?: boolean
   Comment?: Prisma.CommentUncheckedCreateNestedManyWithoutRatingInput
   Like?: Prisma.LikeUncheckedCreateNestedManyWithoutRatingInput
 }
@@ -858,6 +890,7 @@ export type RatingUpdateWithoutNotificationInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manual?: Prisma.BoolFieldUpdateOperationsInput | boolean
   Comment?: Prisma.CommentUpdateManyWithoutRatingNestedInput
   Like?: Prisma.LikeUpdateManyWithoutRatingNestedInput
   Profile?: Prisma.ProfileUpdateOneWithoutRatingNestedInput
@@ -876,6 +909,7 @@ export type RatingUncheckedUpdateWithoutNotificationInput = {
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manual?: Prisma.BoolFieldUpdateOperationsInput | boolean
   Comment?: Prisma.CommentUncheckedUpdateManyWithoutRatingNestedInput
   Like?: Prisma.LikeUncheckedUpdateManyWithoutRatingNestedInput
 }
@@ -892,6 +926,7 @@ export type RatingCreateWithoutProfileInput = {
   updated_at?: Date | string
   album_id?: string | null
   html?: string | null
+  manual?: boolean
   Comment?: Prisma.CommentCreateNestedManyWithoutRatingInput
   Like?: Prisma.LikeCreateNestedManyWithoutRatingInput
   Notification?: Prisma.NotificationCreateNestedManyWithoutRatingInput
@@ -909,6 +944,7 @@ export type RatingUncheckedCreateWithoutProfileInput = {
   updated_at?: Date | string
   album_id?: string | null
   html?: string | null
+  manual?: boolean
   Comment?: Prisma.CommentUncheckedCreateNestedManyWithoutRatingInput
   Like?: Prisma.LikeUncheckedCreateNestedManyWithoutRatingInput
   Notification?: Prisma.NotificationUncheckedCreateNestedManyWithoutRatingInput
@@ -956,6 +992,7 @@ export type RatingScalarWhereInput = {
   album_id?: Prisma.StringNullableFilter<"Rating"> | string | null
   user_id?: Prisma.UuidNullableFilter<"Rating"> | string | null
   html?: Prisma.StringNullableFilter<"Rating"> | string | null
+  manual?: Prisma.BoolFilter<"Rating"> | boolean
 }
 
 export type RatingCreateManyProfileInput = {
@@ -970,6 +1007,7 @@ export type RatingCreateManyProfileInput = {
   updated_at?: Date | string
   album_id?: string | null
   html?: string | null
+  manual?: boolean
 }
 
 export type RatingUpdateWithoutProfileInput = {
@@ -984,6 +1022,7 @@ export type RatingUpdateWithoutProfileInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manual?: Prisma.BoolFieldUpdateOperationsInput | boolean
   Comment?: Prisma.CommentUpdateManyWithoutRatingNestedInput
   Like?: Prisma.LikeUpdateManyWithoutRatingNestedInput
   Notification?: Prisma.NotificationUpdateManyWithoutRatingNestedInput
@@ -1001,6 +1040,7 @@ export type RatingUncheckedUpdateWithoutProfileInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manual?: Prisma.BoolFieldUpdateOperationsInput | boolean
   Comment?: Prisma.CommentUncheckedUpdateManyWithoutRatingNestedInput
   Like?: Prisma.LikeUncheckedUpdateManyWithoutRatingNestedInput
   Notification?: Prisma.NotificationUncheckedUpdateManyWithoutRatingNestedInput
@@ -1018,6 +1058,7 @@ export type RatingUncheckedUpdateManyWithoutProfileInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   album_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   html?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  manual?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 
@@ -1082,6 +1123,7 @@ export type RatingSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   album_id?: boolean
   user_id?: boolean
   html?: boolean
+  manual?: boolean
   Comment?: boolean | Prisma.Rating$CommentArgs<ExtArgs>
   Like?: boolean | Prisma.Rating$LikeArgs<ExtArgs>
   Notification?: boolean | Prisma.Rating$NotificationArgs<ExtArgs>
@@ -1102,6 +1144,7 @@ export type RatingSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   album_id?: boolean
   user_id?: boolean
   html?: boolean
+  manual?: boolean
   Profile?: boolean | Prisma.Rating$ProfileArgs<ExtArgs>
 }, ExtArgs["result"]["rating"]>
 
@@ -1118,6 +1161,7 @@ export type RatingSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   album_id?: boolean
   user_id?: boolean
   html?: boolean
+  manual?: boolean
   Profile?: boolean | Prisma.Rating$ProfileArgs<ExtArgs>
 }, ExtArgs["result"]["rating"]>
 
@@ -1134,9 +1178,10 @@ export type RatingSelectScalar = {
   album_id?: boolean
   user_id?: boolean
   html?: boolean
+  manual?: boolean
 }
 
-export type RatingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ratings" | "review" | "total" | "shorten" | "content" | "published" | "created_at" | "updated_at" | "album_id" | "user_id" | "html", ExtArgs["result"]["rating"]>
+export type RatingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ratings" | "review" | "total" | "shorten" | "content" | "published" | "created_at" | "updated_at" | "album_id" | "user_id" | "html" | "manual", ExtArgs["result"]["rating"]>
 export type RatingInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   Comment?: boolean | Prisma.Rating$CommentArgs<ExtArgs>
   Like?: boolean | Prisma.Rating$LikeArgs<ExtArgs>
@@ -1172,6 +1217,7 @@ export type $RatingPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     album_id: string | null
     user_id: string | null
     html: string | null
+    manual: boolean
   }, ExtArgs["result"]["rating"]>
   composites: {}
 }
@@ -1611,6 +1657,7 @@ export interface RatingFieldRefs {
   readonly album_id: Prisma.FieldRef<"Rating", 'String'>
   readonly user_id: Prisma.FieldRef<"Rating", 'String'>
   readonly html: Prisma.FieldRef<"Rating", 'String'>
+  readonly manual: Prisma.FieldRef<"Rating", 'Boolean'>
 }
     
 
