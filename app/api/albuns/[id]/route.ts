@@ -57,7 +57,7 @@ export async function GET(
 
         // console.log(response.data);
 
-        if (response.status === 429) {
+        if (response.data.status === 429) {
             // Lógica para lidar com o erro 429 (Too Many Requests)
             console.error("Too many requests, retrying after 2 seconds...");
             await new Promise((resolve) => setTimeout(resolve, 2000));

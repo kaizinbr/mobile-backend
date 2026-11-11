@@ -92,7 +92,7 @@ export async function GET(request: Request) {
         }
     }));
 
-    console.log("Response with color extraction promises:", response);
+    // console.log("Response with color extraction promises:", response);
 
     return NextResponse.json(response);
 }

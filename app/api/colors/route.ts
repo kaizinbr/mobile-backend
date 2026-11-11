@@ -5,7 +5,7 @@ export async function POST(req: Request) {
 
     const palette = await Vibrant.from(imageUrl).getPalette();
 
-    return Response.json({
+    return response.data.json({
         Vibrant: palette.Vibrant?.hex,
         Muted: palette.Muted?.hex,
         DarkVibrant: palette.DarkVibrant?.hex,

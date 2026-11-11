@@ -40,7 +40,7 @@ export async function GET(
             //             ? pageNumber + 1
             //             : null,
             // },
-            lastfmResponse.data,
+            lastfmresponse.data,
         );
     } catch (err) {
         console.error("fetch error", err);

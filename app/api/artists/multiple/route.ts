@@ -61,7 +61,7 @@ export async function GET(request: Request) {
             }
         );
 
-        if (response.status === 429) {
+        if (response.data.status === 429) {
             console.error("Too many requests, retrying after 1 second...");
             await new Promise((resolve) => setTimeout(resolve, 1000));
             token = await getAccessToken();

@@ -41,7 +41,7 @@ export async function GET(
 
             return NextResponse.json(data);
         } catch (error) {
-            if (axios.isAxiosError(error) && error.response?.status === 404) {
+            if (axios.isAxiosError(error) && error.response.data?.status === 404) {
                 return NextResponse.json(
                     { error: "Faixa não encontrada" },
                     { status: 404 }

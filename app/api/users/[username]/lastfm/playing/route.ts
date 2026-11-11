@@ -29,14 +29,14 @@ export async function GET(
             `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${profile.lastfm_username}&api_key=${process.env.LASTFM_API_KEY}&format=json&limit=1`,
         );
 
-        if (!lastfmResponse.data.recenttracks || !lastfmResponse.data.recenttracks.track) {
+        if (!lastfmresponse.data.recenttracks || !lastfmresponse.data.recenttracks.track) {
             return NextResponse.json(
                 { error: "No recent tracks found" },
                 { status: 404 },
             );
         }
 
-        if (!lastfmResponse.data.recenttracks.track[0]['@attr'] || !lastfmResponse.data.recenttracks.track[0]['@attr'].nowplaying) {
+        if (!lastfmresponse.data.recenttracks.track[0]['@attr'] || !lastfmresponse.data.recenttracks.track[0]['@attr'].nowplaying) {
             return NextResponse.json(
                 { error: "No track currently playing" },
                 { status: 404 },
@@ -54,7 +54,7 @@ export async function GET(
             //             ? pageNumber + 1
             //             : null,
             // },
-            lastfmResponse.data,
+            lastfmresponse.data,
         );
     } catch (err) {
         console.error("fetch error", err);

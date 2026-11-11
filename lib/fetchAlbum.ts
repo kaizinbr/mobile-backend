@@ -56,7 +56,7 @@ export default async function fetchAlbum(id: string) {
             }
         );
 
-        if (response.status === 429) {
+        if (response.data.status === 429) {
             console.error("Too many requests, retrying after 3 seconds...");
             await new Promise((resolve) => setTimeout(resolve, 3000));
             token = await getAccessToken();

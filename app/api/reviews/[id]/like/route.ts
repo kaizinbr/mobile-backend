@@ -10,7 +10,7 @@ export async function POST(
 ) {
     const session = await auth.api.getSession({ headers: await headers() });
     if (!session)
-        return Response.json({ error: "Unauthorized" }, { status: 401 });
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
     const userId = session.user.id;
     const { id } = await params;
@@ -27,7 +27,7 @@ export async function POST(
     if (existing) {
         await prisma.like.delete({ where: { id: existing.id } });
         const likesCount = await prisma.like.count({ where: { ratingId: id } });
-        return Response.json({ liked: !existing, likesCount });
+        return NextResponse.json({ liked: !existing, likesCount });
     }
 
     await prisma.like.create({
@@ -78,7 +78,7 @@ export async function POST(
     }
 
     const likesCount = await prisma.like.count({ where: { ratingId: id } });
-    return Response.json({ liked: !existing, likesCount });
+    return NextResponse.json({ liked: !existing, likesCount });
 }
 
 export async function GET(
@@ -90,7 +90,7 @@ export async function GET(
     });
 
     if (!session) {
-        return Response.json({ liked: false, authenticated: false });
+        return NextResponse.json({ liked: false, authenticated: false });
     }
 
     const userId = session.user.id;
@@ -106,5 +106,5 @@ export async function GET(
         select: { id: true },
     });
 
-    return Response.json({ liked: !!like, authenticated: true });
+    return NextResponse.json({ liked: !!like, authenticated: true });
 }

@@ -8,7 +8,7 @@ import { headers } from "next/headers";
 export async function POST(request: Request) {
     const session = await auth.api.getSession({ headers: await headers() });
     if (!session)
-        return Response.json({ error: "Unauthorized" }, { status: 401 });
+        return response.data.json({ error: "Unauthorized" }, { status: 401 });
 
     const userId = session.user.id;
 
@@ -23,15 +23,15 @@ export async function POST(request: Request) {
             where: { user_id: userId },
             data: { seen: true },
         });
-        return Response.json({ seen: true });
+        return response.data.json({ seen: true });
     }
-    return Response.json({ error: "Notification not found" }, { status: 404 });
+    return response.data.json({ error: "Notification not found" }, { status: 404 });
 }
 
 export async function DELETE(request: Request) {
     const session = await auth.api.getSession({ headers: await headers() });
     if (!session)
-        return Response.json({ error: "Unauthorized" }, { status: 401 });
+        return response.data.json({ error: "Unauthorized" }, { status: 401 });
 
     const userId = session.user.id;
 
@@ -41,5 +41,5 @@ export async function DELETE(request: Request) {
         },
     });
 
-    return Response.json({ deleted: true });
+    return response.data.json({ deleted: true });
 }

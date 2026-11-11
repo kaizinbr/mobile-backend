@@ -39,7 +39,7 @@ export async function getMusicBrainzArtist(name: string) {
         `https://musicbrainz.org/ws/2/artist/?query=artist:${encodeURIComponent(name)}&fmt=json`,
         { headers: { "User-Agent": "whistle/1.0 (https://kaizin.work)" } },
     );
-    const data = await response.json();
+    const data = await response.data.json();
     const mbid = data.artists?.[0]?.id;
     if (!mbid) return null;
 
@@ -48,7 +48,7 @@ export async function getMusicBrainzArtist(name: string) {
         `https://musicbrainz.org/ws/2/artist/${mbid}?inc=url-rels&fmt=json`,
         { headers: { "User-Agent": "whistle/1.0 (https://kaizin.work)" } },
     );
-    const detailData = await detailResponse.json();
+    const detailData = await detailresponse.data.json();
     // console.log("MusicBrainz data:", detailData);
     return detailData || null;
 }
@@ -64,8 +64,8 @@ export async function getWikipediaSummary(name: string) {
             },
         }
     );
-    if (!response.ok) return null;
-    const data = await response.json();
+    if (!response.data.ok) return null;
+    const data = await response.data.json();
     return {
         summary: data.extract,
         thumbnail: data.thumbnail?.source,

@@ -40,7 +40,7 @@ export async function GET(
             ? comments[comments.length - 1].id
             : null;
 
-    return Response.json({ comments, nextCursor });
+    return response.data.json({ comments, nextCursor });
 }
 
 export async function POST(
@@ -49,7 +49,7 @@ export async function POST(
 ) {
     const session = await auth.api.getSession({ headers: await headers() });
     if (!session)
-        return Response.json({ error: "Unauthorized" }, { status: 401 });
+        return response.data.json({ error: "Unauthorized" }, { status: 401 });
 
     const { id } = await params;
     const { body } = await request.json();
@@ -57,10 +57,10 @@ export async function POST(
     console.log("Received comment body:", body, id);
 
     if (!body || typeof body !== "string" || body.trim().length === 0)
-        return Response.json({ error: "body is required" }, { status: 400 });
+        return response.data.json({ error: "body is required" }, { status: 400 });
 
     if (body.trim().length > 1000)
-        return Response.json({ error: "body too long" }, { status: 400 });
+        return response.data.json({ error: "body too long" }, { status: 400 });
 
     const rating = await prisma.rating.findUnique({
         where: { id },
@@ -68,7 +68,7 @@ export async function POST(
     });
 
     if (!rating)
-        return Response.json({ error: "Rating not found" }, { status: 404 });
+        return response.data.json({ error: "Rating not found" }, { status: 404 });
 
     const comment = await prisma.comment.create({
         data: {
@@ -93,5 +93,5 @@ export async function POST(
         },
     });
 
-    return Response.json({ comment }, { status: 201 });
+    return response.data.json({ comment }, { status: 201 });
 }
