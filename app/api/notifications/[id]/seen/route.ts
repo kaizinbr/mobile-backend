@@ -11,7 +11,7 @@ export async function POST(
 ) {
     const session = await auth.api.getSession({ headers: await headers() });
     if (!session)
-        return response.data.json({ error: "Unauthorized" }, { status: 401 });
+        return Response.json({ error: "Unauthorized" }, { status: 401 });
 
     const userId = session.user.id;
     const { id } = await params;
@@ -27,9 +27,9 @@ export async function POST(
             where: { id: notifications.id },
             data: { seen: true },
         });
-        return response.data.json({ seen: true });
+        return Response.json({ seen: true });
     }
-    return response.data.json({ error: "Notification not found" }, { status: 404 });
+    return Response.json({ error: "Notification not found" }, { status: 404 });
 }
 
 export async function GET(
@@ -41,7 +41,7 @@ export async function GET(
     });
 
     if (!session) {
-        return response.data.json({ liked: false, authenticated: false });
+        return Response.json({ liked: false, authenticated: false });
     }
 
     const userId = session.user.id;
@@ -57,5 +57,5 @@ export async function GET(
         select: { id: true },
     });
 
-    return response.data.json({ liked: !!like, authenticated: true });
+    return Response.json({ liked: !!like, authenticated: true });
 }

@@ -12,7 +12,7 @@ export async function GET(
     });
 
     if (!session) {
-        return response.data.json({ error: "Unauthorized" }, { status: 401 });
+        return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const userId = session.user.id;
@@ -36,5 +36,5 @@ export async function GET(
         },
     });
 
-    return response.data.json({ notifications });
+    return Response.json({ notifications });
 }
