@@ -1,8 +1,8 @@
-// app/api/ratings/[id]/comments/route.ts
 import { prisma } from "@/lib/prisma";
 import { auth } from "@/auth";
 import { headers } from "next/headers";
 import { createNotification } from "@/lib/notifications";
+import { NextResponse } from "next/server";
 
 const COMMENTS_PER_PAGE = 20;
 
@@ -41,7 +41,7 @@ export async function GET(
             ? comments[comments.length - 1].id
             : null;
 
-    return response.data.json({ comments, nextCursor });
+    return NextResponse.json({ comments, nextCursor });
 }
 
 export async function POST(
@@ -50,19 +50,22 @@ export async function POST(
 ) {
     const session = await auth.api.getSession({ headers: await headers() });
     if (!session)
-        return response.data.json({ error: "Unauthorized" }, { status: 401 });
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
     const { id } = await params;
     const { body } = await request.json();
-        const userId = session.user.id;
+    const userId = session.user.id;
 
     // console.log("Received comment body:", body, id);
 
     if (!body || typeof body !== "string" || body.trim().length === 0)
-        return response.data.json({ error: "body is required" }, { status: 400 });
+        return NextResponse.json(
+            { error: "body is required" },
+            { status: 400 },
+        );
 
     if (body.trim().length > 1000)
-        return response.data.json({ error: "body too long" }, { status: 400 });
+        return NextResponse.json({ error: "body too long" }, { status: 400 });
 
     const rating = await prisma.rating.findUnique({
         where: { id },
@@ -70,7 +73,10 @@ export async function POST(
     });
 
     if (!rating) {
-        return response.data.json({ error: "Rating not found" }, { status: 404 });
+        return NextResponse.json(
+            { error: "Rating not found" },
+            { status: 404 },
+        );
     }
 
     if (rating?.Profile?.id) {
@@ -105,5 +111,5 @@ export async function POST(
         },
     });
 
-    return response.data.json({ comment }, { status: 201 });
+    return NextResponse.json({ comment }, { status: 201 });
 }

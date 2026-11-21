@@ -48,7 +48,7 @@ export default async function fetchAlbum(id: string) {
 
     try {
         const response = await axios.get(
-            `https://api.spotify.com/v1/albums/${id}`,
+            `https://api.spotify.com/v1/albums/${id}?market=BR`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,

@@ -8,7 +8,7 @@ const getAccessToken = async () => {
     const authorization = Buffer.from(
         `${process.env.SPOTIFY_CLIENT_ID ?? ""}:${
             process.env.SPOTIFY_CLIENT_SECRET ?? ""
-        }`
+        }`,
     ).toString("base64");
     const data = new URLSearchParams();
     data.append("grant_type", "client_credentials");
@@ -21,7 +21,7 @@ const getAccessToken = async () => {
                 Authorization: `Basic ${authorization}`,
                 "Content-Type": "application/x-www-form-urlencoded",
             },
-        }
+        },
     );
     // console.log(response.data);
 
@@ -36,7 +36,7 @@ const getAccessToken = async () => {
 
 export async function GET(
     request: Request,
-    { params }: { params: Promise<{ id: string }> }
+    { params }: { params: Promise<{ id: string }> },
 ) {
     const id = (await params).id; // 'a', 'b', or 'c'
     console.log(id);
@@ -54,10 +54,10 @@ export async function GET(
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
-            }
+            },
         );
 
-        // console.log(response.data);
+        console.log(response.data);
 
         if (response.data.status === 429) {
             // Lógica para lidar com o erro 429 (Too Many Requests)
@@ -65,18 +65,19 @@ export async function GET(
             await new Promise((resolve) => setTimeout(resolve, 2000));
             token = await getAccessToken(); // Atualiza o token
             return GET(request, { params });
-            
-
         }
 
-            const infos = await getArtistExtra({ name: response.data.name, id: response.data.id });
+        const infos = await getArtistExtra({
+            name: response.data.name,
+            id: response.data.id,
+        });
 
         return NextResponse.json({ ...response.data, ...infos });
     } catch (error) {
         console.error("Erro ao buscar álbum do Spotify:", error);
         return NextResponse.json(
             { error: "Erro ao buscar álbum do Spotify" },
-            { status: 500 }
+            { status: 500 },
         );
     }
 }
