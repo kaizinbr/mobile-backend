@@ -48,7 +48,7 @@ export default async function fetchMultipleAlbuns(ids: string | null) {
 
     try {
         const response = await axios.get(
-            `https://api.spotify.com/v1/albums?ids=${ids}`,
+            `https://api.spotify.com/v1/albums?ids=${ids}&market=BR`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,
