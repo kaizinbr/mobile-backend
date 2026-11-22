@@ -49,8 +49,8 @@ export async function GET(
         console.log(id);
 
         const url = new URL(request.url);
-        const offset = url.searchParams.get("offset") || "0"; // Pega o valor de offset ou usa "0" como padrão
-        console.log(offset);
+        const offset = url.searchParams.get("offset") || "0"; 
+        const limit = url.searchParams.get("limit") || "50"; 
 
         const cookieStore = await cookies();
         const hasCookie = cookieStore.has("spotify_token");
@@ -59,7 +59,7 @@ export async function GET(
             : await getAccessToken();
 
         const response = await axios.get(
-            `https://api.spotify.com/v1/artists/${id}/albums?include_groups=album,single&limit=50&offset=${offset}`,
+            `https://api.spotify.com/v1/artists/${id}/albums?include_groups=album,single&limit=${limit}&offset=${offset}&market=BR`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,
