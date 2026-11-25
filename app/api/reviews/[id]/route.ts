@@ -1,16 +1,16 @@
 import { NextResponse, NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { headers } from "next/headers"
+import { headers } from "next/headers";
 import fetchAlbum from "@/lib/fetchAlbum";
-import { auth } from "@/auth"
+import { auth } from "@/auth";
 
 export async function GET(
-        request: NextRequest,
+    request: NextRequest,
     {
         params,
     }: {
         params: Promise<{ id: string }>;
-    }
+    },
 ) {
     const { id } = await params;
 
@@ -18,7 +18,7 @@ export async function GET(
         if (!id) {
             return NextResponse.json(
                 { error: "id is required" },
-                { status: 400 }
+                { status: 400 },
             );
         }
 
@@ -35,10 +35,9 @@ export async function GET(
         if (reviews.length === 0) {
             return NextResponse.json(
                 { error: "Review not found" },
-                { status: 404 }
+                { status: 404 },
             );
         }
-
 
         const albumData = await fetchAlbum(reviews[0].album_id!);
 
@@ -49,42 +48,38 @@ export async function GET(
             album: albumData,
         }));
 
-
-
-
-        return NextResponse.json(reviewWithAlbumData, { status: 200 });
+        return NextResponse.json(
+            { review: reviewWithAlbumData },
+            { status: 200 },
+        );
     } catch (err) {
         console.error("fetch error", err);
         return NextResponse.json(
             { error: "Failed to fetch reviews" },
-            { status: 500 }
+            { status: 500 },
         );
     }
 }
 
 export async function DELETE(
-        request: NextRequest,
+    request: NextRequest,
     {
         params,
     }: {
         params: Promise<{ id: string }>;
-    }
+    },
 ) {
     const { id } = await params;
     const session = await auth.api.getSession({
-        headers: await headers()
-    })
-
-
-
-
+        headers: await headers(),
+    });
 
     console.log("Deleting ratings for user:", id);
     try {
         if (!id) {
             return NextResponse.json(
                 { error: "id is required" },
-                { status: 400 }
+                { status: 400 },
             );
         }
 
@@ -94,18 +89,16 @@ export async function DELETE(
         if (!rating) {
             return NextResponse.json(
                 { error: "Rating not found" },
-                { status: 404 }
+                { status: 404 },
             );
         }
 
         if (rating.user_id !== session?.user?.id) {
             return NextResponse.json(
                 { error: "Unauthorized to delete this rating" },
-                { status: 403 }
+                { status: 403 },
             );
         }
-
-
 
         const deletedRating = await prisma.rating.deleteMany({
             where: { id: id },
@@ -116,8 +109,7 @@ export async function DELETE(
         console.error("delete error", err);
         return NextResponse.json(
             { error: "Failed to delete rating" },
-            { status: 500 }
+            { status: 500 },
         );
     }
-
 }
