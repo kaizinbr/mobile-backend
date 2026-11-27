@@ -59,6 +59,7 @@ export async function POST(request: NextRequest) {
             const updatedRating = await prisma.rating.update({
                 where: { id: existsingRating.id },
                 data: {
+                    id: existsingRating.id,
                     ratings,
                     review: markdown,
                     content,

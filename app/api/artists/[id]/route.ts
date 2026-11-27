@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import axios from "axios";
 import { cookies } from "next/headers";
 
-import { getArtistExtra } from "@/app/api/artists/[id]/infos/route";
+import { getArtistLastfmInfo } from "@/app/api/artists/[id]/infos/route";
 
 const getAccessToken = async () => {
     const authorization = Buffer.from(
@@ -67,10 +67,7 @@ export async function GET(
             return GET(request, { params });
         }
 
-        const infos = await getArtistExtra({
-            name: response.data.name,
-            id: response.data.id,
-        });
+        const infos = await getArtistLastfmInfo(response.data.name);
 
         return NextResponse.json({ ...response.data, ...infos });
     } catch (error) {

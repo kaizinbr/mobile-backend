@@ -4,7 +4,7 @@ import { customAlphabet } from "nanoid";
 import axios from "axios";
 import { cookies } from "next/headers";
 
-const getAccessToken = async () => {
+export const getAccessToken = async () => {
     const authorization = Buffer.from(
         `${process.env.SPOTIFY_CLIENT_ID ?? ""}:${
             process.env.SPOTIFY_CLIENT_SECRET ?? ""
@@ -34,74 +34,89 @@ const getAccessToken = async () => {
     return response.data.access_token;
 };
 
-export async function getMusicBrainzArtist(name: string) {
-    const response = await fetch(
-        `https://musicbrainz.org/ws/2/artist/?query=artist:${encodeURIComponent(name)}&fmt=json`,
-        { headers: { "User-Agent": "whistle/1.0 (https://kaizin.work)" } },
-    );
-    const data = await response.json();
-    const mbid = data.artists?.[0]?.id;
-    if (!mbid) return null;
+// export async function getMusicBrainzArtist(name: string) {
+//     const response = await fetch(
+//         `https://musicbrainz.org/ws/2/artist/?query=artist:${encodeURIComponent(name)}&fmt=json`,
+//         { headers: { "User-Agent": "whistle/1.0 (https://kaizin.work)" } },
+//     );
+//     const data = await response.json();
+//     const mbid = data.artists?.[0]?.id;
+//     console.log("MusicBrainz MBID:", mbid);
+//     if (!mbid) return null;
 
-    // Depois busca os detalhes completos com os links externos
-    const detailResponse = await fetch(
-        `https://musicbrainz.org/ws/2/artist/${mbid}?inc=url-rels&fmt=json`,
-        { headers: { "User-Agent": "whistle/1.0 (https://kaizin.work)" } },
-    );
-    const detailData = await detailResponse.json();
-    // console.log("MusicBrainz data:", detailData);
-    return detailData || null;
-}
+//     // Depois busca os detalhes completos com os links externos
+//     const detailResponse = await fetch(
+//         `https://musicbrainz.org/ws/2/artist/${mbid}?inc=url-rels&fmt=json`,
+//         { headers: { "User-Agent": "whistle/1.0 (https://kaizin.work)" } },
+//     );
+//     const detailData = await detailResponse.json();
+//     // console.log("MusicBrainz data:", detailData);
+//     return detailData || null;
+// }
 
-// 2. Busca descrição na Wikipedia pelo nome
-export async function getWikipediaSummary(name: string) {
-    const response = await fetch(
-        `https://pt.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(name)}`,
-        {
-            headers: {
-                "User-Agent": "whistle/1.0 (https://kaizin.work)",
-                "Accept": "application/json",
-            },
-        }
-    );
-    if (!response.ok) return null;
-    const data = await response.json();
-    return {
-        summary: data.extract,
-        thumbnail: data.thumbnail?.source,
-        url: data.content_urls?.mobile?.page,
-    };
-}
+// // 2. Busca descrição na Wikipedia pelo nome
+// export async function getWikipediaSummary(name: string) {
+//     const response = await fetch(
+//         `https://pt.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(name)}`,
+//         {
+//             headers: {
+//                 "User-Agent": "whistle/1.0 (https://kaizin.work)",
+//                 "Accept": "application/json",
+//             },
+//         }
+//     );
+//     if (!response.ok) return null;
+//     const data = await response.json();
+//     return {
+//         summary: data.extract,
+//         thumbnail: data.thumbnail?.source,
+//         url: data.content_urls?.mobile?.page,
+//     };
+// }
 
-export async function getArtistExtra(spotifyArtist: {
-    name: string;
-    id: string;
-}) {
-    // Aguarda no máximo 15 segundos; se demorar mais, considera ambos como null
-    const timeout = new Promise<any>((resolve) =>
-        setTimeout(() => resolve([null, null]), 15000),
-    );
+// export async function getArtistExtra(spotifyArtist: {
+//     name: string;
+//     id: string;
+// }) {
+//     // Aguarda no máximo 15 segundos; se demorar mais, considera ambos como null
+//     const timeout = new Promise<any>((resolve) =>
+//         setTimeout(() => resolve([null, null]), 15000),
+//     );
 
-    const [mbArtist, wiki] = await Promise.race([
-        Promise.all([
-            getMusicBrainzArtist(spotifyArtist.name),
-            getWikipediaSummary(spotifyArtist.name),
-        ]),
-        timeout,
-    ]);
+//     const [mbArtist, wiki] = await Promise.race([
+//         Promise.all([
+//             getMusicBrainzArtist(spotifyArtist.name),
+//             getWikipediaSummary(spotifyArtist.name),
+//         ]),
+//         timeout,
+//     ]);
 
-    return {
-        description: wiki?.summary || null,
-        wikipediaUrl: wiki?.url || null,
-        wikipediaThumbnail: wiki?.thumbnail || null,
-        origin: mbArtist?.area?.name || null, // cidade/país de origem
-        type: mbArtist?.type || null, // Group, Person, etc
-        gender: mbArtist?.gender || null,
-        beginDate: mbArtist?.["life-span"]?.begin || null, // data de formação/nascimento
-        endDate: mbArtist?.["life-span"]?.end || null,
-        tags: mbArtist?.tags?.slice(0, 5).map((t: any) => t.name) || [], // gêneros/tags
-        disambiguation: mbArtist?.disambiguation || null,
-    };
+//     return {
+//         description: wiki?.summary || null,
+//         wikipediaUrl: wiki?.url || null,
+//         wikipediaThumbnail: wiki?.thumbnail || null,
+//         origin: mbArtist?.area?.name || null, // cidade/país de origem
+//         type: mbArtist?.type || null, // Group, Person, etc
+//         gender: mbArtist?.gender || null,
+//         beginDate: mbArtist?.["life-span"]?.begin || null, // data de formação/nascimento
+//         endDate: mbArtist?.["life-span"]?.end || null,
+//         tags: mbArtist?.tags?.slice(0, 5).map((t: any) => t.name) || [], // gêneros/tags
+//         disambiguation: mbArtist?.disambiguation || null,
+//     };
+// }
+
+export async function getArtistLastfmInfo(artistName: string) {
+    try {
+        const lastfmResponse = await axios.get(
+            `https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${artistName}&api_key=${process.env.LASTFM_API_KEY}&lang=pt&format=json`,
+        );
+        return {
+            lastfmData: lastfmResponse.data.artist || null,
+        };
+    } catch (error) {
+        console.error("Error fetching Last.fm info:", error);
+        return null;
+    }
 }
 
 export async function GET(
@@ -110,10 +125,6 @@ export async function GET(
 ) {
     const id = (await params).id; // 'a', 'b', or 'c'
     console.log(id);
-
-    const url = new URL(request.url);
-    const offset = url.searchParams.get("offset") || "0"; // Pega o valor de offset ou usa "0" como padrão
-    console.log(offset);
 
     const cookieStore = await cookies();
     const hasCookie = cookieStore.has("spotify_token");
@@ -130,10 +141,7 @@ export async function GET(
         },
     );
 
-    const infos = await getArtistExtra({
-        name: response.data.name,
-        id: response.data.id,
-    });
+    const infos = await getArtistLastfmInfo(response.data.name);
 
     return NextResponse.json({ ...response.data, ...infos });
 }

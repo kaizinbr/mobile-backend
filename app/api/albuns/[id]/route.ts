@@ -1,36 +1,22 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
 import { cookies } from "next/headers";
+import { getAccessToken } from "@/app/api/artists/[id]/infos/route";
 
-const getAccessToken = async () => {
-    const authorization = Buffer.from(
-        `${process.env.SPOTIFY_CLIENT_ID ?? ""}:${
-            process.env.SPOTIFY_CLIENT_SECRET ?? ""
-        }`
-    ).toString("base64");
-    const data = new URLSearchParams();
-    data.append("grant_type", "client_credentials");
 
-    const response = await axios.post(
-        "https://accounts.spotify.com/api/token",
-        data,
-        {
-            headers: {
-                Authorization: `Basic ${authorization}`,
-                "Content-Type": "application/x-www-form-urlencoded",
-            },
-        }
-    );
-    // console.log(response.data);
-
-    (await cookies()).set("spotify_token", response.data.access_token, {
-        path: "/",
-        maxAge: 3600,
-        sameSite: "lax",
-    });
-
-    return response.data.access_token;
-};
+export async function getAlbumLastfmInfo(artistName: string, albumName: string) {
+    try {
+        const lastfmResponse = await axios.get(
+            `https://ws.audioscrobbler.com/2.0/?method=album.getinfo&artist=${artistName}&album=${albumName}&api_key=${process.env.LASTFM_API_KEY}&lang=pt&format=json`,
+        );
+        return {
+            lastfmData: lastfmResponse.data.album || null,
+        };
+    } catch (error) {
+        console.error("Error fetching Last.fm info:", error);
+        return null;
+    }
+}
 
 export async function GET(
     request: Request,
@@ -55,10 +41,12 @@ export async function GET(
             }
         );
 
-        // console.log(response.data);
+        const infos = await getAlbumLastfmInfo(response.data.artists[0].name, response.data.name);
+
+
+        console.log(infos);
 
         if (response.data.status === 429) {
-            // Lógica para lidar com o erro 429 (Too Many Requests)
             console.error("Too many requests, retrying after 2 seconds...");
             await new Promise((resolve) => setTimeout(resolve, 2000));
             token = await getAccessToken(); // Atualiza o token
@@ -67,7 +55,7 @@ export async function GET(
 
         }
 
-        return NextResponse.json(response.data);
+        return NextResponse.json({...response.data, ...infos});
     } catch (error) {
         console.error("Erro ao buscar álbum do Spotify:", error);
         return NextResponse.json(
